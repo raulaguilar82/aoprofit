@@ -1,0 +1,301 @@
+{
+  "Espadas": [
+    { "nombre": "Espada Ancha", "id": "T8_MAIN_SWORD" },
+    { "nombre": "Claymore", "id": "T8_2H_CLAYMORE" },
+    { "nombre": "Dos Espadas", "id": "T8_2H_DUALSWORD" },
+    { "nombre": "Hoja Clarent", "id": "T8_MAIN_SCIMITAR_MORGANA" },
+    { "nombre": "Espada Tallada", "id": "T8_2H_CLEAVER_HELL" },
+    { "nombre": "Galatinas", "id": "T8_2H_DUALSCIMITAR_UNDEAD" },
+    { "nombre": "Crea-Reyes", "id": "T8_2H_CLAYMORE_AVALON" },
+    { "nombre": "Hoja Infinita", "id": "T8_MAIN_SWORD_CRYSTAL" }
+  ],
+  "Hachas": [
+    { "nombre": "Hacha de Guerra", "id": "T8_MAIN_AXE" },
+    { "nombre": "Gran Hacha", "id": "T8_2H_AXE" },
+    { "nombre": "Alabarda", "id": "T8_2H_HALBERD" },
+    { "nombre": "Llamacarroña", "id": "T8_2H_HALBERD_MORGANA" },
+    { "nombre": "Guadaña Infernal", "id": "T8_2H_SCYTHE_HELL" },
+    { "nombre": "Patas de oso", "id": "T8_2H_DUALAXE_KEEPER" },
+    { "nombre": "Romperreinos", "id": "T8_2H_AXE_AVALON" },
+    { "nombre": "Falce de Cristal", "id": "T8_2H_SCYTHE_CRYSTAL" }
+  ],
+  "Mazas": [
+    { "nombre": "Maza", "id": "T8_MAIN_MACE" },
+    { "nombre": "Maza Pesada", "id": "T8_2H_MACE" },
+    { "nombre": "Mangual", "id": "T8_2H_FLAIL" },
+    { "nombre": "Maza de Lecho", "id": "T8_MAIN_ROCKMACE_KEEPER" },
+    { "nombre": "Maza Incubo", "id": "T8_MAIN_MACE_HELL" },
+    { "nombre": "Maza Camlann", "id": "T8_2H_MACE_MORGANA" },
+    { "nombre": "Juradores", "id": "T8_2H_DUALMACE_AVALON" },
+    { "nombre": "Monarca de la Tormenta", "id": "T8_MAIN_MACE_CRYSTAL" }
+  ],
+  "Martillos": [
+    { "nombre": "Martillo", "id": "T8_MAIN_HAMMER" },
+    { "nombre": "Martillo Largo", "id": "T8_2H_POLEHAMMER" },
+    { "nombre": "Gran Martillo", "id": "T8_2H_HAMMER" },
+    { "nombre": "Martillo de la Tumba", "id": "T8_2H_HAMMER_UNDEAD" },
+    { "nombre": "Mastillos de Forja", "id": "T8_2H_DUALHAMMER_HELL" },
+    { "nombre": "Guardabosques", "id": "T8_2H_RAM_KEEPER" },
+    { "nombre": "Mano de Justicia", "id": "T8_2H_HAMMER_AVALON" },
+    { "nombre": "Martillo Relampago", "id": "T8_2H_HAMMER_CRYSTAL" }
+  ],
+  "Guantes de Guerra": [
+    { "nombre": "Guantes de Peleador", "id": "T8_2H_KNUCKLES_SET1" },
+    { "nombre": "Brazales de Batalla", "id": "T8_2H_KNUCKLES_SET2" },
+    { "nombre": "Guanteletes de Puas", "id": "T8_2H_KNUCKLES_SET3" },
+    { "nombre": "Zarpas Osunas", "id": "T8_2H_KNUCKLES_KEEPER" },
+    { "nombre": "Manos Infernales", "id": "T8_2H_KNUCKLES_HELL" },
+    { "nombre": "Cestus Corvidos", "id": "T8_2H_KNUCKLES_MORGANA" },
+    { "nombre": "Puños de Avalon", "id": "T8_2H_KNUCKLES_AVALON" },
+    { "nombre": "Brazales de Fuerza Pulsante", "id": "T8_2H_KNUCKLES_CRYSTAL" }
+  ],
+  "Ballestas": [
+    { "nombre": "Ballesta", "id": "T8_2H_CROSSBOW" },
+    { "nombre": "Ballesta Pesada", "id": "T8_2H_CROSSBOWLARGE" },
+    { "nombre": "Ballesta Ligera", "id": "T8_MAIN_1HCROSSBOW" },
+    { "nombre": "Repetidora de Desconsuelo", "id": "T8_2H_REPEATINGCROSSBOW_UNDEAD" },
+    { "nombre": "Lanzasaetas", "id": "T8_2H_DUALCROSSBOW_HELL" },
+    { "nombre": "Arco de Asedio", "id": "T8_2H_CROSSBOWLARGE_MORGANA" },
+    { "nombre": "Modelador de Energia", "id": "T8_2H_CROSSBOW_CANNON_AVALON" },
+    { "nombre": "Desintegradoras de Luz", "id": "T8_2H_DUALCROSSBOW_CRYSTAL" }
+  ],
+  "Arcos": [
+    { "nombre": "Arco", "id": "T8_2H_BOW" },
+    { "nombre": "Arco de Guerra", "id": "T8_2H_WARBOW" },
+    { "nombre": "Arco Largo", "id": "T8_2H_LONGBOW" },
+    { "nombre": "Arco Susurrante", "id": "T8_2H_LONGBOW_UNDEAD" },
+    { "nombre": "Arco de Lamentaciones", "id": "T8_2H_BOW_HELL" },
+    { "nombre": "Arco de Badon", "id": "T8_2H_BOW_KEEPER" },
+    { "nombre": "Perforador de Niebla", "id": "T8_2H_BOW_AVALON" },
+    { "nombre": "Arco Cruzacielos", "id": "T8_2H_BOW_CRYSTAL" }
+  ],
+  "Dagas": [
+    { "nombre": "Daga", "id": "T8_MAIN_DAGGER" },
+    { "nombre": "Daga Doble", "id": "T8_2H_DAGGERPAIR" },
+    { "nombre": "Garras", "id": "T8_2H_CLAWPAIR" },
+    { "nombre": "Sangradora", "id": "T8_MAIN_RAPIER_MORGANA" },
+    { "nombre": "Colmillo Demoniaco", "id": "T8_MAIN_DAGGER_HELL" },
+    { "nombre": "Concedemuertes", "id": "T8_2H_DUALSICKLE_UNDEAD" },
+    { "nombre": "Furia Contenida", "id": "T8_2H_DAGGER_KATAR_AVALON" },
+    { "nombre": "Gemelas Asesinas", "id": "T8_2H_DAGGERPAIR_CRYSTAL" }
+  ],
+  "Lanzas": [
+    { "nombre": "Lanza", "id": "T8_MAIN_SPEAR" },
+    { "nombre": "Pica", "id": "T8_2H_SPEAR" },
+    { "nombre": "Guja", "id": "T8_2H_GLAIVE" },
+    { "nombre": "Lanza de Garza", "id": "T8_MAIN_SPEAR_KEEPER" },
+    { "nombre": "Cazaespiritus", "id": "T8_2H_HARPOON_HELL" },
+    { "nombre": "Lanza de Trinidad", "id": "T8_2H_TRIDENT_UNDEAD" },
+    { "nombre": "Portador de alba", "id": "T8_MAIN_SPEAR_LANCE_AVALON" },
+    { "nombre": "Guja fisurante", "id": "T8_2H_GLAIVE_CRYSTAL" }
+  ],
+  "Varas": [
+    { "nombre": "Vara", "id": "T8_2H_QUARTERSTAFF" },
+    { "nombre": "Baston Metalico", "id": "T8_2H_IRONCLADEDSTAFF" },
+    { "nombre": "Baston de Doble Filo", "id": "T8_2H_DOUBLEBLADEDSTAFF" },
+    { "nombre": "Baston de Monje Negro", "id": "T8_2H_COMBATSTAFF_MORGANA" },
+    { "nombre": "Guadaña de almas", "id": "T8_2H_TWINSCYTHE_HELL" },
+    { "nombre": "Baston de Equilibrio", "id": "T8_2H_ROCKSTAFF_KEEPER" },
+    { "nombre": "Buscador de grial", "id": "T8_2H_QUARTERSTAFF_AVALON" },
+    { "nombre": "Hoja doble fantasma", "id": "T8_2H_DOUBLEBLADEDSTAFF_CRYSTAL" }
+  ],
+  "Cambiaformas": [
+    { "nombre": "Baston de merodeador", "id": "T8_2H_SHAPESHIFTER_SET1" },
+    { "nombre": "Baston enraizado", "id": "T8_2H_SHAPESHIFTER_SET2" },
+    { "nombre": "Baston primitivo", "id": "T8_2H_SHAPESHIFTER_SET3" },
+    { "nombre": "Baston luna sangrienta", "id": "T8_2H_SHAPESHIFTER_HELL" },
+    { "nombre": "Baston de criatura infernal", "id": "T8_2H_SHAPESHIFTER_MORGANA" },
+    { "nombre": "Baston terrunico", "id": "T8_2H_SHAPESHIFTER_KEEPER" },
+    { "nombre": "Invocador de luz", "id": "T8_2H_SHAPESHIFTER_AVALON" },
+    { "nombre": "Baston de mirada firme", "id": "T8_2H_SHAPESHIFTER_CRYSTAL" }
+  ],
+  "Bastones Naturales": [
+    { "nombre": "Baston natural", "id": "T8_MAIN_NATURESTAFF" },
+    { "nombre": "Gran baston natural", "id": "T8_2H_NATURESTAFF" },
+    { "nombre": "Baston salvaje", "id": "T8_2H_WILDSTAFF" },
+    { "nombre": "Baston druida", "id": "T8_MAIN_NATURESTAFF_KEEPER" },
+    { "nombre": "Baston de infortunio", "id": "T8_2H_NATURESTAFF_HELL" },
+    { "nombre": "Baston desenfrenado", "id": "T8_2H_NATURESTAFF_KEEPER" },
+    { "nombre": "Baston de Raiz Ferrea", "id": "T8_MAIN_NATURESTAFF_AVALON" },
+    { "nombre": "Baston de forjacorteza", "id": "T8_MAIN_NATURESTAFF_CRYSTAL" }
+  ],
+  "Bastones de Fuego": [
+    { "nombre": "Baston igneo", "id": "T8_MAIN_FIRESTAFF" },
+    { "nombre": "Gran baston igneo", "id": "T8_2H_FIRESTAFF" },
+    { "nombre": "Baston infernal", "id": "T8_2H_INFERNOSTAFF" },
+    { "nombre": "Baston de fuego incontrolable", "id": "T8_MAIN_FIRESTAFF_KEEPER" },
+    { "nombre": "Baston de azufre", "id": "T8_2H_FIRESTAFF_HELL" },
+    { "nombre": "Baston Flamigero", "id": "T8_2H_INFERNOSTAFF_MORGANA" },
+    { "nombre": "Cancion del despertar", "id": "T8_2H_FIRE_RINGPAIR_AVALON" },
+    { "nombre": "Baston de caminallamas", "id": "T8_MAIN_FIRESTAFF_CRYSTAL" }
+  ],
+  "Bastones Sagrados": [
+    { "nombre": "Baston sagrado", "id": "T8_MAIN_HOLYSTAFF" },
+    { "nombre": "Gran baston sagrado", "id": "T8_2H_HOLYSTAFF" },
+    { "nombre": "Baston Divino", "id": "T8_2H_DIVINESTAFF" },
+    { "nombre": "Baston de toque de vida", "id": "T8_MAIN_HOLYSTAFF_MORGANA" },
+    { "nombre": "Baston Caido", "id": "T8_2H_HOLYSTAFF_HELL" },
+    { "nombre": "Baston de redencion", "id": "T8_2H_HOLYSTAFF_UNDEAD" },
+    { "nombre": "Santificador", "id": "T8_MAIN_HOLYSTAFF_AVALON" },
+    { "nombre": "Baston exaltado", "id": "T8_2H_HOLYSTAFF_CRYSTAL" }
+  ],
+  "Bastones Arcanos": [
+    { "nombre": "Baston Arcano", "id": "T8_MAIN_ARCANESTAFF" },
+    { "nombre": "Gran baston arcano", "id": "T8_2H_ARCANESTAFF" },
+    { "nombre": "Baston enigmatico", "id": "T8_2H_ENIGMATICSTAFF" },
+    { "nombre": "Baston de brujeria", "id": "T8_MAIN_ARCANESTAFF_UNDEAD" },
+    { "nombre": "Baston oculto", "id": "T8_2H_ARCANESTAFF_HELL" },
+    { "nombre": "Locus malevolo", "id": "T8_2H_ENIGMATICORB_MORGANA" },
+    { "nombre": "Sonido equilibrado", "id": "T8_2H_ARCANE_RINGPAIR_AVALON" },
+    { "nombre": "Baston astral", "id": "T8_2H_ARCANESTAFF_CRYSTAL" }
+  ],
+  "Bastones de Hielo": [
+    { "nombre": "Baston de hielo", "id": "T8_MAIN_FROSTSTAFF" },
+    { "nombre": "Gran baston de hielo", "id": "T8_2H_FROSTSTAFF" },
+    { "nombre": "Baston glacial", "id": "T8_2H_GLACIALSTAFF" },
+    { "nombre": "Baston de escarcha", "id": "T8_MAIN_FROSTSTAFF_KEEPER" },
+    { "nombre": "Baston de carambanos", "id": "T8_2H_ICEGAUNTLETS_HELL" },
+    { "nombre": "Prisma de hielos perpetuos", "id": "T8_2H_ICECRYSTAL_UNDEAD" },
+    { "nombre": "Grito gelido", "id": "T8_MAIN_FROSTSTAFF_AVALON" },
+    { "nombre": "Baston artico", "id": "T8_2H_FROSTSTAFF_CRYSTAL" }
+  ],
+  "Bastones Malditos": [
+    { "nombre": "Baston maldito", "id": "T8_MAIN_CURSEDSTAFF" },
+    { "nombre": "Gran baston maldito", "id": "T8_2H_CURSEDSTAFF" },
+    { "nombre": "Baston demoniaco", "id": "T8_2H_DEMONICSTAFF" },
+    { "nombre": "Baston de maldicion de vida", "id": "T8_MAIN_CURSEDSTAFF_UNDEAD" },
+    { "nombre": "Calavera maldita", "id": "T8_2H_SKULLORB_HELL" },
+    { "nombre": "Baston de maldiciones", "id": "T8_2H_CURSEDSTAFF_MORGANA" },
+    { "nombre": "Invocador oscuro", "id": "T8_MAIN_CURSEDSTAFF_AVALON" },
+    { "nombre": "Baston putrefacto", "id": "T8_MAIN_CURSEDSTAFF_CRYSTAL" }
+  ],
+  "Escudos": [
+    { "nombre": "Escudo", "id": "T8_OFF_SHIELD" },
+    { "nombre": "Sarcofago", "id": "T8_OFF_TOWERSHIELD_UNDEAD" },
+    { "nombre": "Escudo de villano", "id": "T8_OFF_SHIELD_HELL" },
+    { "nombre": "Partecaras", "id": "T8_OFF_SPIKEDSHIELD_MORGANA" },
+    { "nombre": "Aegis astral", "id": "T8_OFF_SHIELD_AVALON" },
+    { "nombre": "Barrera inquebrantable", "id": "T8_OFF_SHIELD_CRYSTAL" }
+  ],
+  "Antorchas": [
+    { "nombre": "Antorcha", "id": "T8_OFF_TORCH" },
+    { "nombre": "Invocanieblas", "id": "T8_OFF_HORN_KEEPER" },
+    { "nombre": "Baston malicioso", "id": "T8_OFF_JESTERCANE_HELL" },
+    { "nombre": "Vela de cripta", "id": "T8_OFF_LAMP_UNDEAD" },
+    { "nombre": "Cetro sagrado", "id": "T8_OFF_TALISMAN_AVALON" },
+    { "nombre": "Antorcha llamaazul", "id": "T8_OFF_TORCH_CRYSTAL" }
+  ],
+  "Libros de Hechizos": [
+    { "nombre": "Libro de hechizos", "id": "T8_OFF_BOOK" },
+    { "nombre": "Ojo de los secretos", "id": "T8_OFF_ORB_MORGANA" },
+    { "nombre": "Muisak", "id": "T8_OFF_DEMONSKULL_HELL" },
+    { "nombre": "Raiz primaria", "id": "T8_OFF_TOTEM_KEEPER" },
+    { "nombre": "Incensario celestial", "id": "T8_OFF_CENSER_AVALON" },
+    { "nombre": "Grimorio cronoestatico", "id": "T8_OFF_TOME_CRYSTAL" }
+  ],
+  "Cascos de Placa": [
+    { "nombre": "Casco de soldado", "id": "T8_HEAD_PLATE_SET1" },
+    { "nombre": "Casco de caballero", "id": "T8_HEAD_PLATE_SET2" },
+    { "nombre": "Casco de guardian", "id": "T8_HEAD_PLATE_SET3" },
+    { "nombre": "Casco real", "id": "T8_HEAD_PLATE_ROYAL" },
+    { "nombre": "Casco de guardatumbas", "id": "T8_HEAD_PLATE_UNDEAD" },
+    { "nombre": "Casco demoniaco", "id": "T8_HEAD_PLATE_HELL" },
+    { "nombre": "Casco de juez", "id": "T8_HEAD_PLATE_KEEPER" },
+    { "nombre": "Casco crepuscular", "id": "T8_HEAD_PLATE_FEY" },
+    { "nombre": "Casco de valor", "id": "T8_HEAD_PLATE_AVALON" }
+  ],
+  "Cascos de Cuero": [
+    { "nombre": "Capucha de mercenario", "id": "T8_HEAD_LEATHER_SET1" },
+    { "nombre": "Capucha de cazador", "id": "T8_HEAD_LEATHER_SET2" },
+    { "nombre": "Capucha de asesino", "id": "T8_HEAD_LEATHER_SET3" },
+    { "nombre": "Capucha real", "id": "T8_HEAD_LEATHER_ROYAL" },
+    { "nombre": "Capucha de acechador", "id": "T8_HEAD_LEATHER_MORGANA" },
+    { "nombre": "Capucha de vandalo", "id": "T8_HEAD_LEATHER_HELL" },
+    { "nombre": "Capucha de espectro", "id": "T8_HEAD_LEATHER_UNDEAD" },
+    { "nombre": "Capucha de caminanieblas", "id": "T8_HEAD_LEATHER_FEY" },
+    { "nombre": "Capucha de tenacidad", "id": "T8_HEAD_LEATHER_AVALON" }
+  ],
+  "Cascos de Tela": [
+    { "nombre": "Habito de erudito", "id": "T8_HEAD_CLOTH_SET1" },
+    { "nombre": "Habito de clerigo", "id": "T8_HEAD_CLOTH_SET2" },
+    { "nombre": "Habito de mago", "id": "T8_HEAD_CLOTH_SET3" },
+    { "nombre": "Habito real", "id": "T8_HEAD_CLOTH_ROYAL" },
+    { "nombre": "Habito de druida", "id": "T8_HEAD_CLOTH_KEEPER" },
+    { "nombre": "Habito de diablo", "id": "T8_HEAD_CLOTH_HELL" },
+    { "nombre": "Habito de sectario", "id": "T8_HEAD_CLOTH_MORGANA" },
+    { "nombre": "Sombrero de escamas feericas", "id": "T8_HEAD_CLOTH_FEY" },
+    { "nombre": "Habito de pureza", "id": "T8_HEAD_CLOTH_AVALON" }
+  ],
+  "Armaduras de Placa": [
+    { "nombre": "Armadura de soldado", "id": "T8_ARMOR_PLATE_SET1" },
+    { "nombre": "Armadura de caballero", "id": "T8_ARMOR_PLATE_SET2" },
+    { "nombre": "Armadura de guardian", "id": "T8_ARMOR_PLATE_SET3" },
+    { "nombre": "Armadura real", "id": "T8_ARMOR_PLATE_ROYAL" },
+    { "nombre": "Armadura de guardatumbas", "id": "T8_ARMOR_PLATE_UNDEAD" },
+    { "nombre": "Armadura de demonio", "id": "T8_ARMOR_PLATE_HELL" },
+    { "nombre": "Armadura de juez", "id": "T8_ARMOR_PLATE_KEEPER" },
+    { "nombre": "Armadura crepuscular", "id": "T8_ARMOR_PLATE_FEY" },
+    { "nombre": "Armadura de valor", "id": "T8_ARMOR_PLATE_AVALON" }
+  ],
+  "Armaduras de Cuero": [
+    { "nombre": "Chaqueta de mercenario", "id": "T8_ARMOR_LEATHER_SET1" },
+    { "nombre": "Chaqueta de cazador", "id": "T8_ARMOR_LEATHER_SET2" },
+    { "nombre": "Chaqueta de asesino", "id": "T8_ARMOR_LEATHER_SET3" },
+    { "nombre": "Chaqueta real", "id": "T8_ARMOR_LEATHER_ROYAL" },
+    { "nombre": "Chaqueta de acechador", "id": "T8_ARMOR_LEATHER_MORGANA" },
+    { "nombre": "Chaqueta de vandalo", "id": "T8_ARMOR_LEATHER_HELL" },
+    { "nombre": "Chaqueta de espectro", "id": "T8_ARMOR_LEATHER_UNDEAD" },
+    { "nombre": "Chaqueta de caminanieblas", "id": "T8_ARMOR_LEATHER_FEY" },
+    { "nombre": "Chaqueta de tenacidad", "id": "T8_ARMOR_LEATHER_AVALON" }
+  ],
+  "Armaduras de Tela": [
+    { "nombre": "Tunica de erudito", "id": "T8_ARMOR_CLOTH_SET1" },
+    { "nombre": "Tunica de clerigo", "id": "T8_ARMOR_CLOTH_SET2" },
+    { "nombre": "Tunica de mago", "id": "T8_ARMOR_CLOTH_SET3" },
+    { "nombre": "Tunica real", "id": "T8_ARMOR_CLOTH_ROYAL" },
+    { "nombre": "Tunica de druida", "id": "T8_ARMOR_CLOTH_KEEPER" },
+    { "nombre": "Tunica de diablo", "id": "T8_ARMOR_CLOTH_HELL" },
+    { "nombre": "Tunica de sectario", "id": "T8_ARMOR_CLOTH_MORGANA" },
+    { "nombre": "Tunica de escamas feericas", "id": "T8_ARMOR_CLOTH_FEY" },
+    { "nombre": "Tunica de pureza", "id": "T8_ARMOR_CLOTH_AVALON" }
+  ],
+  "Zapatos de Placa": [
+    { "nombre": "Botas de soldado", "id": "T8_SHOES_PLATE_SET1" },
+    { "nombre": "Botas de caballero", "id": "T8_SHOES_PLATE_SET2" },
+    { "nombre": "Botas de guardian", "id": "T8_SHOES_PLATE_SET3" },
+    { "nombre": "Botas reales", "id": "T8_SHOES_PLATE_ROYAL" },
+    { "nombre": "Botas de guardatumbas", "id": "T8_SHOES_PLATE_UNDEAD" },
+    { "nombre": "Botas de demonio", "id": "T8_SHOES_PLATE_HELL" },
+    { "nombre": "Botas de juez", "id": "T8_SHOES_PLATE_KEEPER" },
+    { "nombre": "Botas crepusculares", "id": "T8_SHOES_PLATE_FEY" },
+    { "nombre": "Botas de valor", "id": "T8_SHOES_PLATE_AVALON" }
+  ],
+  "Zapatos de Cuero": [
+    { "nombre": "Zapatos de mercenario", "id": "T8_SHOES_LEATHER_SET1" },
+    { "nombre": "Zapatos de cazador", "id": "T8_SHOES_LEATHER_SET2" },
+    { "nombre": "Zapatos de asesino", "id": "T8_SHOES_LEATHER_SET3" },
+    { "nombre": "Zapatos reales", "id": "T8_SHOES_LEATHER_ROYAL" },
+    { "nombre": "Zapatos de acechador", "id": "T8_SHOES_LEATHER_MORGANA" },
+    { "nombre": "Zapatos de vandalo", "id": "T8_SHOES_LEATHER_HELL" },
+    { "nombre": "Zapatos de espectro", "id": "T8_SHOES_LEATHER_UNDEAD" },
+    { "nombre": "Zapatos de caminanieblas", "id": "T8_SHOES_LEATHER_FEY" },
+    { "nombre": "Zapatos de tenacidad", "id": "T8_SHOES_LEATHER_AVALON" }
+  ],
+  "Zapatos de Tela": [
+    { "nombre": "Sandalias de erudito", "id": "T8_SHOES_CLOTH_SET1" },
+    { "nombre": "Sandalias de clerigo", "id": "T8_SHOES_CLOTH_SET2" },
+    { "nombre": "Sandalias de mago", "id": "T8_SHOES_CLOTH_SET3" },
+    { "nombre": "Sandalias reales", "id": "T8_SHOES_CLOTH_ROYAL" },
+    { "nombre": "Sandalias de druida", "id": "T8_SHOES_CLOTH_KEEPER" },
+    { "nombre": "Sandalias de diablo", "id": "T8_SHOES_CLOTH_HELL" },
+    { "nombre": "Sandalias de sectario", "id": "T8_SHOES_CLOTH_MORGANA" },
+    { "nombre": "Sandalias de escamas feericas", "id": "T8_SHOES_CLOTH_FEY" },
+    { "nombre": "Sandalias de pureza", "id": "T8_SHOES_CLOTH_AVALON" }
+  ],
+  "Bolsas": [
+    { "nombre": "Bolsas", "id": "T8_BAG" }
+  ],
+  "Capas": [
+    { "nombre": "Capas", "id": "T8_CAPE" }
+  ]
+}

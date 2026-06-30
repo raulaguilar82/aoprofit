@@ -1,0 +1,295 @@
+ARMAS
+
+Espadas:
+Espada Ancha
+Claymore
+Dos Espadas
+Hoja Clarent
+Espada Tallada
+Galatinas
+Crea-Reyes
+Hoja Infinita
+
+Hachas:
+Hacha de Guerra
+Gran Hacha
+Alabarda
+Llamacarroña
+Guadaña Infernal
+Patas de oso
+Romperreinos
+Falce de Cristal
+
+Mazas:
+Maza
+Maza Pesada
+Mangual
+Maza de Lecho
+Maza Incubo
+Maza Camlann
+Juradores
+Monarca de la Tormenta
+
+Martillos:
+Martillo
+Martillo Largo
+Gran Martillo
+Martillo de la Tumba
+Mastillos de Forja
+Guardabosques
+Mano de Justicia
+Martillo Relampago
+
+Guantes de Guerra:
+Guantes de Peleador
+Brazales de Batalla
+Guanteletes de Puas
+Zarpas Osunas
+Manos Infernales
+Cestus Corvidos
+Puños de Avalon
+Brazales de Fuerza Pulsante
+
+Ballestas:
+Ballesta
+Ballesta Pesada
+Ballesta Ligera
+Repetidora de Desconsuelo
+Lanzasaetas
+Arco de Asedio
+Modelador de Energia
+Desintegradoras de Luz
+
+Arcos:
+Arco
+Arco de Guerra
+Arco Largo
+Arco Susurrante
+Arco de Lamentaciones
+Arco de Badon
+Perforador de Niebla
+Arco Cruzacielos
+
+Dagas:
+Daga
+Daga Doble
+Garras
+Sangradora
+Colmillo Demoniaco
+Concedemuertes
+Furia Contenida
+Gemelas Asesinas
+
+Lanzas:
+Lanza
+Pica
+Guja
+Lanza de Garza
+Cazaespiritus
+Lanza de Trinidad
+Portador de alba
+Guja fisurante
+
+Varas:
+Vara
+Baston Metalico
+Baston de Doble Filo
+Baston de Monje Negro
+Guadaña de almas
+Baston de Equilibrio
+Buscador de grial
+Hoja doble fantasma
+
+Cambiaformas:
+Baston de merodeador
+Baston enraizado
+Baston primitivo
+Baston luna sangrienta
+Baston de criatura infernal
+Baston terrunico
+Invocador de luz
+Baston de mirada firme
+
+Bastones Naturales:
+Baston natural
+Gran baston natural
+Baston salvaje
+Baston druida
+Baston de infortunio
+Baston desenfrenado
+Baston de Raiz Ferrea
+Baston de forjacorteza
+
+Bastones de Fuego:
+Baston igneo
+Gran baston igneo
+Baston infernal
+Baston de fuego incontrolable
+Baston de azufre
+Baston Flamigero
+Cancion del despertar
+Baston de caminallamas
+
+Bastones sagrados:
+Baston sagrado
+Gran baston sagrado
+Baston Divino
+Baston de toque de vida
+Baston Caido
+Baston de redencion
+Santificador
+Baston exaltado
+
+Bastones Arcanos:
+Baston Arcano
+Gran baston arcano
+Baston enigmatico
+Baston de brujeria
+Baston oculto
+Locus malevolo
+Sonido equilibrado
+Baston astral
+
+Bastones de Hielo:
+Baston de hielo
+Gran baston de hielo
+Baston glacial
+Baston de escarcha
+Baston de carambanos
+Prisma de hielos perpetuos
+Grito gelido
+Baston artico
+
+Bastones Malditos:
+Baston maldito
+Gran baston maldito
+Baston demoniaco
+Baston de maldicion de vida
+Calavera maldita
+Baston de maldiciones
+Invocador oscuro
+Baston putrefacto
+
+OFFHANDS
+
+Escudos:
+Escudo
+Sarcofago
+Escudo de villano
+Partecaras
+Aegis astral
+Barrera inquebrantable
+
+Antorchas:
+Antorcha
+Invocanieblas
+Baston malicioso
+Vela de cripta
+Cetro sagrado
+Antorcha llamaazul
+
+Libros de Hechizos:
+Libro de hechizos
+Ojo de los secretos
+Muisak
+Raiz primaria
+Incensario celestial
+Grimorio cronoestatico
+
+ROPA
+
+PLACAS:
+Cascos:
+Casco de soldado
+Casco de caballero
+Casco de guardian
+Casco real
+Casco de guardatumbas
+Casco demoniaco
+Casco de juez
+Casco crepuscular
+Casco de valor
+Armaduras:
+Armadura de soldado
+Armadura de caballero
+Armadura de guardian
+Armadura real
+Armadura de guardatumbas
+Armadura de demonio
+Armadura de juez
+Armadura crepuscular
+Armadura de valor
+Botas:
+Botas de soldado
+Botas de caballero
+Botas de guardian
+Botas reales
+Botas de guardatumbas
+Botas de demonio
+Botas de juez
+Botas crepusculares
+Botas de valor
+
+CUERO:
+Capuchas:
+Capucha de mercenario
+Capucha de cazador
+Capucha de asesino
+Capucha real
+Capucha de acechador
+Capucha de vandalo
+Capucha de espectro
+Capucha de caminanieblas
+Capucha de tenacidad
+Chaquetas:
+Chaqueta de mercenario
+Chaqueta de cazador
+Chaqueta de asesino
+Chaqueta real
+Chaqueta de acechador
+Chaqueta de vandalo
+Chaqueta de espectro
+Chaqueta de caminanieblas
+Chaqueta de tenacidad
+Zapatos:
+Zapatos de mercenario
+Zapatos de cazador
+Zapatos de asesino
+Zapatos reales
+Zapatos de acechador
+Zapatos de vandalo
+Zapatos de espectro
+Zapatos de caminanieblas
+Zapatos de tenacidad
+
+TELA
+Habitos:
+Habito de erudito
+Habito de clerigo
+Habito de mago
+Habito real
+Habito de druida
+Habito de diablo
+Habito de sectario
+Sombrero de escamas feericas
+Habito de pureza
+Tunicas:
+Tunica de erudito
+Tunicade clerigo
+Tunicade mago
+Tunica real
+Tunica de druida
+Tunica de diablo
+Tunica de sectario
+Tunica de escamas feericas
+Tunica de pureza
+Sandalias:
+Sandalias de erudito
+Sandalias de clerigo
+Sandalias de mago
+Sandalias reales
+Sandalias de druida
+Sandalias de diablo
+Sandalias de sectario
+Sandalias de escamas feericas
+Sandalias de pureza

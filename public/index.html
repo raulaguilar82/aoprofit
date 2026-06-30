@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Albion Profit - Calculadora de crafteo" />
+  <title>Albion Profit</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="js/utils/format.js" defer></script>
+  <script src="js/utils/api.js" defer></script>
+  <script src="js/modules/tiers.js" defer></script>
+  <script src="js/modules/rrr.js" defer></script>
+  <script src="js/modules/items.js" defer></script>
+  <script src="js/modules/prices.js" defer></script>
+  <script src="js/modules/profit.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+
+<body>
+
+  <!-- ==================== HEADER ==================== -->
+  <header>
+    <h1>
+      <img src="https://render.albiononline.com/v1/item/Elder%27s%20Bag%20of%20Silver.png" alt="Icono" width="40"
+        height="40" class="header-icon" />
+      Albion Profit
+      <img src="https://render.albiononline.com/v1/item/Elder%27s%20Bag%20of%20Silver.png" alt="Icono" width="40"
+        height="40" class="header-icon" />
+    </h1>
+    <nav class="nav-bar" aria-label="Navegación principal">
+      <span>Crafteo</span>
+      <span>Refinamiento</span>
+      <span>Islas</span>
+      <span>Market Flip</span>
+    </nav>
+  </header>
+
+  <!-- ==================== MAIN ==================== -->
+  <main class="container">
+
+    <!-- ===== PANEL DE CONFIGURACIÓN ===== -->
+    <aside class="config-panel" aria-label="Panel de configuración">
+
+      <!-- Selector de rama -->
+      <div class="form-group">
+        <label for="craft-category">Rama de crafteo:</label>
+        <select id="craft-category" class="config-select">
+          <optgroup label="Armas">
+            <option value="Espadas" selected>Espadas</option>
+            <option value="Hachas">Hachas</option>
+            <option value="Mazas">Mazas</option>
+            <option value="Martillos">Martillos</option>
+            <option value="Guantes de Guerra">Guantes de Guerra</option>
+            <option value="Ballestas">Ballestas</option>
+            <option value="Arcos">Arcos</option>
+            <option value="Dagas">Dagas</option>
+            <option value="Lanzas">Lanzas</option>
+            <option value="Varas">Varas</option>
+            <option value="Cambiaformas">Cambiaformas</option>
+            <option value="Bastones Naturales">Bastones Naturales</option>
+            <option value="Bastones de Fuego">Bastones de Fuego</option>
+            <option value="Bastones Sagrados">Bastones Sagrados</option>
+            <option value="Bastones Arcanos">Bastones Arcanos</option>
+            <option value="Bastones de Hielo">Bastones de Hielo</option>
+            <option value="Bastones Malditos">Bastones Malditos</option>
+          </optgroup>
+          <optgroup label="Off-Hands">
+            <option value="Escudos">Escudos</option>
+            <option value="Antorchas">Antorchas</option>
+            <option value="Libros de Hechizos">Libros de Hechizos</option>
+          </optgroup>
+          <optgroup label="Ropa de Tela">
+            <option value="Cascos de Tela">Hábitos de Tela</option>
+            <option value="Armaduras de Tela">Túnicas de Tela</option>
+            <option value="Zapatos de Tela">Sandalias de Tela</option>
+          </optgroup>
+          <optgroup label="Ropa de Cuero">
+            <option value="Cascos de Cuero">Capuchas de Cuero</option>
+            <option value="Armaduras de Cuero">Chaquetas de Cuero</option>
+            <option value="Zapatos de Cuero">Zapatos de Cuero</option>
+          </optgroup>
+          <optgroup label="Ropa de Placa">
+            <option value="Cascos de Placa">Cascos de Placa</option>
+            <option value="Armaduras de Placa">Armaduras de Placa</option>
+            <option value="Zapatos de Placa">Botas de Placa</option>
+          </optgroup>
+          <optgroup label="Otros">
+            <option value="Bolsas">Bolsas</option>
+            <option value="Capas">Capas</option>
+          </optgroup>
+        </select>
+      </div>
+
+      <!-- Selector de item específico -->
+      <div class="form-group">
+        <label for="craft-item">Item a craftear:</label>
+        <div class="item-select-row">
+          <img id="selected-item-icon" src="https://render.albiononline.com/v1/item/T2_HEAD_CLOTH_SET1.png" alt=""
+            width="36" height="36" class="selected-item-icon" />
+          <select id="craft-item" class="config-select">
+            <option value="">-- Selecciona un tipo primero --</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="separator"></div>
+
+      <!-- Ubicación de crafteo -->
+      <div class="form-group">
+        <label>Bono de devolución:</label>
+        <button type="button" class="location-btn active" data-location="city-no-bonus">🏙️ Ciudad (Sin bono)</button>
+        <button type="button" class="location-btn" data-location="city-bonus">🏙️ Ciudad (Con bono)</button>
+        <button type="button" class="location-btn" data-location="custom" id="btn-custom">✏️ Custom</button>
+        <div id="custom-rrr-group" style="display: none;">
+          <label for="custom-rrr">Devolución Custom (%):</label>
+          <input type="number" id="custom-rrr" value="0" min="0" max="100" step="0.1" />
+        </div>
+      </div>
+
+      <div class="separator"></div>
+
+      <!-- Bono diario -->
+      <label>Bono Diario:</label>
+      <div class="bonus-buttons">
+        <button type="button" class="bonus-btn active" data-bonus="0">0%</button>
+        <button type="button" class="bonus-btn" data-bonus="10">10%</button>
+        <button type="button" class="bonus-btn" data-bonus="20">20%</button>
+      </div>
+
+      <div class="separator"></div>
+
+      <!-- Tasa de Retorno -->
+      <div class="form-group">
+        <label for="rrr">Tasa de Retorno (%):</label>
+        <input type="number" id="rrr" value="28.1" step="0.1" readonly />
+        <small class="help-text" id="rrr-desc">Ciudad sin bonus: 15.2% base</small>
+      </div>
+
+      <div class="form-group form-group--row">
+        <input type="checkbox" id="foco" />
+        <label for="foco">Usar Foco</label>
+      </div>
+
+      <div class="form-group form-group--row">
+        <input type="checkbox" id="premium" />
+        <label for="premium">Premium</label>
+      </div>
+
+      <div class="form-group form-group--row">
+        <input type="checkbox" id="diarios" checked />
+        <label for="diarios">Llenar Diarios</label>
+      </div>
+
+      <div class="form-group">
+        <label for="station-fee">Tarifa de Estación (%):</label>
+        <input type="number" id="station-fee" value="300" min="0" step="1" />
+      </div>
+
+      <div class="separator"></div>
+      <label>Compra de Materiales:</label>
+      <div class="bonus-buttons">
+        <button type="button" class="buy-mode-btn active" data-mode="sell">Compra Directa</button>
+        <button type="button" class="buy-mode-btn" data-mode="buy">Órden de Compra</button>
+      </div>
+
+      <div class="form-group">
+        <label for="sell-city">Ciudad de Venta:</label>
+        <select id="sell-city" class="config-select">
+          <option value="Lymhurst">Lymhurst</option>
+          <option value="Fort Sterling">Fort Sterling</option>
+          <option value="Thetford">Thetford</option>
+          <option value="Martlock">Martlock</option>
+          <option value="Bridgewatch">Bridgewatch</option>
+          <option value="Caerleon" selected>Caerleon</option>
+          <option value="Black Market">Black Market</option>
+          <option value="Brecilien">Brecilien</option>
+        </select>
+      </div>
+
+      <div class="separator"></div>
+
+      <!-- Bonus de especificación -->
+      <div class="form-group" id="selected-item-specs">
+        <div id="spec-bonus-display" class="spec-bonus-display">
+          <span>🔧 Eficiencia de Foco: <strong>+0.00</strong></span>
+          <span>⭐ Calidad: <strong>+0.00</strong></span>
+        </div>
+        <div id="item-spec-inputs">
+          <p style="color: #888; font-size: 0.8rem;">Selecciona un objeto</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ===== PANELES DE RESULTADOS ===== -->
+    <div class="results-wrapper">
+
+      <!-- Tabla: Profit por Unidad -->
+      <section class="results-panel" aria-labelledby="profit-heading">
+        <div class="results-panel-header">
+          <h2 id="profit-heading">PROFIT C/U</h2>
+          <div class="form-group">
+            <button id="btn-specs" class="btn-primary">Actualizar Precios</button>
+          </div>
+        </div>
+        <table class="data-table" aria-label="Profit por unidad">
+          <thead>
+            <tr>
+              <th>Tier</th>
+              <th>Precio Venta</th>
+              <th>Profit Diarios</th>
+              <th>Impuesto</th>
+              <th>Costo Nutrición</th>
+              <th>Costo Crafteo</th>
+              <th>Profit (%)</th>
+              <th>Costo Foco</th>
+              <th>Cantidad a Craftear</th>
+            </tr>
+          </thead>
+          <tbody class="tier-group t4" data-tier="T4">
+            <tr class="main-row">
+              <td><span class="arrow">▶</span> T4</td>
+              <td data-empty></td>
+              <td data-empty></td>
+              <td data-empty></td>
+              <td data-empty></td>
+              <td data-empty></td>
+              <td data-empty></td>
+              <td data-empty></td>
+              <td><input type="number" class="cant-input" value="0" min="0" /></td>
+            </tr>
+          </tbody>
+          <tbody class="tier-group t5" data-tier="T5">
+            <tr class="main-row">
+              <td><span class="arrow">▶</span> T5</td>
+              <td data-empty></td>
+              <td data-empty></td>
+              <td data-empty></td>
+              <td data-empty></td>
+              <td data-empty></td>
+              <td data-empty></td>
+              <td data-empty></td>
+              <td><input type="number" class="cant-input" value="0" min="0" /></td>
+            </tr>
+          </tbody>
+          <tbody class="tier-group t6" data-tier="T6">
+            <tr class="main-row">
+              <td><span class="arrow">▶</span> T6</td>
+              <td data-empty></td>
+              <td data-empty></td>
+              <td data-empty></td>
+              <td data-empty></td>
+              <td data-empty></td>
+              <td data-empty></td>
+              <td data-empty></td>
+              <td><input type="number" class="cant-input" value="0" min="0" /></td>
+            </tr>
+          </tbody>
+          <tbody class="tier-group t7" data-tier="T7">
+            <tr class="main-row">
+              <td><span class="arrow">▶</span> T7</td>
+              <td data-empty></td>
+              <td data-empty></td>
+              <td data-empty></td>
+              <td data-empty></td>
+              <td data-empty></td>
+              <td data-empty></td>
+              <td data-empty></td>
+              <td><input type="number" class="cant-input" value="0" min="0" /></td>
+            </tr>
+          </tbody>
+          <tbody class="tier-group t8" data-tier="T8">
+            <tr class="main-row">
+              <td><span class="arrow">▶</span> T8</td>
+              <td data-empty></td>
+              <td data-empty></td>
+              <td data-empty></td>
+              <td data-empty></td>
+              <td data-empty></td>
+              <td data-empty></td>
+              <td data-empty></td>
+              <td><input type="number" class="cant-input" value="0" min="0" /></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Tabla: Lista de Compras -->
+      <section class="results-panel" aria-labelledby="compras-heading">
+        <h2 id="compras-heading">LISTA DE COMPRAS</h2>
+        <table class="data-table" aria-label="Lista de compras">
+          <thead>
+            <tr>
+              <th>Tier</th>
+              <th>Material 1</th>
+              <th>Material 2</th>
+              <th>Artefacto</th>
+              <th>Diarios</th>
+            </tr>
+          </thead>
+          <tbody id="shopping-list-body"></tbody>
+        </table>
+      </section>
+
+      <!-- Tabla: Totales -->
+      <section class="results-panel" aria-labelledby="totales-heading">
+        <h2 id="totales-heading">TOTAL</h2>
+        <table class="data-table" aria-label="Totales">
+          <thead>
+            <tr>
+              <th>Costo Total de Crafteo</th>
+              <th>Costo Total de Foco</th>
+              <th>Profit Total (%)</th>
+            </tr>
+          </thead>
+          <tbody id="totals-body"></tbody>
+        </table>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ==================== MODAL PRECIOS ==================== -->
+  <div id="modal-specs" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Precios de Mercado</h2>
+        <div class="modal-header-actions">
+          <span id="prices-status" class="prices-status">
+            <span class="status-dot"></span>
+            <span id="status-text">Listo</span>
+          </span>
+          <button id="btn-refresh-prices" class="btn-toggle" title="Actualizar precios">🔄 Actualizar</button>
+          <button id="modal-close" class="modal-close">&times;</button>
+        </div>
+      </div>
+      <div id="tab-prices" class="tab-content">
+        <div id="prices-list">
+          <p style="color: #888; text-align: center; padding: 40px;">Selecciona un item a craftear para ver los precios
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,1409 @@
+{
+  "MAIN_ARCANESTAFF": {
+    "nombre": "Arcane Staff",
+    "material1": { "id": "PLANKS", "cantidad": 16 },
+    "material2": { "id": "METALBAR", "cantidad": 8 },
+    "ciudad": "Forest - Lymhurst",
+    "artefacto": null
+  },
+  "ARMOR_PLATE_AVALON": {
+    "nombre": "Armor of Valor",
+    "material1": { "id": "METALBAR", "cantidad": 16 },
+    "material2": null,
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": { "id": "ARTEFACT_ARMOR_PLATE_AVALON", "nombre": "Exalted Plating" }
+  },
+  "HEAD_LEATHER_SET3": {
+    "nombre": "Assassin Hood",
+    "material1": { "id": "LEATHER", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Forest - Lymhurst",
+    "artefacto": null
+  },
+  "ARMOR_LEATHER_SET3": {
+    "nombre": "Assassin Jacket",
+    "material1": { "id": "LEATHER", "cantidad": 16 },
+    "material2": null,
+    "ciudad": "Swamp - Thetford",
+    "artefacto": null
+  },
+  "SHOES_LEATHER_SET3": {
+    "nombre": "Assassin Shoes",
+    "material1": { "id": "LEATHER", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Forest - Lymhurst",
+    "artefacto": null
+  },
+  "OFF_SHIELD_AVALON": {
+    "nombre": "Astral Aegis",
+    "material1": { "id": "PLANKS", "cantidad": 4 },
+    "material2": { "id": "METALBAR", "cantidad": 4 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": { "id": "ARTEFACT_OFF_SHIELD_AVALON", "nombre": "Crushed Avalonian Heirloom" }
+  },
+  "BAG": {
+    "nombre": "Bag",
+    "material1": { "id": "CLOTH", "cantidad": 8 },
+    "material2": { "id": "LEATHER", "cantidad": 8 },
+    "ciudad": "None",
+    "artefacto": null
+  },
+  "2H_KNUCKLES_SET2": {
+    "nombre": "Battle Bracers",
+    "material1": { "id": "LEATHER", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Caerleon",
+    "artefacto": null
+  },
+  "MAIN_AXE": {
+    "nombre": "Battleaxe",
+    "material1": { "id": "PLANKS", "cantidad": 8 },
+    "material2": { "id": "METALBAR", "cantidad": 16 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": null
+  },
+  "2H_DUALAXE_KEEPER": {
+    "nombre": "Bear Paws",
+    "material1": { "id": "PLANKS", "cantidad": 12 },
+    "material2": { "id": "METALBAR", "cantidad": 20 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": { "id": "ARTEFACT_2H_DUALAXE_KEEPER", "nombre": "Keeper Axeheads" }
+  },
+  "MAIN_ROCKMACE_KEEPER": {
+    "nombre": "Bedrock Mace",
+    "material1": { "id": "METALBAR", "cantidad": 16 },
+    "material2": { "id": "CLOTH", "cantidad": 8 },
+    "ciudad": "Swamp - Thetford",
+    "artefacto": { "id": "ARTEFACT_MAIN_ROCKMACE_KEEPER", "nombre": "Runed Rock" }
+  },
+  "2H_COMBATSTAFF_MORGANA": {
+    "nombre": "Black Monk Stave",
+    "material1": { "id": "METALBAR", "cantidad": 12 },
+    "material2": { "id": "LEATHER", "cantidad": 20 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": { "id": "ARTEFACT_2H_COMBATSTAFF_MORGANA", "nombre": "Reinforced Morgana Pole" }
+  },
+  "2H_INFERNOSTAFF_MORGANA": {
+    "nombre": "Blazing Staff",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Swamp - Thetford",
+    "artefacto": { "id": "ARTEFACT_2H_INFERNOSTAFF_MORGANA", "nombre": "Unholy Scroll" }
+  },
+  "2H_NATURESTAFF_HELL": {
+    "nombre": "Blight Staff",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "CLOTH", "cantidad": 12 },
+    "ciudad": "Swamp - Thetford",
+    "artefacto": { "id": "ARTEFACT_2H_NATURESTAFF_HELL", "nombre": "Symbol Of Blight" }
+  },
+  "MAIN_RAPIER_MORGANA": {
+    "nombre": "Bloodletter",
+    "material1": { "id": "METALBAR", "cantidad": 16 },
+    "material2": { "id": "LEATHER", "cantidad": 8 },
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": { "id": "ARTEFACT_MAIN_RAPIER_MORGANA", "nombre": "Hardened Debole" }
+  },
+  "2H_DUALCROSSBOW_HELL": {
+    "nombre": "Boltcasters",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": { "id": "ARTEFACT_2H_DUALCROSSBOW_HELL", "nombre": "Hellish Bolts" }
+  },
+  "SHOES_PLATE_AVALON": {
+    "nombre": "Boots of Valor",
+    "material1": { "id": "METALBAR", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Highland - Martlock",
+    "artefacto": { "id": "ARTEFACT_SHOES_PLATE_AVALON", "nombre": "Exalted Greave" }
+  },
+  "2H_BOW": {
+    "nombre": "Bow",
+    "material1": { "id": "PLANKS", "cantidad": 32 },
+    "material2": null,
+    "ciudad": "Forest - Lymhurst",
+    "artefacto": null
+  },
+  "2H_BOW_KEEPER": {
+    "nombre": "Bow of Badon",
+    "material1": { "id": "PLANKS", "cantidad": 32 },
+    "material2": null,
+    "ciudad": "Forest - Lymhurst",
+    "artefacto": { "id": "ARTEFACT_2H_BOW_KEEPER", "nombre": "Carved Bone" }
+  },
+  "2H_KNUCKLES_SET1": {
+    "nombre": "Brawler Gloves",
+    "material1": { "id": "LEATHER", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Caerleon",
+    "artefacto": null
+  },
+  "2H_DAGGER_KATAR_AVALON": {
+    "nombre": "Bridled Fury",
+    "material1": { "id": "LEATHER", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": { "id": "ARTEFACT_2H_DAGGER_KATAR_AVALON", "nombre": "Bloodstained Antiquities" }
+  },
+  "2H_FIRESTAFF_HELL": {
+    "nombre": "Brimstone Staff",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Swamp - Thetford",
+    "artefacto": { "id": "ARTEFACT_2H_FIRESTAFF_HELL", "nombre": "Burning Orb" }
+  },
+  "MAIN_SWORD": {
+    "nombre": "Broadsword",
+    "material1": { "id": "METALBAR", "cantidad": 16 },
+    "material2": { "id": "LEATHER", "cantidad": 8 },
+    "ciudad": "Forest - Lymhurst",
+    "artefacto": null
+  },
+  "OFF_SHIELD_HELL": {
+    "nombre": "Caitiff Shield",
+    "material1": { "id": "PLANKS", "cantidad": 4 },
+    "material2": { "id": "METALBAR", "cantidad": 4 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": { "id": "ARTEFACT_OFF_SHIELD_HELL", "nombre": "Infernal Shield Core" }
+  },
+  "2H_MACE_MORGANA": {
+    "nombre": "Camlann Mace",
+    "material1": { "id": "METALBAR", "cantidad": 20 },
+    "material2": { "id": "CLOTH", "cantidad": 12 },
+    "ciudad": "Swamp - Thetford",
+    "artefacto": { "id": "ARTEFACT_2H_MACE_MORGANA", "nombre": "Imbued Mace Head" }
+  },
+  "CAPE": {
+    "nombre": "Cape",
+    "material1": { "id": "CLOTH", "cantidad": 4 },
+    "material2": { "id": "LEATHER", "cantidad": 4 },
+    "ciudad": "None",
+    "artefacto": null
+  },
+  "2H_HALBERD_MORGANA": {
+    "nombre": "Carrioncaller",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": { "id": "ARTEFACT_2H_HALBERD_MORGANA", "nombre": "Morgana Halberd Head" }
+  },
+  "2H_CLEAVER_HELL": {
+    "nombre": "Carving Sword",
+    "material1": { "id": "METALBAR", "cantidad": 20 },
+    "material2": { "id": "LEATHER", "cantidad": 12 },
+    "ciudad": "Forest - Lymhurst",
+    "artefacto": { "id": "ARTEFACT_2H_CLEAVER_HELL", "nombre": "Demonic Blade" }
+  },
+  "OFF_CENSER_AVALON": {
+    "nombre": "Celestial Censer",
+    "material1": { "id": "CLOTH", "cantidad": 4 },
+    "material2": { "id": "LEATHER", "cantidad": 4 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": { "id": "ARTEFACT_OFF_CENSER_AVALON", "nombre": "Severed Celestial Keepsake" }
+  },
+  "MAIN_FROSTSTAFF_AVALON": {
+    "nombre": "Chillhowl",
+    "material1": { "id": "PLANKS", "cantidad": 16 },
+    "material2": { "id": "METALBAR", "cantidad": 8 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": { "id": "ARTEFACT_MAIN_FROSTSTAFF_AVALON", "nombre": "Chilled Crystaline Shard" }
+  },
+  "MAIN_SCIMITAR_MORGANA": {
+    "nombre": "Clarent Blade",
+    "material1": { "id": "METALBAR", "cantidad": 16 },
+    "material2": { "id": "LEATHER", "cantidad": 8 },
+    "ciudad": "Forest - Lymhurst",
+    "artefacto": { "id": "ARTEFACT_MAIN_SCIMITAR_MORGANA", "nombre": "Bloodforged Blade" }
+  },
+  "2H_CLAWPAIR": {
+    "nombre": "Claws",
+    "material1": { "id": "METALBAR", "cantidad": 12 },
+    "material2": { "id": "LEATHER", "cantidad": 20 },
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": null
+  },
+  "2H_CLAYMORE": {
+    "nombre": "Claymore",
+    "material1": { "id": "METALBAR", "cantidad": 20 },
+    "material2": { "id": "LEATHER", "cantidad": 12 },
+    "ciudad": "Forest - Lymhurst",
+    "artefacto": null
+  },
+  "HEAD_CLOTH_SET2": {
+    "nombre": "Cleric Cowl",
+    "material1": { "id": "CLOTH", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Swamp - Thetford",
+    "artefacto": null
+  },
+  "ARMOR_CLOTH_SET2": {
+    "nombre": "Cleric Robe",
+    "material1": { "id": "CLOTH", "cantidad": 16 },
+    "material2": null,
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": null
+  },
+  "SHOES_CLOTH_SET2": {
+    "nombre": "Cleric Sandals",
+    "material1": { "id": "CLOTH", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": null
+  },
+  "HEAD_CLOTH_AVALON": {
+    "nombre": "Cowl of Purity",
+    "material1": { "id": "CLOTH", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Swamp - Thetford",
+    "artefacto": { "id": "ARTEFACT_HEAD_CLOTH_AVALON", "nombre": "Sanctified Mask" }
+  },
+  "2H_CROSSBOW": {
+    "nombre": "Crossbow",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": null
+  },
+  "OFF_LAMP_UNDEAD": {
+    "nombre": "Cryptcandle",
+    "material1": { "id": "PLANKS", "cantidad": 4 },
+    "material2": { "id": "CLOTH", "cantidad": 4 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": { "id": "ARTEFACT_OFF_LAMP_UNDEAD", "nombre": "Ghastly Candle" }
+  },
+  "HEAD_CLOTH_MORGANA": {
+    "nombre": "Cultist Cowl",
+    "material1": { "id": "CLOTH", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Swamp - Thetford",
+    "artefacto": { "id": "ARTEFACT_HEAD_CLOTH_MORGANA", "nombre": "Alluring Padding" }
+  },
+  "ARMOR_CLOTH_MORGANA": {
+    "nombre": "Cultist Robe",
+    "material1": { "id": "CLOTH", "cantidad": 16 },
+    "material2": null,
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": { "id": "ARTEFACT_ARMOR_CLOTH_MORGANA", "nombre": "Alluring Amulet" }
+  },
+  "SHOES_CLOTH_MORGANA": {
+    "nombre": "Cultist Sandals",
+    "material1": { "id": "CLOTH", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": { "id": "ARTEFACT_SHOES_CLOTH_MORGANA", "nombre": "Alluring Bindings" }
+  },
+  "2H_SKULLORB_HELL": {
+    "nombre": "Cursed Skull",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": { "id": "ARTEFACT_2H_SKULLORB_HELL", "nombre": "Cursed Jawbone" }
+  },
+  "MAIN_CURSEDSTAFF": {
+    "nombre": "Cursed Staff",
+    "material1": { "id": "PLANKS", "cantidad": 16 },
+    "material2": { "id": "METALBAR", "cantidad": 8 },
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": null
+  },
+  "MAIN_DAGGER": {
+    "nombre": "Dagger",
+    "material1": { "id": "METALBAR", "cantidad": 16 },
+    "material2": { "id": "LEATHER", "cantidad": 16 },
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": null
+  },
+  "2H_DAGGERPAIR": {
+    "nombre": "Dagger Pair",
+    "material1": { "id": "METALBAR", "cantidad": 16 },
+    "material2": { "id": "LEATHER", "cantidad": 16 },
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": null
+  },
+  "2H_CURSEDSTAFF_MORGANA": {
+    "nombre": "Damnation Staff",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": { "id": "ARTEFACT_2H_CURSEDSTAFF_MORGANA", "nombre": "Bloodforged Catalyst" }
+  },
+  "2H_FIRE_RINGPAIR_AVALON": {
+    "nombre": "Dawnsong",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Swamp - Thetford",
+    "artefacto": { "id": "ARTEFACT_2H_FIRE_RINGPAIR_AVALON", "nombre": "Glowing Harmonic Ring" }
+  },
+  "MAIN_SPEAR_LANCE_AVALON": {
+    "nombre": "Daybreaker",
+    "material1": { "id": "PLANKS", "cantidad": 16 },
+    "material2": { "id": "METALBAR", "cantidad": 8 },
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": { "id": "ARTEFACT_MAIN_SPEAR_LANCE_AVALON", "nombre": "Ruined Ancestral Vamplate" }
+  },
+  "2H_DUALSICKLE_UNDEAD": {
+    "nombre": "Deathgivers",
+    "material1": { "id": "METALBAR", "cantidad": 16 },
+    "material2": { "id": "LEATHER", "cantidad": 16 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": { "id": "ARTEFACT_2H_DUALSICKLE_UNDEAD", "nombre": "Ghastly Blades" }
+  },
+  "ARMOR_PLATE_HELL": {
+    "nombre": "Demon Armor",
+    "material1": { "id": "METALBAR", "cantidad": 16 },
+    "material2": null,
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": { "id": "ARTEFACT_ARMOR_PLATE_HELL", "nombre": "Demonic Plates" }
+  },
+  "SHOES_PLATE_HELL": {
+    "nombre": "Demon Boots",
+    "material1": { "id": "METALBAR", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": { "id": "ARTEFACT_SHOES_PLATE_HELL", "nombre": "Demonic Filling" }
+  },
+  "HEAD_PLATE_HELL": {
+    "nombre": "Demon Helmet",
+    "material1": { "id": "METALBAR", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": { "id": "ARTEFACT_HEAD_PLATE_HELL", "nombre": "Demonic Scraps" }
+  },
+  "MAIN_DAGGER_HELL": {
+    "nombre": "Demonfang",
+    "material1": { "id": "METALBAR", "cantidad": 12 },
+    "material2": { "id": "LEATHER", "cantidad": 12 },
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": { "id": "ARTEFACT_MAIN_DAGGER_HELL", "nombre": "Broken Demonic Fang" }
+  },
+  "2H_DEMONICSTAFF": {
+    "nombre": "Demonic Staff",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": null
+  },
+  "2H_DIVINESTAFF": {
+    "nombre": "Divine Staff",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "CLOTH", "cantidad": 12 },
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": null
+  },
+  "2H_DOUBLEBLADEDSTAFF": {
+    "nombre": "Double Bladed Staff",
+    "material1": { "id": "METALBAR", "cantidad": 12 },
+    "material2": { "id": "LEATHER", "cantidad": 20 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": null
+  },
+  "HEAD_CLOTH_KEEPER": {
+    "nombre": "Druid Cowl",
+    "material1": { "id": "CLOTH", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": { "id": "ARTEFACT_HEAD_CLOTH_KEEPER", "nombre": "Druidic Preserved Beak" }
+  },
+  "ARMOR_CLOTH_KEEPER": {
+    "nombre": "Druid Robe",
+    "material1": { "id": "CLOTH", "cantidad": 16 },
+    "material2": null,
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": { "id": "ARTEFACT_ARMOR_CLOTH_KEEPER", "nombre": "Druidic Feathers" }
+  },
+  "SHOES_CLOTH_KEEPER": {
+    "nombre": "Druid Sandals",
+    "material1": { "id": "CLOTH", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Swamp - Thetford",
+    "artefacto": { "id": "ARTEFACT_SHOES_CLOTH_KEEPER", "nombre": "Druidic Bindings" }
+  },
+  "MAIN_NATURESTAFF_KEEPER": {
+    "nombre": "Druidic Staff",
+    "material1": { "id": "PLANKS", "cantidad": 16 },
+    "material2": { "id": "CLOTH", "cantidad": 8 },
+    "ciudad": "Forest - Lymhurst",
+    "artefacto": { "id": "ARTEFACT_MAIN_NATURESTAFF_KEEPER", "nombre": "Druidic Inscriptions" }
+  },
+  "2H_DUALSWORD": {
+    "nombre": "Dual Swords",
+    "material1": { "id": "METALBAR", "cantidad": 20 },
+    "material2": { "id": "LEATHER", "cantidad": 12 },
+    "ciudad": "Forest - Lymhurst",
+    "artefacto": null
+  },
+  "ARMOR_PLATE_FEY": {
+    "nombre": "Duskweaver Armor",
+    "material1": { "id": "METALBAR", "cantidad": 16 },
+    "material2": null,
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": { "id": "ARTEFACT_ARMOR_PLATE_FEY", "nombre": "Veilweaver Carapace" }
+  },
+  "SHOES_PLATE_FEY": {
+    "nombre": "Duskweaver Boots",
+    "material1": { "id": "METALBAR", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Highland - Martlock",
+    "artefacto": { "id": "ARTEFACT_SHOES_PLATE_FEY", "nombre": "Veilweaver Claws" }
+  },
+  "HEAD_PLATE_FEY": {
+    "nombre": "Duskweaver Helmet",
+    "material1": { "id": "METALBAR", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": { "id": "ARTEFACT_HEAD_PLATE_FEY", "nombre": "Veilweaver Mandibles" }
+  },
+  "2H_CROSSBOW_CANNON_AVALON": {
+    "nombre": "Energy Shaper",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": { "id": "ARTEFACT_2H_CROSSBOW_CANNON_AVALON", "nombre": "Humming Avalonian Whirligig" }
+  },
+  "2H_ENIGMATICSTAFF": {
+    "nombre": "Enigmatic Staff",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": null
+  },
+  "2H_ARCANE_RINGPAIR_AVALON": {
+    "nombre": "Evensong",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Forest - Lymhurst",
+    "artefacto": { "id": "ARTEFACT_2H_ARCANE_RINGPAIR_AVALON", "nombre": "Hypnotic Harmonic Ring" }
+  },
+  "OFF_ORB_MORGANA": {
+    "nombre": "Eye of Secrets",
+    "material1": { "id": "CLOTH", "cantidad": 4 },
+    "material2": { "id": "LEATHER", "cantidad": 4 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": { "id": "ARTEFACT_OFF_ORB_MORGANA", "nombre": "Alluring Crystal" }
+  },
+  "OFF_SPIKEDSHIELD_MORGANA": {
+    "nombre": "Facebreaker",
+    "material1": { "id": "PLANKS", "cantidad": 4 },
+    "material2": { "id": "METALBAR", "cantidad": 4 },
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": { "id": "ARTEFACT_OFF_SPIKEDSHIELD_MORGANA", "nombre": "Bloodforged Spikes" }
+  },
+  "2H_HOLYSTAFF_HELL": {
+    "nombre": "Fallen Staff",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "CLOTH", "cantidad": 12 },
+    "ciudad": "Swamp - Thetford",
+    "artefacto": { "id": "ARTEFACT_2H_HOLYSTAFF_HELL", "nombre": "Infernal Scroll" }
+  },
+  "HEAD_CLOTH_FEY": {
+    "nombre": "Feyscale Hat",
+    "material1": { "id": "CLOTH", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Swamp - Thetford",
+    "artefacto": { "id": "ARTEFACT_HEAD_CLOTH_FEY", "nombre": "Intact Fey Fibula" }
+  },
+  "ARMOR_CLOTH_FEY": {
+    "nombre": "Feyscale Robe",
+    "material1": { "id": "CLOTH", "cantidad": 16 },
+    "material2": null,
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": { "id": "ARTEFACT_ARMOR_CLOTH_FEY", "nombre": "Fey Dorsal Wing" }
+  },
+  "SHOES_CLOTH_FEY": {
+    "nombre": "Feyscale Sandals",
+    "material1": { "id": "CLOTH", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": { "id": "ARTEFACT_SHOES_CLOTH_FEY", "nombre": "Fey Dragonscales" }
+  },
+  "HEAD_CLOTH_HELL": {
+    "nombre": "Fiend Cowl",
+    "material1": { "id": "CLOTH", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": { "id": "ARTEFACT_HEAD_CLOTH_HELL", "nombre": "Infernal Cloth Visor" }
+  },
+  "ARMOR_CLOTH_HELL": {
+    "nombre": "Fiend Robe",
+    "material1": { "id": "CLOTH", "cantidad": 16 },
+    "material2": null,
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": { "id": "ARTEFACT_ARMOR_CLOTH_HELL", "nombre": "Infernal Cloth Folds" }
+  },
+  "SHOES_CLOTH_HELL": {
+    "nombre": "Fiend Sandals",
+    "material1": { "id": "CLOTH", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": { "id": "ARTEFACT_SHOES_CLOTH_HELL", "nombre": "Infernal Cloth Bindings" }
+  },
+  "MAIN_FIRESTAFF": {
+    "nombre": "Fire Staff",
+    "material1": { "id": "PLANKS", "cantidad": 16 },
+    "material2": { "id": "METALBAR", "cantidad": 8 },
+    "ciudad": "Swamp - Thetford",
+    "artefacto": null
+  },
+  "2H_KNUCKLES_AVALON": {
+    "nombre": "Fists of Avalon",
+    "material1": { "id": "LEATHER", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Caerleon",
+    "artefacto": { "id": "ARTEFACT_2H_KNUCKLES_AVALON", "nombre": "Damaged Avalonian Gauntlet" }
+  },
+  "2H_DUALHAMMER_HELL": {
+    "nombre": "Forge Hammers",
+    "material1": { "id": "METALBAR", "cantidad": 20 },
+    "material2": { "id": "CLOTH", "cantidad": 12 },
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": { "id": "ARTEFACT_2H_DUALHAMMER_HELL", "nombre": "Hellish Hammer Heads" }
+  },
+  "MAIN_FROSTSTAFF": {
+    "nombre": "Frost Staff",
+    "material1": { "id": "PLANKS", "cantidad": 16 },
+    "material2": { "id": "METALBAR", "cantidad": 8 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": null
+  },
+  "2H_DUALSCIMITAR_UNDEAD": {
+    "nombre": "Galatine Pair",
+    "material1": { "id": "METALBAR", "cantidad": 20 },
+    "material2": { "id": "LEATHER", "cantidad": 12 },
+    "ciudad": "Forest - Lymhurst",
+    "artefacto": { "id": "ARTEFACT_2H_DUALSCIMITAR_UNDEAD", "nombre": "Cursed Blades" }
+  },
+  "2H_GLACIALSTAFF": {
+    "nombre": "Glacial Staff",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": null
+  },
+  "2H_GLAIVE": {
+    "nombre": "Glaive",
+    "material1": { "id": "PLANKS", "cantidad": 12 },
+    "material2": { "id": "METALBAR", "cantidad": 20 },
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": null
+  },
+  "2H_QUARTERSTAFF_AVALON": {
+    "nombre": "Grailseeker",
+    "material1": { "id": "LEATHER", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": { "id": "ARTEFACT_2H_QUARTERSTAFF_AVALON", "nombre": "Timeworn Walking Staff" }
+  },
+  "ARMOR_PLATE_UNDEAD": {
+    "nombre": "Graveguard Armor",
+    "material1": { "id": "METALBAR", "cantidad": 16 },
+    "material2": null,
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": { "id": "ARTEFACT_ARMOR_PLATE_UNDEAD", "nombre": "Ancient Chain Rings" }
+  },
+  "SHOES_PLATE_UNDEAD": {
+    "nombre": "Graveguard Boots",
+    "material1": { "id": "METALBAR", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Highland - Martlock",
+    "artefacto": { "id": "ARTEFACT_SHOES_PLATE_UNDEAD", "nombre": "Ancient Bindings" }
+  },
+  "HEAD_PLATE_UNDEAD": {
+    "nombre": "Graveguard Helmet",
+    "material1": { "id": "METALBAR", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": { "id": "ARTEFACT_HEAD_PLATE_UNDEAD", "nombre": "Ancient Padding" }
+  },
+  "2H_ARCANESTAFF": {
+    "nombre": "Great Arcane Staff",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Forest - Lymhurst",
+    "artefacto": null
+  },
+  "2H_CURSEDSTAFF": {
+    "nombre": "Great Cursed Staff",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": null
+  },
+  "2H_FIRESTAFF": {
+    "nombre": "Great Fire Staff",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Swamp - Thetford",
+    "artefacto": null
+  },
+  "2H_FROSTSTAFF": {
+    "nombre": "Great Frost Staff",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": null
+  },
+  "2H_HAMMER": {
+    "nombre": "Great Hammer",
+    "material1": { "id": "METALBAR", "cantidad": 20 },
+    "material2": { "id": "CLOTH", "cantidad": 12 },
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": null
+  },
+  "2H_HOLYSTAFF": {
+    "nombre": "Great Holy Staff",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "CLOTH", "cantidad": 12 },
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": null
+  },
+  "2H_NATURESTAFF": {
+    "nombre": "Great Nature Staff",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "CLOTH", "cantidad": 12 },
+    "ciudad": "Swamp - Thetford",
+    "artefacto": null
+  },
+  "2H_AXE": {
+    "nombre": "Greataxe",
+    "material1": { "id": "PLANKS", "cantidad": 12 },
+    "material2": { "id": "METALBAR", "cantidad": 20 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": null
+  },
+  "2H_RAM_KEEPER": {
+    "nombre": "Grovekeeper",
+    "material1": { "id": "METALBAR", "cantidad": 20 },
+    "material2": { "id": "CLOTH", "cantidad": 12 },
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": { "id": "ARTEFACT_2H_RAM_KEEPER", "nombre": "Engraved Log" }
+  },
+  "ARMOR_PLATE_SET3": {
+    "nombre": "Guardian Armor",
+    "material1": { "id": "METALBAR", "cantidad": 16 },
+    "material2": null,
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": null
+  },
+  "SHOES_PLATE_SET3": {
+    "nombre": "Guardian Boots",
+    "material1": { "id": "METALBAR", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Highland - Martlock",
+    "artefacto": null
+  },
+  "HEAD_PLATE_SET3": {
+    "nombre": "Guardian Helmet",
+    "material1": { "id": "METALBAR", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": null
+  },
+  "2H_HALBERD": {
+    "nombre": "Halberd",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": null
+  },
+  "MAIN_HOLYSTAFF_AVALON": {
+    "nombre": "Hallowfall",
+    "material1": { "id": "PLANKS", "cantidad": 16 },
+    "material2": { "id": "CLOTH", "cantidad": 8 },
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": { "id": "ARTEFACT_MAIN_HOLYSTAFF_AVALON", "nombre": "Messianic Curio" }
+  },
+  "MAIN_HAMMER": {
+    "nombre": "Hammer",
+    "material1": { "id": "METALBAR", "cantidad": 24 },
+    "material2": null,
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": null
+  },
+  "2H_HAMMER_AVALON": {
+    "nombre": "Hand of Justice",
+    "material1": { "id": "METALBAR", "cantidad": 20 },
+    "material2": { "id": "CLOTH", "cantidad": 12 },
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": { "id": "ARTEFACT_2H_HAMMER_AVALON", "nombre": "Massive Metallic Hand" }
+  },
+  "2H_CROSSBOWLARGE": {
+    "nombre": "Heavy Crossbow",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": null
+  },
+  "2H_MACE": {
+    "nombre": "Heavy Mace",
+    "material1": { "id": "METALBAR", "cantidad": 20 },
+    "material2": { "id": "CLOTH", "cantidad": 12 },
+    "ciudad": "Swamp - Thetford",
+    "artefacto": null
+  },
+  "2H_KNUCKLES_HELL": {
+    "nombre": "Hellfire Hands",
+    "material1": { "id": "LEATHER", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Caerleon",
+    "artefacto": { "id": "ARTEFACT_2H_KNUCKLES_HELL", "nombre": "Severed Demonic Horns" }
+  },
+  "HEAD_LEATHER_HELL": {
+    "nombre": "Hellion Hood",
+    "material1": { "id": "LEATHER", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Forest - Lymhurst",
+    "artefacto": { "id": "ARTEFACT_HEAD_LEATHER_HELL", "nombre": "Demonhide Padding" }
+  },
+  "ARMOR_LEATHER_HELL": {
+    "nombre": "Hellion Jacket",
+    "material1": { "id": "LEATHER", "cantidad": 16 },
+    "material2": null,
+    "ciudad": "Swamp - Thetford",
+    "artefacto": { "id": "ARTEFACT_ARMOR_LEATHER_HELL", "nombre": "Demonhide Leather" }
+  },
+  "SHOES_LEATHER_HELL": {
+    "nombre": "Hellion Shoes",
+    "material1": { "id": "LEATHER", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Forest - Lymhurst",
+    "artefacto": { "id": "ARTEFACT_SHOES_LEATHER_HELL", "nombre": "Demonhide Bindings" }
+  },
+  "HEAD_PLATE_AVALON": {
+    "nombre": "Helmet of Valor",
+    "material1": { "id": "METALBAR", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": { "id": "ARTEFACT_HEAD_PLATE_AVALON", "nombre": "Exalted Visor" }
+  },
+  "MAIN_SPEAR_KEEPER": {
+    "nombre": "Heron Spear",
+    "material1": { "id": "PLANKS", "cantidad": 16 },
+    "material2": { "id": "METALBAR", "cantidad": 8 },
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": { "id": "ARTEFACT_MAIN_SPEAR_KEEPER", "nombre": "Keeper Spearhead" }
+  },
+  "MAIN_FROSTSTAFF_KEEPER": {
+    "nombre": "Hoarfrost Staff",
+    "material1": { "id": "PLANKS", "cantidad": 16 },
+    "material2": { "id": "METALBAR", "cantidad": 8 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": { "id": "ARTEFACT_MAIN_FROSTSTAFF_KEEPER", "nombre": "Hoarfrost Orb" }
+  },
+  "MAIN_HOLYSTAFF": {
+    "nombre": "Holy Staff",
+    "material1": { "id": "PLANKS", "cantidad": 16 },
+    "material2": { "id": "CLOTH", "cantidad": 8 },
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": null
+  },
+  "HEAD_LEATHER_AVALON": {
+    "nombre": "Hood of Tenacity",
+    "material1": { "id": "LEATHER", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Forest - Lymhurst",
+    "artefacto": { "id": "ARTEFACT_HEAD_LEATHER_AVALON", "nombre": "Augured Padding" }
+  },
+  "HEAD_LEATHER_SET2": {
+    "nombre": "Hunter Hood",
+    "material1": { "id": "LEATHER", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Forest - Lymhurst",
+    "artefacto": null
+  },
+  "ARMOR_LEATHER_SET2": {
+    "nombre": "Hunter Jacket",
+    "material1": { "id": "LEATHER", "cantidad": 16 },
+    "material2": null,
+    "ciudad": "Swamp - Thetford",
+    "artefacto": null
+  },
+  "SHOES_LEATHER_SET2": {
+    "nombre": "Hunter Shoes",
+    "material1": { "id": "LEATHER", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Forest - Lymhurst",
+    "artefacto": null
+  },
+  "2H_ICEGAUNTLETS_HELL": {
+    "nombre": "Icicle Staff",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": { "id": "ARTEFACT_2H_ICEGAUNTLETS_HELL", "nombre": "Icicle Orb" }
+  },
+  "MAIN_MACE_HELL": {
+    "nombre": "Incubus Mace",
+    "material1": { "id": "METALBAR", "cantidad": 16 },
+    "material2": { "id": "CLOTH", "cantidad": 8 },
+    "ciudad": "Swamp - Thetford",
+    "artefacto": { "id": "ARTEFACT_MAIN_MACE_HELL", "nombre": "Infernal Mace Head" }
+  },
+  "2H_SCYTHE_HELL": {
+    "nombre": "Infernal Scythe",
+    "material1": { "id": "PLANKS", "cantidad": 12 },
+    "material2": { "id": "METALBAR", "cantidad": 20 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": { "id": "ARTEFACT_2H_SCYTHE_HELL", "nombre": "Hellish Sicklehead" }
+  },
+  "2H_INFERNOSTAFF": {
+    "nombre": "Infernal Staff",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Swamp - Thetford",
+    "artefacto": null
+  },
+  "2H_IRONCLADEDSTAFF": {
+    "nombre": "Iron-clad Staff",
+    "material1": { "id": "METALBAR", "cantidad": 12 },
+    "material2": { "id": "LEATHER", "cantidad": 20 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": null
+  },
+  "MAIN_NATURESTAFF_AVALON": {
+    "nombre": "Ironroot Staff",
+    "material1": { "id": "PLANKS", "cantidad": 16 },
+    "material2": { "id": "CLOTH", "cantidad": 8 },
+    "ciudad": "Swamp - Thetford",
+    "artefacto": { "id": "ARTEFACT_MAIN_NATURESTAFF_AVALON", "nombre": "Uprooted Perennial Sapling" }
+  },
+  "ARMOR_LEATHER_AVALON": {
+    "nombre": "Jacket of Tenacity",
+    "material1": { "id": "LEATHER", "cantidad": 16 },
+    "material2": null,
+    "ciudad": "Swamp - Thetford",
+    "artefacto": { "id": "ARTEFACT_ARMOR_LEATHER_AVALON", "nombre": "Augured Sash" }
+  },
+  "ARMOR_PLATE_KEEPER": {
+    "nombre": "Judicator Armor",
+    "material1": { "id": "METALBAR", "cantidad": 16 },
+    "material2": null,
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": { "id": "ARTEFACT_ARMOR_PLATE_KEEPER", "nombre": "Preserved Animal Fur" }
+  },
+  "SHOES_PLATE_KEEPER": {
+    "nombre": "Judicator Boots",
+    "material1": { "id": "METALBAR", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Highland - Martlock",
+    "artefacto": { "id": "ARTEFACT_SHOES_PLATE_KEEPER", "nombre": "Inscribed Bindings" }
+  },
+  "HEAD_PLATE_KEEPER": {
+    "nombre": "Judicator Helmet",
+    "material1": { "id": "METALBAR", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": { "id": "ARTEFACT_HEAD_PLATE_KEEPER", "nombre": "Carved Skull Padding" }
+  },
+  "2H_CLAYMORE_AVALON": {
+    "nombre": "Kingmaker",
+    "material1": { "id": "METALBAR", "cantidad": 20 },
+    "material2": { "id": "LEATHER", "cantidad": 12 },
+    "ciudad": "Forest - Lymhurst",
+    "artefacto": { "id": "ARTEFACT_2H_CLAYMORE_AVALON", "nombre": "Remnants of the Old King" }
+  },
+  "ARMOR_PLATE_SET2": {
+    "nombre": "Knight Armor",
+    "material1": { "id": "METALBAR", "cantidad": 16 },
+    "material2": null,
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": null
+  },
+  "SHOES_PLATE_SET2": {
+    "nombre": "Knight Boots",
+    "material1": { "id": "METALBAR", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Highland - Martlock",
+    "artefacto": null
+  },
+  "HEAD_PLATE_SET2": {
+    "nombre": "Knight Helmet",
+    "material1": { "id": "METALBAR", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": null
+  },
+  "OFF_JESTERCANE_HELL": {
+    "nombre": "Leering Cane",
+    "material1": { "id": "PLANKS", "cantidad": 4 },
+    "material2": { "id": "CLOTH", "cantidad": 4 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": { "id": "ARTEFACT_OFF_JESTERCANE_HELL", "nombre": "Hellish Handle" }
+  },
+  "MAIN_CURSEDSTAFF_UNDEAD": {
+    "nombre": "Lifecurse Staff",
+    "material1": { "id": "PLANKS", "cantidad": 16 },
+    "material2": { "id": "METALBAR", "cantidad": 8 },
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": { "id": "ARTEFACT_MAIN_CURSEDSTAFF_UNDEAD", "nombre": "Lost Cursed Crystal" }
+  },
+  "MAIN_HOLYSTAFF_MORGANA": {
+    "nombre": "Lifetouch Staff",
+    "material1": { "id": "PLANKS", "cantidad": 16 },
+    "material2": { "id": "CLOTH", "cantidad": 8 },
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": { "id": "ARTEFACT_MAIN_HOLYSTAFF_MORGANA", "nombre": "Possessed Scroll" }
+  },
+  "MAIN_1HCROSSBOW": {
+    "nombre": "Light Crossbow",
+    "material1": { "id": "PLANKS", "cantidad": 16 },
+    "material2": { "id": "METALBAR", "cantidad": 8 },
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": null
+  },
+  "2H_LONGBOW": {
+    "nombre": "Longbow",
+    "material1": { "id": "PLANKS", "cantidad": 32 },
+    "material2": null,
+    "ciudad": "Forest - Lymhurst",
+    "artefacto": null
+  },
+  "MAIN_MACE": {
+    "nombre": "Mace",
+    "material1": { "id": "METALBAR", "cantidad": 16 },
+    "material2": { "id": "CLOTH", "cantidad": 8 },
+    "ciudad": "Swamp - Thetford",
+    "artefacto": null
+  },
+  "HEAD_CLOTH_SET3": {
+    "nombre": "Mage Cowl",
+    "material1": { "id": "CLOTH", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Swamp - Thetford",
+    "artefacto": null
+  },
+  "ARMOR_CLOTH_SET3": {
+    "nombre": "Mage Robe",
+    "material1": { "id": "CLOTH", "cantidad": 16 },
+    "material2": null,
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": null
+  },
+  "SHOES_CLOTH_SET3": {
+    "nombre": "Mage Sandals",
+    "material1": { "id": "CLOTH", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": null
+  },
+  "2H_ENIGMATICORB_MORGANA": {
+    "nombre": "Malevolent Locus",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Forest - Lymhurst",
+    "artefacto": { "id": "ARTEFACT_2H_ENIGMATICORB_MORGANA", "nombre": "Possessed Catalyst" }
+  },
+  "HEAD_LEATHER_SET1": {
+    "nombre": "Mercenary Hood",
+    "material1": { "id": "LEATHER", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Forest - Lymhurst",
+    "artefacto": null
+  },
+  "ARMOR_LEATHER_SET1": {
+    "nombre": "Mercenary Jacket",
+    "material1": { "id": "LEATHER", "cantidad": 16 },
+    "material2": null,
+    "ciudad": "Swamp - Thetford",
+    "artefacto": null
+  },
+  "SHOES_LEATHER_SET1": {
+    "nombre": "Mercenary Shoes",
+    "material1": { "id": "LEATHER", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Forest - Lymhurst",
+    "artefacto": null
+  },
+  "OFF_HORN_KEEPER": {
+    "nombre": "Mistcaller",
+    "material1": { "id": "PLANKS", "cantidad": 4 },
+    "material2": { "id": "CLOTH", "cantidad": 4 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": { "id": "ARTEFACT_OFF_HORN_KEEPER", "nombre": "Runed Horn" }
+  },
+  "2H_BOW_AVALON": {
+    "nombre": "Mistpiercer",
+    "material1": { "id": "PLANKS", "cantidad": 32 },
+    "material2": null,
+    "ciudad": "Forest - Lymhurst",
+    "artefacto": { "id": "ARTEFACT_2H_BOW_AVALON", "nombre": "Immaculately Crafted Riser" }
+  },
+  "HEAD_LEATHER_FEY": {
+    "nombre": "Mistwalker Hood",
+    "material1": { "id": "LEATHER", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Forest - Lymhurst",
+    "artefacto": { "id": "ARTEFACT_HEAD_LEATHER_FEY", "nombre": "Flawless Griffin Beak" }
+  },
+  "ARMOR_LEATHER_FEY": {
+    "nombre": "Mistwalker Jacket",
+    "material1": { "id": "LEATHER", "cantidad": 16 },
+    "material2": null,
+    "ciudad": "Swamp - Thetford",
+    "artefacto": { "id": "ARTEFACT_ARMOR_LEATHER_FEY", "nombre": "Untarnished Griffin Feathers" }
+  },
+  "SHOES_LEATHER_FEY": {
+    "nombre": "Mistwalker Shoes",
+    "material1": { "id": "LEATHER", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Forest - Lymhurst",
+    "artefacto": { "id": "ARTEFACT_SHOES_LEATHER_FEY", "nombre": "Griffin Underfur" }
+  },
+  "2H_FLAIL": {
+    "nombre": "Morning Star",
+    "material1": { "id": "METALBAR", "cantidad": 20 },
+    "material2": { "id": "CLOTH", "cantidad": 12 },
+    "ciudad": "Swamp - Thetford",
+    "artefacto": null
+  },
+  "OFF_DEMONSKULL_HELL": {
+    "nombre": "Muisak",
+    "material1": { "id": "CLOTH", "cantidad": 4 },
+    "material2": { "id": "LEATHER", "cantidad": 4 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": { "id": "ARTEFACT_OFF_DEMONSKULL_HELL", "nombre": "Demonic Jawbone" }
+  },
+  "MAIN_NATURESTAFF": {
+    "nombre": "Nature Staff",
+    "material1": { "id": "PLANKS", "cantidad": 16 },
+    "material2": { "id": "CLOTH", "cantidad": 8 },
+    "ciudad": "Swamp - Thetford",
+    "artefacto": null
+  },
+  "2H_DUALMACE_AVALON": {
+    "nombre": "Oathkeepers",
+    "material1": { "id": "METALBAR", "cantidad": 20 },
+    "material2": { "id": "CLOTH", "cantidad": 12 },
+    "ciudad": "Swamp - Thetford",
+    "artefacto": { "id": "ARTEFACT_2H_DUALMACE_AVALON", "nombre": "Broken Oaths" }
+  },
+  "2H_ARCANESTAFF_HELL": {
+    "nombre": "Occult Staff",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Forest - Lymhurst",
+    "artefacto": { "id": "ARTEFACT_2H_ARCANESTAFF_HELL", "nombre": "Occult Orb" }
+  },
+  "2H_ICECRYSTAL_UNDEAD": {
+    "nombre": "Permafrost Prism",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": { "id": "ARTEFACT_2H_ICECRYSTAL_UNDEAD", "nombre": "Cursed Frozen Crystal" }
+  },
+  "2H_SPEAR": {
+    "nombre": "Pike",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": null
+  },
+  "2H_POLEHAMMER": {
+    "nombre": "Polehammer",
+    "material1": { "id": "METALBAR", "cantidad": 20 },
+    "material2": { "id": "CLOTH", "cantidad": 12 },
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": null
+  },
+  "2H_QUARTERSTAFF": {
+    "nombre": "Quarterstaff",
+    "material1": { "id": "METALBAR", "cantidad": 12 },
+    "material2": { "id": "LEATHER", "cantidad": 20 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": null
+  },
+  "2H_NATURESTAFF_KEEPER": {
+    "nombre": "Rampant Staff",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "CLOTH", "cantidad": 12 },
+    "ciudad": "Swamp - Thetford",
+    "artefacto": { "id": "ARTEFACT_2H_NATURESTAFF_KEEPER", "nombre": "Preserved Log" }
+  },
+  "2H_KNUCKLES_MORGANA": {
+    "nombre": "Ravenstrike Cestus",
+    "material1": { "id": "LEATHER", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Caerleon",
+    "artefacto": { "id": "ARTEFACT_2H_KNUCKLES_MORGANA", "nombre": "Warped Raven Plate" }
+  },
+  "2H_AXE_AVALON": {
+    "nombre": "Realmbreaker",
+    "material1": { "id": "METALBAR", "cantidad": 20 },
+    "material2": { "id": "PLANKS", "cantidad": 12 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": { "id": "ARTEFACT_2H_AXE_AVALON", "nombre": "Avalonian Battle Memoir" }
+  },
+  "2H_HOLYSTAFF_UNDEAD": {
+    "nombre": "Redemption Staff",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "CLOTH", "cantidad": 12 },
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": { "id": "ARTEFACT_2H_HOLYSTAFF_UNDEAD", "nombre": "Ghastly Scroll" }
+  },
+  "ARMOR_CLOTH_AVALON": {
+    "nombre": "Robe of Purity",
+    "material1": { "id": "CLOTH", "cantidad": 16 },
+    "material2": null,
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": { "id": "ARTEFACT_ARMOR_CLOTH_AVALON", "nombre": "Sanctified Belt" }
+  },
+  "OFF_TALISMAN_AVALON": {
+    "nombre": "Sacred Scepter",
+    "material1": { "id": "PLANKS", "cantidad": 4 },
+    "material2": { "id": "CLOTH", "cantidad": 4 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": { "id": "ARTEFACT_OFF_TALISMAN_AVALON", "nombre": "Shattered Avalonian Memento" }
+  },
+  "SHOES_CLOTH_AVALON": {
+    "nombre": "Sandals of Purity",
+    "material1": { "id": "CLOTH", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": { "id": "ARTEFACT_SHOES_CLOTH_AVALON", "nombre": "Sanctified Bindings" }
+  },
+  "OFF_TOWERSHIELD_UNDEAD": {
+    "nombre": "Sarcophagus",
+    "material1": { "id": "PLANKS", "cantidad": 4 },
+    "material2": { "id": "METALBAR", "cantidad": 4 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": { "id": "ARTEFACT_OFF_TOWERSHIELD_UNDEAD", "nombre": "Ancient Shield Core" }
+  },
+  "HEAD_CLOTH_SET1": {
+    "nombre": "Scholar Cowl",
+    "material1": { "id": "CLOTH", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Swamp - Thetford",
+    "artefacto": null
+  },
+  "ARMOR_CLOTH_SET1": {
+    "nombre": "Scholar Robe",
+    "material1": { "id": "CLOTH", "cantidad": 16 },
+    "material2": null,
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": null
+  },
+  "SHOES_CLOTH_SET1": {
+    "nombre": "Scholar Sandals",
+    "material1": { "id": "CLOTH", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": null
+  },
+  "MAIN_CURSEDSTAFF_AVALON": {
+    "nombre": "Shadowcaller",
+    "material1": { "id": "PLANKS", "cantidad": 16 },
+    "material2": { "id": "METALBAR", "cantidad": 8 },
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": { "id": "ARTEFACT_MAIN_CURSEDSTAFF_AVALON", "nombre": "Fractured Opaque Orb" }
+  },
+  "OFF_SHIELD": {
+    "nombre": "Shield",
+    "material1": { "id": "PLANKS", "cantidad": 4 },
+    "material2": { "id": "METALBAR", "cantidad": 4 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": null
+  },
+  "SHOES_LEATHER_AVALON": {
+    "nombre": "Shoes of Tenacity",
+    "material1": { "id": "LEATHER", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Forest - Lymhurst",
+    "artefacto": { "id": "ARTEFACT_SHOES_LEATHER_AVALON", "nombre": "Augured Fasteners" }
+  },
+  "2H_CROSSBOWLARGE_MORGANA": {
+    "nombre": "Siegebow",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": { "id": "ARTEFACT_2H_CROSSBOWLARGE_MORGANA", "nombre": "Alluring Bolts" }
+  },
+  "ARMOR_PLATE_SET1": {
+    "nombre": "Soldier Armor",
+    "material1": { "id": "METALBAR", "cantidad": 16 },
+    "material2": null,
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": null
+  },
+  "SHOES_PLATE_SET1": {
+    "nombre": "Soldier Boots",
+    "material1": { "id": "METALBAR", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Highland - Martlock",
+    "artefacto": null
+  },
+  "HEAD_PLATE_SET1": {
+    "nombre": "Soldier Helmet",
+    "material1": { "id": "METALBAR", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": null
+  },
+  "2H_TWINSCYTHE_HELL": {
+    "nombre": "Soulscythe",
+    "material1": { "id": "METALBAR", "cantidad": 12 },
+    "material2": { "id": "LEATHER", "cantidad": 20 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": { "id": "ARTEFACT_2H_TWINSCYTHE_HELL", "nombre": "Hellish Sicklehead Pair" }
+  },
+  "MAIN_SPEAR": {
+    "nombre": "Spear",
+    "material1": { "id": "PLANKS", "cantidad": 16 },
+    "material2": { "id": "METALBAR", "cantidad": 8 },
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": null
+  },
+  "HEAD_LEATHER_UNDEAD": {
+    "nombre": "Specter Hood",
+    "material1": { "id": "LEATHER", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Forest - Lymhurst",
+    "artefacto": { "id": "ARTEFACT_HEAD_LEATHER_UNDEAD", "nombre": "Ghastly Visor" }
+  },
+  "ARMOR_LEATHER_UNDEAD": {
+    "nombre": "Specter Jacket",
+    "material1": { "id": "LEATHER", "cantidad": 16 },
+    "material2": null,
+    "ciudad": "Swamp - Thetford",
+    "artefacto": { "id": "ARTEFACT_ARMOR_LEATHER_UNDEAD", "nombre": "Ghastly Leather" }
+  },
+  "SHOES_LEATHER_UNDEAD": {
+    "nombre": "Specter Shoes",
+    "material1": { "id": "LEATHER", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Forest - Lymhurst",
+    "artefacto": { "id": "ARTEFACT_SHOES_LEATHER_UNDEAD", "nombre": "Ghastly Bindings" }
+  },
+  "2H_KNUCKLES_SET3": {
+    "nombre": "Spiked Gauntlets",
+    "material1": { "id": "LEATHER", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Caerleon",
+    "artefacto": null
+  },
+  "2H_HARPOON_HELL": {
+    "nombre": "Spirithunter",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": { "id": "ARTEFACT_2H_HARPOON_HELL", "nombre": "Infernal Harpoon Tip" }
+  },
+  "2H_ROCKSTAFF_KEEPER": {
+    "nombre": "Staff of Balance",
+    "material1": { "id": "METALBAR", "cantidad": 12 },
+    "material2": { "id": "LEATHER", "cantidad": 20 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": { "id": "ARTEFACT_2H_ROCKSTAFF_KEEPER", "nombre": "Preserved Rocks" }
+  },
+  "HEAD_LEATHER_MORGANA": {
+    "nombre": "Stalker Hood",
+    "material1": { "id": "LEATHER", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Forest - Lymhurst",
+    "artefacto": { "id": "ARTEFACT_HEAD_LEATHER_MORGANA", "nombre": "Imbued Visor" }
+  },
+  "ARMOR_LEATHER_MORGANA": {
+    "nombre": "Stalker Jacket",
+    "material1": { "id": "LEATHER", "cantidad": 16 },
+    "material2": null,
+    "ciudad": "Swamp - Thetford",
+    "artefacto": { "id": "ARTEFACT_ARMOR_LEATHER_MORGANA", "nombre": "Imbued Leather Folds" }
+  },
+  "SHOES_LEATHER_MORGANA": {
+    "nombre": "Stalker Shoes",
+    "material1": { "id": "LEATHER", "cantidad": 8 },
+    "material2": null,
+    "ciudad": "Forest - Lymhurst",
+    "artefacto": { "id": "ARTEFACT_SHOES_LEATHER_MORGANA", "nombre": "Imbued Soles" }
+  },
+  "OFF_TOTEM_KEEPER": {
+    "nombre": "Taproot",
+    "material1": { "id": "CLOTH", "cantidad": 4 },
+    "material2": { "id": "LEATHER", "cantidad": 4 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": { "id": "ARTEFACT_OFF_TOTEM_KEEPER", "nombre": "Inscribed Stone" }
+  },
+  "2H_HAMMER_UNDEAD": {
+    "nombre": "Tombhammer",
+    "material1": { "id": "METALBAR", "cantidad": 20 },
+    "material2": { "id": "CLOTH", "cantidad": 12 },
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": { "id": "ARTEFACT_2H_HAMMER_UNDEAD", "nombre": "Ancient Hammer Head" }
+  },
+  "OFF_BOOK": {
+    "nombre": "Tome of Spells",
+    "material1": { "id": "CLOTH", "cantidad": 4 },
+    "material2": { "id": "LEATHER", "cantidad": 4 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": null
+  },
+  "OFF_TORCH": {
+    "nombre": "Torch",
+    "material1": { "id": "PLANKS", "cantidad": 4 },
+    "material2": { "id": "CLOTH", "cantidad": 4 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": null
+  },
+  "2H_TRIDENT_UNDEAD": {
+    "nombre": "Trinity Spear",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Mountain - Fort Sterling",
+    "artefacto": { "id": "ARTEFACT_2H_TRIDENT_UNDEAD", "nombre": "Cursed Barbs" }
+  },
+  "2H_KNUCKLES_KEEPER": {
+    "nombre": "Ursine Maulers",
+    "material1": { "id": "LEATHER", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Caerleon",
+    "artefacto": { "id": "ARTEFACT_2H_KNUCKLES_KEEPER", "nombre": "Ursine Guardian Remains" }
+  },
+  "2H_BOW_HELL": {
+    "nombre": "Wailing Bow",
+    "material1": { "id": "PLANKS", "cantidad": 32 },
+    "material2": null,
+    "ciudad": "Forest - Lymhurst",
+    "artefacto": { "id": "ARTEFACT_2H_BOW_HELL", "nombre": "Demonic Arrowheads" }
+  },
+  "2H_WARBOW": {
+    "nombre": "Warbow",
+    "material1": { "id": "PLANKS", "cantidad": 32 },
+    "material2": null,
+    "ciudad": "Forest - Lymhurst",
+    "artefacto": null
+  },
+  "2H_REPEATINGCROSSBOW_UNDEAD": {
+    "nombre": "Weeping Repeater",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": { "id": "ARTEFACT_2H_REPEATINGCROSSBOW_UNDEAD", "nombre": "Lost Crossbow Mechanism" }
+  },
+  "2H_LONGBOW_UNDEAD": {
+    "nombre": "Whispering Bow",
+    "material1": { "id": "PLANKS", "cantidad": 32 },
+    "material2": null,
+    "ciudad": "Forest - Lymhurst",
+    "artefacto": { "id": "ARTEFACT_2H_LONGBOW_UNDEAD", "nombre": "Ghastly Arrows" }
+  },
+  "2H_WILDSTAFF": {
+    "nombre": "Wild Staff",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "CLOTH", "cantidad": 12 },
+    "ciudad": "Swamp - Thetford",
+    "artefacto": null
+  },
+  "MAIN_FIRESTAFF_KEEPER": {
+    "nombre": "Wildfire Staff",
+    "material1": { "id": "PLANKS", "cantidad": 16 },
+    "material2": { "id": "METALBAR", "cantidad": 8 },
+    "ciudad": "Swamp - Thetford",
+    "artefacto": { "id": "ARTEFACT_MAIN_FIRESTAFF_KEEPER", "nombre": "Wildfire Orb" }
+  },
+  "MAIN_ARCANESTAFF_UNDEAD": {
+    "nombre": "Witchwork Staff",
+    "material1": { "id": "PLANKS", "cantidad": 16 },
+    "material2": { "id": "METALBAR", "cantidad": 8 },
+    "ciudad": "Forest - Lymhurst",
+    "artefacto": { "id": "ARTEFACT_MAIN_ARCANESTAFF_UNDEAD", "nombre": "Lost Arcane Crystal" }
+  }
+}
