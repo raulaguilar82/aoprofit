@@ -1,61 +1,186 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Albion Profit - Market Flip</title>
-  <link rel="stylesheet" href="../style.css" />
-  <link rel="stylesheet" href="flip.css" />
-  <script src="../shared/api.js" defer></script>
-  <script src="../shared/format.js" defer></script>
-  <script src="js/flip-app.js" defer></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Albion Profit - Market Flip</title>
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="flip.css" />
+    <script src="../shared/api.js" defer></script>
+    <script src="../shared/format.js" defer></script>
+    <script src="js/modules/flip-search.js" defer></script>
+    <script src="js/modules/flip-prices.js" defer></script>
+    <script src="js/modules/flip-table.js" defer></script>
+    <script src="js/flip-app.js" defer></script>
 </head>
+
 <body>
 
-  <header>
-    <h1>
-      <img src="../images/items/T8_BAG.png" alt="Icono" width="40" height="40" class="header-icon" />
-      Albion Profit
-      <img src="../images/items/T8_BAG.png" alt="Icono" width="40" height="40" class="header-icon" />
-    </h1>
-    <nav class="nav-bar">
-      <a href="../index.html">Crafteo</a>
-      <a href="#">Refinamiento</a>
-      <a href="#">Islas</a>
-      <a href="#" class="active">Market Flip</a>
-    </nav>
-  </header>
+    <header>
+        <h1>
+            <img src="../images/items/T8_BAG.png" alt="Icono" width="40" height="40" class="header-icon" />
+            Albion Profit
+            <img src="../images/items/T8_BAG.png" alt="Icono" width="40" height="40" class="header-icon" />
+        </h1>
+        <nav class="nav-bar">
+            <a href="../index.html">Crafteo</a>
+            <a href="#">Refinamiento</a>
+            <a href="#">Islas</a>
+            <a href="#" class="active">Market Flip</a>
+        </nav>
+    </header>
 
-  <main class="container">
-    <!-- Panel de configuración -->
-    <aside class="config-panel">
-      <h3>Market Flip</h3>
-      <p style="color:#888;font-size:0.8rem;">En desarrollo...</p>
-    </aside>
+    <main class="container">
+        <!-- Panel de configuración -->
+        <aside class="config-panel">
+            <h3 style="color:var(--accent-light);text-align:center;margin-bottom:15px;">FILTROS</h3>
 
-    <!-- Resultados -->
-    <div class="results-wrapper">
-      <section class="results-panel">
-        <h2>RESULTADOS</h2>
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Item</th>
-              <th>Comprar en</th>
-              <th>Precio Compra</th>
-              <th>Vender en</th>
-              <th>Precio Venta</th>
-              <th>Profit</th>
-              <th>%</th>
-            </tr>
-          </thead>
-          <tbody id="flip-results-body">
-            <tr><td colspan="7" style="color:#888;text-align:center;padding:40px;">Configura los filtros para ver oportunidades</td></tr>
-          </tbody>
-        </table>
-      </section>
-    </div>
-  </main>
+            <!-- Premium -->
+            <div class="form-group form-group--row">
+                <input type="checkbox" id="flip-premium" />
+                <label for="flip-premium">Premium (6.5% impuesto)</label>
+            </div>
+
+            <div class="separator"></div>
+
+            <div class="filter-group">
+                <label>Buscar item</label>
+                <input type="text" id="flip-search" placeholder="Ej: Espada, Bolsa, Montura..." />
+                <div id="flip-search-results" class="search-dropdown"></div>
+            </div>
+
+            <div class="separator"></div>
+
+            <!-- Tipo de item -->
+            <div class="filter-group">
+                <label>Categoría</label>
+                <select id="flip-category">
+                    <option value="">Todas</option>
+                    <option value="Equipo">Equipo</option>
+                    <option value="Monturas">Monturas</option>
+                    <option value="Herramientas">Herramientas</option>
+                    <option value="Recursos">Recursos</option>
+                    <option value="Corazones">Corazones</option>
+                    <option value="Equipo de Recolección">Equipo de Recolección</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Tipo específico</label>
+                <select id="flip-type">
+                    <option value="">Todos</option>
+                </select>
+            </div>
+
+            <div class="separator"></div>
+
+            <!-- Tiers -->
+            <div class="filter-group">
+                <label>Tier mínimo</label>
+                <select id="flip-tier-min">
+                    <option value="4" selected>T4</option>
+                    <option value="5">T5</option>
+                    <option value="6">T6</option>
+                    <option value="7">T7</option>
+                    <option value="8">T8</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Tier máximo</label>
+                <select id="flip-tier-max">
+                    <option value="4">T4</option>
+                    <option value="5">T5</option>
+                    <option value="6">T6</option>
+                    <option value="7">T7</option>
+                    <option value="8" selected>T8</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Encantamiento</label>
+                <select id="flip-enchant">
+                    <option value="">Todos</option>
+                    <option value="0">.0 (Plano)</option>
+                    <option value="1">.1</option>
+                    <option value="2">.2</option>
+                    <option value="3">.3</option>
+                    <option value="4">.4</option>
+                </select>
+            </div>
+
+            <div class="separator"></div>
+
+            <!-- Ciudades -->
+            <div class="filter-group">
+                <label>Ciudad de compra</label>
+                <select id="flip-buy-city">
+                    <option value="">Todas</option>
+                    <option value="Lymhurst">Lymhurst</option>
+                    <option value="Fort Sterling">Fort Sterling</option>
+                    <option value="Thetford">Thetford</option>
+                    <option value="Martlock">Martlock</option>
+                    <option value="Bridgewatch">Bridgewatch</option>
+                    <option value="Caerleon">Caerleon</option>
+                    <option value="Brecilien">Brecilien</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Ciudad de venta</label>
+                <select id="flip-sell-city">
+                    <option value="">Todas</option>
+                    <option value="Lymhurst">Lymhurst</option>
+                    <option value="Fort Sterling">Fort Sterling</option>
+                    <option value="Thetford">Thetford</option>
+                    <option value="Martlock">Martlock</option>
+                    <option value="Bridgewatch">Bridgewatch</option>
+                    <option value="Caerleon" selected>Caerleon</option>
+                    <option value="Brecilien">Brecilien</option>
+                    <option value="Black Market">Black Market</option>
+                </select>
+            </div>
+
+            <div class="separator"></div>
+
+            <!-- Profit mínimo -->
+            <div class="filter-group">
+                <label>Profit mínimo (%)</label>
+                <input type="number" id="flip-min-profit" value="5" min="0" max="1000" step="0.1" />
+            </div>
+
+            <!-- Botón buscar -->
+            <button class="btn-search" id="btn-search">🔍 Buscar Oportunidades</button>
+        </aside>
+
+        <!-- Resultados -->
+        <div class="results-wrapper">
+            <section class="results-panel">
+                <h2>RESULTADOS</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Comprar en</th>
+                            <th>Precio Compra</th>
+                            <th>Vender en</th>
+                            <th>Precio Venta</th>
+                            <th>Profit</th>
+                            <th>%</th>
+                        </tr>
+                    </thead>
+                    <tbody id="flip-results-body">
+                        <tr>
+                            <td colspan="7" style="color:#888;text-align:center;padding:40px;">Configura los filtros
+                                para ver oportunidades</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </main>
 
 </body>
+
 </html>
