@@ -433,6 +433,20 @@
     "ciudad": "Forest - Lymhurst",
     "artefacto": null
   },
+  "2H_DUALCROSSBOW_CRYSTAL": {
+    "nombre": "Dual Crossbow Crystal",
+    "material1": { "id": "PLANKS", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": { "id": "ARTEFACT_2H_DUALCROSSBOW_CRYSTAL", "nombre": "Crystalized Mechanism" }
+  },
+  "2H_DAGGERPAIR_CRYSTAL": {
+    "nombre": "Dagger Pair Crystal",
+    "material1": { "id": "METALBAR", "cantidad": 16 },
+    "material2": { "id": "LEATHER", "cantidad": 16 },
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": { "id": "ARTEFACT_2H_DAGGERPAIR_CRYSTAL", "nombre": "Crystalized Blades" }
+  },
   "ARMOR_PLATE_FEY": {
     "nombre": "Duskweaver Armor",
     "material1": { "id": "METALBAR", "cantidad": 16 },
@@ -1405,5 +1419,40 @@
     "material2": { "id": "METALBAR", "cantidad": 8 },
     "ciudad": "Forest - Lymhurst",
     "artefacto": { "id": "ARTEFACT_MAIN_ARCANESTAFF_UNDEAD", "nombre": "Lost Arcane Crystal" }
+  },
+  "2H_DOUBLEBLADEDSTAFF_CRYSTAL": {
+    "nombre": "Double Bladed Staff Crystal",
+    "material1": { "id": "LEATHER", "cantidad": 20 },
+    "material2": { "id": "METALBAR", "cantidad": 12 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": { "id": "ARTEFACT_2H_DOUBLEBLADEDSTAFF_CRYSTAL", "nombre": "Crystalized Blades" }
+  },
+  "OFF_TOME_CRYSTAL": {
+    "nombre": "Tome of Spells Crystal",
+    "material1": { "id": "CLOTH", "cantidad": 4 },
+    "material2": { "id": "LEATHER", "cantidad": 4 },
+    "ciudad": "Highland - Martlock",
+    "artefacto": { "id": "ARTEFACT_OFF_TOME_CRYSTAL", "nombre": "Crystalized Pages" }
+  },
+  "MAIN_NATURESTAFF_CRYSTAL": {
+    "nombre": "Nature Staff Crystal",
+    "material1": { "id": "PLANKS", "cantidad": 16 },
+    "material2": { "id": "CLOTH", "cantidad": 8 },
+    "ciudad": "Swamp - Thetford",
+    "artefacto": { "id": "ARTEFACT_MAIN_NATURESTAFF_CRYSTAL", "nombre": "Forged Crystal" }
+  },
+  "MAIN_FIRESTAFF_CRYSTAL": {
+    "nombre": "Fire Staff Crystal",
+    "material1": { "id": "PLANKS", "cantidad": 16 },
+    "material2": { "id": "METALBAR", "cantidad": 8 },
+    "ciudad": "Swamp - Thetford",
+    "artefacto": { "id": "ARTEFACT_MAIN_FIRESTAFF_CRYSTAL", "nombre": "Pyreheart Crystal" }
+  },
+  "MAIN_CURSEDSTAFF_CRYSTAL": {
+    "nombre": "Cursed Staff Crystal",
+    "material1": { "id": "PLANKS", "cantidad": 16 },
+    "material2": { "id": "METALBAR", "cantidad": 8 },
+    "ciudad": "Steppe - Bridgewatch",
+    "artefacto": { "id": "ARTEFACT_MAIN_CURSEDSTAFF_CRYSTAL", "nombre": "Rotten Crystal" }
   }
 }

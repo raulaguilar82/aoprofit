@@ -1,7 +1,7 @@
-const { getCol } = require('../config/db');
+const { getApiCol, getLocalCol } = require('../config/db');
 const { getCity } = require('../utils/locations');
 
-// Buffer en memoria: { "itemId|city": { itemId, city, sell: Infinity, buy: 0 } }
+// Buffer en memoria para precios locales
 const buffer = {};
 let flushTimeout = null;
 
@@ -29,7 +29,7 @@ async function flushBuffer() {
   const entries = Object.values(buffer);
   if (!entries.length) return;
 
-  const pricesCol = getCol();
+  const pricesLocalCol = getLocalCol();
   const ops = entries.map(entry => ({
     updateOne: {
       filter: { itemId: entry.itemId, city: entry.city },
@@ -38,7 +38,6 @@ async function flushBuffer() {
           sell: entry.sell !== Infinity ? entry.sell : 0,
           buy: entry.buy || 0,
           date: new Date(),
-          source: 'local',
           updatedAt: new Date()
         }
       },
@@ -46,8 +45,8 @@ async function flushBuffer() {
     }
   }));
 
-  await pricesCol.bulkWrite(ops);
-  console.log(`⚡ Buffer flush: ${ops.length} items actualizados`);
+  await pricesLocalCol.bulkWrite(ops);
+  console.log(`⚡ Buffer flush (local): ${ops.length} items actualizados`);
   
   Object.keys(buffer).forEach(k => delete buffer[k]);
 }
@@ -56,43 +55,94 @@ async function processOrder(itemId, locationId, price, auctionType, qualityLevel
   addToBuffer(itemId, locationId, price, auctionType, qualityLevel);
 }
 
+// Obtener precios combinados (local + api)
 async function getPrices(ids) {
-  const pricesCol = getCol();
-  const docs = await pricesCol.find({ itemId: { $in: ids } }).toArray();
+  const pricesLocalCol = getLocalCol();
+  const pricesApiCol = getApiCol();
+  
+  const [localDocs, apiDocs] = await Promise.all([
+    pricesLocalCol.find({ itemId: { $in: ids } }).toArray(),
+    pricesApiCol.find({ itemId: { $in: ids } }).toArray()
+  ]);
+  
   const result = {};
 
-  docs.forEach(doc => {
+  // Agregar precios locales (mayor prioridad)
+  localDocs.forEach(doc => {
     if (!result[doc.itemId]) result[doc.itemId] = { prices: [], updatedAt: doc.updatedAt };
     result[doc.itemId].prices.push({
       city: doc.city,
       sell_price_min: doc.sell || 0,
       buy_price_max: doc.buy || 0,
       sell_price_min_date: doc.date?.toISOString(),
-      source: doc.source || 'local'
+      source: 'local'
     });
-    if (doc.updatedAt > result[doc.itemId].updatedAt) result[doc.itemId].updatedAt = doc.updatedAt;
+    if (doc.updatedAt > result[doc.itemId].updatedAt) {
+      result[doc.itemId].updatedAt = doc.updatedAt;
+    }
+  });
+
+  // Agregar precios API (menor prioridad, solo si no existe local para esa ciudad)
+  apiDocs.forEach(doc => {
+    if (!result[doc.itemId]) result[doc.itemId] = { prices: [], updatedAt: doc.updatedAt };
+    
+    // Verificar si ya existe un precio local para esta ciudad
+    const hasLocal = result[doc.itemId].prices.some(
+      p => p.city === doc.city && p.source === 'local'
+    );
+    
+    if (!hasLocal) {
+      result[doc.itemId].prices.push({
+        city: doc.city,
+        sell_price_min: doc.sell || 0,
+        buy_price_max: doc.buy || 0,
+        sell_price_min_date: doc.date?.toISOString(),
+        source: 'api'
+      });
+    }
+    
+    if (doc.updatedAt > result[doc.itemId].updatedAt) {
+      result[doc.itemId].updatedAt = doc.updatedAt;
+    }
   });
 
   return result;
 }
 
+// Guardar precios de API externa (AODP)
 async function saveApiPrices(prices) {
-  const pricesCol = getCol();
+  const pricesApiCol = getApiCol();
+  const pricesLocalCol = getLocalCol();
   const ops = [];
+
+  // Obtener IDs para verificar locales existentes
+  const ids = Object.keys(prices);
+  const localExisting = await pricesLocalCol.find({ 
+    itemId: { $in: ids } 
+  }).toArray();
+  
+  const localMap = {};
+  localExisting.forEach(doc => {
+    if (!localMap[doc.itemId]) localMap[doc.itemId] = new Set();
+    localMap[doc.itemId].add(doc.city);
+  });
 
   Object.entries(prices).forEach(([itemId, data]) => {
     const items = Array.isArray(data) ? data : (data.prices || [data]);
     items.forEach(p => {
       if (!p?.city) return;
+      
+      // No guardar si existe precio local para esta ciudad
+      if (localMap[itemId]?.has(p.city)) return;
+      
       ops.push({
         updateOne: {
-          filter: { itemId, city: p.city, source: { $ne: 'local' } },
+          filter: { itemId, city: p.city },
           update: {
             $set: {
               sell: p.sell_price_min || 0,
               buy: p.buy_price_max || 0,
               date: p.sell_price_min_date ? new Date(p.sell_price_min_date) : new Date(),
-              source: 'api',
               updatedAt: new Date()
             }
           },
@@ -102,7 +152,7 @@ async function saveApiPrices(prices) {
     });
   });
 
-  if (ops.length) await pricesCol.bulkWrite(ops);
+  if (ops.length) await pricesApiCol.bulkWrite(ops);
   return ops.length;
 }
 

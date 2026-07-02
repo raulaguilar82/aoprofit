@@ -9,21 +9,36 @@ if (!uri) {
 }
 
 const client = new MongoClient(uri);
-let db, pricesCol;
+let db, pricesApiCol, pricesLocalCol;
 
 async function connectDB() {
   try {
     await client.connect();
     db = client.db('albionprofit');
-    pricesCol = db.collection('prices');
-    await pricesCol.createIndex({ itemId: 1 });
-    await pricesCol.createIndex({ updatedAt: -1 });
+    
+    // Colección para precios de AODP comunitaria
+    pricesApiCol = db.collection('prices_api');
+    await pricesApiCol.createIndex({ itemId: 1, city: 1 });
+    await pricesApiCol.createIndex({ updatedAt: -1 });
+    
+    // Colección para precios del data broker local
+    pricesLocalCol = db.collection('prices_local');
+    await pricesLocalCol.createIndex({ itemId: 1, city: 1 });
+    await pricesLocalCol.createIndex({ updatedAt: -1 });
+    
     console.log('✅ MongoDB Atlas conectado');
-    return { db, pricesCol };
+    console.log('   - prices_api (AODP comunitaria)');
+    console.log('   - prices_local (Data broker)');
+    
+    return { db, pricesApiCol, pricesLocalCol };
   } catch (e) {
     console.error('❌ Error MongoDB:', e.message);
     process.exit(1);
   }
 }
 
-module.exports = { connectDB, getCol: () => pricesCol };
+module.exports = { 
+  connectDB, 
+  getApiCol: () => pricesApiCol, 
+  getLocalCol: () => pricesLocalCol 
+};

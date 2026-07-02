@@ -15,11 +15,60 @@ const Format = {
   },
 
   getBestPrice(id, city, saved) {
+    // 1. Prioridad: Precio manual (localStorage)
+    const manualData = saved[id]?.manual;
+    if (manualData?.sell?.[city] || manualData?.buy?.[city]) {
+      return { 
+        sell: manualData.sell?.[city] || 0, 
+        buy: manualData.buy?.[city] || 0, 
+        source: 'Manual' 
+      };
+    }
+    
     const data = saved[id];
-    if (data?.manual?.sell?.[city] || data?.manual?.buy?.[city]) return { sell: data.manual.sell?.[city] || 0, buy: data.manual.buy?.[city] || 0, source: 'Manual' };
     const prices = this.getPrices(data);
-    const localPrice = prices.find(p => p.city === city);
-    if (localPrice && (localPrice.sell_price_min > 0 || localPrice.buy_price_max > 0)) return { sell: localPrice.sell_price_min, buy: localPrice.buy_price_max, source: localPrice.source === 'local' ? 'Local' : 'API' };
+    
+    // 2. Prioridad: Precio local de la ciudad exacta (data broker)
+    const localExact = prices.find(p => p.city === city && p.source === 'local');
+    if (localExact && (localExact.sell_price_min > 0 || localExact.buy_price_max > 0)) {
+      return { 
+        sell: localExact.sell_price_min, 
+        buy: localExact.buy_price_max, 
+        source: 'Local' 
+      };
+    }
+    
+    // 3. Prioridad: Cualquier precio local
+    const localAny = prices.find(p => p.source === 'local');
+    if (localAny && (localAny.sell_price_min > 0 || localAny.buy_price_max > 0)) {
+      return { 
+        sell: localAny.sell_price_min, 
+        buy: localAny.buy_price_max, 
+        source: 'Local' 
+      };
+    }
+    
+    // 4. Prioridad: Precio API de la ciudad exacta
+    const apiExact = prices.find(p => p.city === city && p.source === 'api');
+    if (apiExact && (apiExact.sell_price_min > 0 || apiExact.buy_price_max > 0)) {
+      return { 
+        sell: apiExact.sell_price_min, 
+        buy: apiExact.buy_price_max, 
+        source: 'API' 
+      };
+    }
+    
+    // 5. Prioridad: Cualquier precio API
+    const apiAny = prices.find(p => p.source === 'api' && (p.sell_price_min > 0 || p.buy_price_max > 0));
+    if (apiAny) {
+      return { 
+        sell: apiAny.sell_price_min, 
+        buy: apiAny.buy_price_max, 
+        source: 'API' 
+      };
+    }
+    
+    // 6. Sin precio
     return { sell: 0, buy: 0, source: 'Manual' };
   },
 

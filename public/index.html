@@ -14,6 +14,7 @@
   <script src="js/modules/items.js" defer></script>
   <script src="js/modules/prices.js" defer></script>
   <script src="js/modules/profit.js" defer></script>
+  <script src="js/modules/shopping.js" defer></script>
   <script src="js/app.js" defer></script>
 </head>
 
@@ -95,10 +96,13 @@
       <!-- Selector de item específico -->
       <div class="form-group">
         <label for="craft-item">Item a craftear:</label>
-        <div class="item-select-row">
-          <img id="selected-item-icon" src="https://render.albiononline.com/v1/item/T2_HEAD_CLOTH_SET1.png" alt=""
-            width="36" height="36" class="selected-item-icon" />
-          <select id="craft-item" class="config-select">
+        <div class="item-selector-container" id="item-selector-container">
+          <img id="selected-item-icon" src="images/items/PLACEHOLDER.png" alt="" class="selected-item-icon" />
+          <div class="custom-select">
+            <div class="select-display" id="selected-item-display">Selecciona un item</div>
+            <div class="custom-dropdown" id="custom-item-dropdown"></div>
+          </div>
+          <select id="craft-item" class="config-select" style="display: none;">
             <option value="">-- Selecciona un tipo primero --</option>
           </select>
         </div>
@@ -118,17 +122,20 @@
         </div>
       </div>
 
-      <div class="separator"></div>
-
       <!-- Bono diario -->
-      <label>Bono Diario:</label>
-      <div class="bonus-buttons">
-        <button type="button" class="bonus-btn active" data-bonus="0">0%</button>
-        <button type="button" class="bonus-btn" data-bonus="10">10%</button>
-        <button type="button" class="bonus-btn" data-bonus="20">20%</button>
+      <div class="form-group">
+        <label>Bono Diario:</label>
+        <div class="bonus-buttons">
+          <button type="button" class="bonus-btn active" data-bonus="0">0%</button>
+          <button type="button" class="bonus-btn" data-bonus="10">10%</button>
+          <button type="button" class="bonus-btn" data-bonus="20">20%</button>
+        </div>
       </div>
 
-      <div class="separator"></div>
+      <div class="form-group form-group--row">
+        <input type="checkbox" id="foco" />
+        <label for="foco">Usar Foco</label>
+      </div>
 
       <!-- Tasa de Retorno -->
       <div class="form-group">
@@ -137,9 +144,11 @@
         <small class="help-text" id="rrr-desc">Ciudad sin bonus: 15.2% base</small>
       </div>
 
-      <div class="form-group form-group--row">
-        <input type="checkbox" id="foco" />
-        <label for="foco">Usar Foco</label>
+      <div class="separator"></div>
+
+      <div class="form-group">
+        <label for="station-fee">Tarifa de Estación:</label>
+        <input type="number" id="station-fee" value="300" min="0" step="1" />
       </div>
 
       <div class="form-group form-group--row">
@@ -153,15 +162,11 @@
       </div>
 
       <div class="form-group">
-        <label for="station-fee">Tarifa de Estación (%):</label>
-        <input type="number" id="station-fee" value="300" min="0" step="1" />
-      </div>
-
-      <div class="separator"></div>
-      <label>Compra de Materiales:</label>
-      <div class="bonus-buttons">
-        <button type="button" class="buy-mode-btn active" data-mode="sell">Compra Directa</button>
-        <button type="button" class="buy-mode-btn" data-mode="buy">Órden de Compra</button>
+        <label>Compra de Materiales:</label>
+        <div class="bonus-buttons">
+          <button type="button" class="buy-mode-btn mats-btn active" data-mode="sell">Compra Directa</button>
+          <button type="button" class="buy-mode-btn mats-btn" data-mode="buy">Órden de Compra</button>
+        </div>
       </div>
 
       <div class="form-group">
@@ -184,7 +189,6 @@
       <div class="form-group" id="selected-item-specs">
         <div id="spec-bonus-display" class="spec-bonus-display">
           <span>🔧 Eficiencia de Foco: <strong>+0.00</strong></span>
-          <span>⭐ Calidad: <strong>+0.00</strong></span>
         </div>
         <div id="item-spec-inputs">
           <p style="color: #888; font-size: 0.8rem;">Selecciona un objeto</p>
@@ -288,14 +292,29 @@
       <!-- Tabla: Lista de Compras -->
       <section class="results-panel" aria-labelledby="compras-heading">
         <h2 id="compras-heading">LISTA DE COMPRAS</h2>
-        <table class="data-table" aria-label="Lista de compras">
+        <table class="data-table" aria-label="Totales de materiales">
           <thead>
             <tr>
               <th>Tier</th>
-              <th>Material 1</th>
-              <th>Material 2</th>
-              <th>Artefacto</th>
+              <th>Tablas</th>
+              <th>Lingotes</th>
+              <th>Tela</th>
+              <th>Cuero</th>
+              <th>Artefactos</th>
               <th>Diarios</th>
+            </tr>
+          </thead>
+          <tbody id="materials-totals-body">
+            <tr>
+              <td colspan="7" style="color:#888;text-align:center;padding:20px;">Añade items a la lista de compras</td>
+            </tr>
+          </tbody>
+        </table>
+        <h2 id="compras-heading" class="items-to-craft">ITEMS A CRAFTEAR</h2>
+        <table class="data-table" aria-label="Lista de compras">
+          <thead>
+            <tr>
+              <th>ITEM</th>
             </tr>
           </thead>
           <tbody id="shopping-list-body"></tbody>
@@ -330,7 +349,7 @@
             <span class="status-dot"></span>
             <span id="status-text">Listo</span>
           </span>
-          <button id="btn-refresh-prices" class="btn-toggle" title="Actualizar precios">🔄 Actualizar</button>
+          <button id="btn-refresh-prices" class="btn-toggle" title="Actualizar precios">Actualizar Precios</button>
           <button id="modal-close" class="modal-close">&times;</button>
         </div>
       </div>
