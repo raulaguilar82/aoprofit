@@ -1,0 +1,92 @@
+/* ==================== FLIP SPECIFIC ==================== */
+
+/* Fila de profit positivo */
+.flip-profit-positive {
+  color: var(--green-profit);
+}
+
+/* Fila de profit negativo */
+.flip-profit-negative {
+  color: var(--red-stale);
+}
+
+/* Badge de ciudad en tabla */
+.city-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+.city-badge.caerleon { background: #1a1a2e; color: #e94560; }
+.city-badge.bridgewatch { background: #1a1a2e; color: #e9b445; }
+.city-badge.lymhurst { background: #1a1a2e; color: #4ade80; }
+.city-badge.martlock { background: #1a1a2e; color: #6b8cce; }
+.city-badge.fortsterling { background: #1a1a2e; color: #a0a0a0; }
+.city-badge.thetford { background: #1a1a2e; color: #c084fc; }
+.city-badge.brecilien { background: #1a1a2e; color: #22d3ee; }
+.city-badge.blackmarket { background: #1a1a2e; color: #ff4444; }
+
+/* Filtros */
+.filter-group {
+  margin-bottom: 12px;
+}
+
+.filter-group label {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.filter-group select {
+  width: 100%;
+  padding: 6px;
+  background: #1a1713;
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  border-radius: var(--radius);
+  font-size: 0.8rem;
+}
+
+.filter-group input {
+  width: 100%;
+  padding: 6px;
+  font-size: 0.8rem;
+}
+
+/* Botón de búsqueda */
+.btn-search {
+  background: var(--accent);
+  color: #1a1815;
+  border: none;
+  padding: 8px;
+  border-radius: var(--radius);
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  transition: all 0.15s ease;
+}
+
+.btn-search:hover {
+  background: var(--accent-light);
+}
+
+/* Links de navegación */
+.nav-bar a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.nav-bar a:hover,
+.nav-bar a.active {
+  color: var(--accent-light);
+  border-bottom: 1px solid var(--accent-light);
+  padding-bottom: 2px;
+  background: linear-gradient(transparent, var(--border-accent-2), transparent); 
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Albion Profit - Market Flip</title>
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="flip.css" />
+  <script src="../shared/api.js" defer></script>
+  <script src="../shared/format.js" defer></script>
+  <script src="js/flip-app.js" defer></script>
+</head>
+<body>
+
+  <header>
+    <h1>
+      <img src="../images/items/T8_BAG.png" alt="Icono" width="40" height="40" class="header-icon" />
+      Albion Profit
+      <img src="../images/items/T8_BAG.png" alt="Icono" width="40" height="40" class="header-icon" />
+    </h1>
+    <nav class="nav-bar">
+      <a href="../index.html">Crafteo</a>
+      <a href="#">Refinamiento</a>
+      <a href="#">Islas</a>
+      <a href="#" class="active">Market Flip</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- Panel de configuración -->
+    <aside class="config-panel">
+      <h3>Market Flip</h3>
+      <p style="color:#888;font-size:0.8rem;">En desarrollo...</p>
+    </aside>
+
+    <!-- Resultados -->
+    <div class="results-wrapper">
+      <section class="results-panel">
+        <h2>RESULTADOS</h2>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Comprar en</th>
+              <th>Precio Compra</th>
+              <th>Vender en</th>
+              <th>Precio Venta</th>
+              <th>Profit</th>
+              <th>%</th>
+            </tr>
+          </thead>
+          <tbody id="flip-results-body">
+            <tr><td colspan="7" style="color:#888;text-align:center;padding:40px;">Configura los filtros para ver oportunidades</td></tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </main>
+
+</body>
+</html>

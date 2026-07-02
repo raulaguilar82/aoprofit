@@ -11,6 +11,7 @@
   --red-stale: #b55a4a;
   --border-color: #3d362b;
   --border-accent: #5c4a2a;
+  --border-accent-2: #91875256;
   --config-sep: #bda984;
   --radius: 4px;
   --padding-cell: 12px;
@@ -999,4 +1000,19 @@ input[type="checkbox"] {
 
 #compras-heading:last-of-type {
   margin-top: 15px;
+}
+
+/* Links de navegación */
+.nav-bar a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.nav-bar a:hover,
+.nav-bar a.active {
+  color: var(--accent-light);
+  border-bottom: 1px solid var(--accent-light);
+  padding-bottom: 2px;
+  background: linear-gradient(transparent, var(--border-accent-2), transparent); 
 }
