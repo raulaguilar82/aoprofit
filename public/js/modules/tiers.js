@@ -14,6 +14,9 @@ function initTiers() {
 
     const clean = mainRow.cloneNode(true);
     mainRow.replaceWith(clean);
-    clean.addEventListener('click', e => { if (!e.target.classList.contains('cant-input')) group.classList.toggle('open'); });
+    clean.addEventListener('click', e => {
+      if (e.target.closest('td:last-child')) return;
+      group.classList.toggle('open');
+    });
   });
 }
