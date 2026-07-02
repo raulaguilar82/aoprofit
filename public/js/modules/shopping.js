@@ -148,55 +148,101 @@ const Shopping = {
             PLANKS: 'Tablas', METALBAR: 'Lingotes', CLOTH: 'Tela', LEATHER: 'Cuero'
         };
 
-        const totals = {};
+        // Materiales por tier+enchant
+        const materialTotals = {};
+
+        // Artefactos y diarios por tier
+        const tierExtras = {};
 
         this._list.forEach(entry => {
-            const key = `${entry.tier}${entry.enchant}`;
-            if (!totals[key]) totals[key] = { artefactos: 0, diarios: 0 };
+            const matKey = `${entry.tier}${entry.enchant}`;
+            const tierKey = entry.tier;
 
+            // Inicializar materiales
+            if (!materialTotals[matKey]) {
+                materialTotals[matKey] = { tier: entry.tier, enchant: entry.enchant };
+            }
+
+            // Inicializar extras por tier
+            if (!tierExtras[tierKey]) {
+                tierExtras[tierKey] = { artefactos: {}, diarios: {} };
+            }
+
+            // Sumar materiales
             const recursos = [entry.recipe.material1, entry.recipe.material2].filter(Boolean);
-
             recursos.forEach(r => {
                 const nombre = matNames[r.id] || r.id;
                 const necesario = (r.cantidad || 1) * entry.cantidad;
-                totals[key][nombre] = (totals[key][nombre] || 0) + necesario;
+                materialTotals[matKey][nombre] = (materialTotals[matKey][nombre] || 0) + necesario;
             });
 
+            // Sumar artefactos por nombre
             if (entry.recipe.artefacto) {
-                totals[key].artefactos += entry.cantidad;
+                const artNombre = entry.recipe.artefacto.nombre;
+                tierExtras[tierKey].artefactos[artNombre] = (tierExtras[tierKey].artefactos[artNombre] || 0) + entry.cantidad;
             }
 
+            // Sumar diarios por tipo
             const tierNum = parseInt(entry.tier?.replace('T', ''));
+            const jType = Prices.JOURNAL_TYPE[entry.cat] || 'WARRIOR';
             const famaPorItem = Profit.FAME_PER_CRAFT[(tierNum - 4) * 5 + parseInt(entry.enchant.replace('.', ''))] || 0;
             const famaNecesaria = Profit.FAME_PER_JOURNAL[tierNum] || 999999;
             const diariosCant = Math.ceil((entry.cantidad * famaPorItem) / famaNecesaria);
-            totals[key].diarios += diariosCant;
+            tierExtras[tierKey].diarios[jType] = (tierExtras[tierKey].diarios[jType] || 0) + diariosCant;
         });
 
-        const sortedKeys = Object.keys(totals).sort((a, b) => {
-            const tierA = parseInt(a.match(/T(\d+)/)[1]);
-            const tierB = parseInt(b.match(/T(\d+)/)[1]);
+        // Ordenar
+        const sortedMatKeys = Object.keys(materialTotals).sort((a, b) => {
+            const tierA = parseInt(materialTotals[a].tier?.replace('T', ''));
+            const tierB = parseInt(materialTotals[b].tier?.replace('T', ''));
             if (tierA !== tierB) return tierA - tierB;
-            const enchA = parseFloat(a.split('.')[1] || 0);
-            const enchB = parseFloat(b.split('.')[1] || 0);
-            return enchA - enchB;
+            return parseFloat(a.split('.')[1] || 0) - parseFloat(b.split('.')[1] || 0);
         });
 
         let html = '';
+        let lastTier = '';
 
-        sortedKeys.forEach(key => {
-            const data = totals[key];
-            const tierNum = parseInt(key.match(/T(\d+)/)[1]);
+        sortedMatKeys.forEach(matKey => {
+            const matData = materialTotals[matKey];
+            const tierNum = parseInt(matData.tier?.replace('T', ''));
+            const isFirstOfTier = matData.tier !== lastTier;
+            lastTier = matData.tier;
+
+            let artefactoHTML = '';
+            let diarioHTML = '';
+
+            if (isFirstOfTier) {
+                const extras = tierExtras[matData.tier];
+
+                // Artefactos separados por nombre
+                const artEntries = Object.entries(extras.artefactos || {});
+                if (artEntries.length > 0) {
+                    artefactoHTML = artEntries.map(([nombre, cant]) =>
+                        `<small style="color:#888;display:block;">(${nombre})</small>${cant.toLocaleString()}`
+                    ).join('');
+                }
+
+                // Diarios separados por tipo
+                const diaEntries = Object.entries(extras.diarios || {});
+                if (diaEntries.length > 0) {
+                    diarioHTML = diaEntries.map(([tipo, cant]) => {
+                        const tipoNombre = tipo === 'WARRIOR' ? 'Guerrero' :
+                            tipo === 'HUNTER' ? 'Cazador' :
+                                tipo === 'MAGE' ? 'Mago' : 'Artesano';
+                        return `<small style="color:#888;display:block;">(${tipoNombre})</small>${cant.toLocaleString()}`;
+                    }).join('');
+                }
+            }
 
             html += `<tr>
-        <td><span class="tier-badge t${tierNum}-badge">${key}</span></td>
-        <td>${data['Tablas'] ? data['Tablas'].toLocaleString() : '-'}</td>
-        <td>${data['Lingotes'] ? data['Lingotes'].toLocaleString() : '-'}</td>
-        <td>${data['Tela'] ? data['Tela'].toLocaleString() : '-'}</td>
-        <td>${data['Cuero'] ? data['Cuero'].toLocaleString() : '-'}</td>
-        <td>${data.artefactos > 0 ? data.artefactos.toLocaleString() : '-'}</td>
-        <td>${data.diarios > 0 ? data.diarios.toLocaleString() : '-'}</td>
-      </tr>`;
+      <td><span class="tier-badge t${tierNum}-badge">${matKey}</span></td>
+      <td>${matData['Tablas'] ? matData['Tablas'].toLocaleString() : ''}</td>
+      <td>${matData['Lingotes'] ? matData['Lingotes'].toLocaleString() : ''}</td>
+      <td>${matData['Tela'] ? matData['Tela'].toLocaleString() : ''}</td>
+      <td>${matData['Cuero'] ? matData['Cuero'].toLocaleString() : ''}</td>
+      <td>${artefactoHTML}</td>
+      <td>${diarioHTML}</td>
+    </tr>`;
         });
 
         tbody.innerHTML = html;
@@ -257,9 +303,9 @@ const Shopping = {
         const profitColor = profitTotal >= 0 ? 'var(--green-profit)' : 'var(--red-stale)';
 
         tbody.innerHTML = `<tr>
-    <td>${costoTotalCrafteo.toLocaleString()}</td>
-    <td>${costoTotalFoco.toLocaleString()}</td>
-    <td style="color:${profitColor};">${profitTotal.toLocaleString()} (${profitPct}%)</td>
-  </tr>`;
+      <td>${costoTotalCrafteo.toLocaleString()}</td>
+      <td>${costoTotalFoco.toLocaleString()}</td>
+      <td style="color:${profitColor};">${profitTotal.toLocaleString()} (${profitPct}%)</td>
+    </tr>`;
     }
 };
