@@ -235,16 +235,35 @@ const Prices = {
         if (data) {
           const manuals = JSON.parse(localStorage.getItem('albion-prices') || '{}');
           const merged = {};
+
           Object.entries(data).forEach(([id, prices]) => {
-            merged[id] = { prices: prices.prices || prices };
-            if (manuals[id]?.manual) merged[id].manual = manuals[id].manual;
+            const priceList = prices.prices || prices;
+            // Solo guardar si hay datos reales (no vacíos)
+            if (priceList && priceList.length > 0) {
+              merged[id] = { prices: priceList };
+              if (manuals[id]?.manual) merged[id].manual = manuals[id].manual;
+            }
           });
 
-          this._saveToCacheAndStorage(itemData.id, merged, manuals);
-          this._updateInputs(merged);
+          // Solo actualizar si hay algo nuevo
+          if (Object.keys(merged).length > 0) {
+            merged._timestamp = Date.now();
+            this._cache[itemData.id] = merged;
+
+            const toSave = {};
+            Object.entries(merged).forEach(([id, d]) => {
+              if (id === '_timestamp') return;
+              toSave[id] = { prices: d.prices || [], updatedAt: Date.now() };
+              if (d.manual) toSave[id].manual = d.manual;
+            });
+            localStorage.setItem('albion-prices', JSON.stringify(toSave));
+
+            this._updateInputs(merged);
+            if (typeof Profit !== 'undefined') Profit.calculateAll();
+          }
         }
       } catch (e) { }
-    }, 3000); // 3 segundos
+    }, 3000);
   },
 
   _stopPolling() {

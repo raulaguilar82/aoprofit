@@ -29,6 +29,13 @@ const FlipSearch = {
         return this.TYPE_MAP[category] || [];
     },
 
+    _normalize(text) {
+        return text
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .toLowerCase();
+    },
+
     filter(filters = {}) {
         let results = this.items;
 
@@ -57,12 +64,12 @@ const FlipSearch = {
 
         // Por nombre
         if (filters.query && filters.query.trim()) {
-            const q = filters.query.toLowerCase().trim();
+            const q = this._normalize(filters.query.trim());
             results = results.filter(i =>
-                (i.es || '').toLowerCase().includes(q) ||
-                (i.en || '').toLowerCase().includes(q) ||
-                (i.pt || '').toLowerCase().includes(q) ||
-                (i.id || '').toLowerCase().includes(q)
+                this._normalize(i.es || '').includes(q) ||
+                this._normalize(i.en || '').includes(q) ||
+                this._normalize(i.pt || '').includes(q) ||
+                this._normalize(i.id || '').includes(q)
             );
         }
 
