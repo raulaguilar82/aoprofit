@@ -5,7 +5,6 @@ const Prices = {
   RECURSO: { METALBAR: '🔩 Lingotes', PLANKS: '🪵 Tablas', CLOTH: '🧵 Tela', LEATHER: '🦎 Cuero' },
   recipes: {},
   _cache: {},
-  _pollInterval: null,
 
   JOURNAL_TYPE: {
     'Espadas': 'WARRIOR', 'Hachas': 'WARRIOR', 'Mazas': 'WARRIOR', 'Martillos': 'WARRIOR',
@@ -33,27 +32,24 @@ const Prices = {
     document.getElementById('btn-specs').addEventListener('click', () => {
       this.modal.classList.add('active');
       this._renderModalFromCache();
-      this._startPolling();
     });
 
     // Cerrar modal
     document.getElementById('modal-close').addEventListener('click', () => {
       this._saveManualPrices();
       this.modal.classList.remove('active');
-      this._stopPolling();
     });
 
     this.modal.addEventListener('click', e => {
       if (e.target === this.modal) {
         this._saveManualPrices();
         this.modal.classList.remove('active');
-        this._stopPolling();
       }
     });
 
-    // Botón actualizar
+    // Botón actualizar (rápido, solo backend)
     document.getElementById('btn-refresh-prices').addEventListener('click', () => {
-      this._forceRefreshFromModal();
+      this._quickRefresh();
     });
 
     // Guardar precios manuales al editar
@@ -159,7 +155,7 @@ const Prices = {
     this.renderPrices(cached, itemData, recipe, ids.recursos);
   },
 
-  async _forceRefreshFromModal() {
+  async _quickRefresh() {
     const cat = Items.cat?.value;
     const itemName = Items.item?.value;
     if (!cat || !itemName) return;
@@ -170,12 +166,9 @@ const Prices = {
     const recipe = this.recipes[itemData.id.replace('T8_', '')];
     if (!recipe) return;
 
-    this._setModalButtonLoading(true);
     this.setStatus('Actualizando...', true);
 
     const ids = this._getIdsForItem(itemData, recipe, cat);
-    await this._fetchAodpAndSave(ids, recipe);
-
     const allIds = [...ids.final, ...ids.resources, ...ids.artifacts, ...ids.journals];
     const data = await this._fetchFromBackend(allIds);
     const manuals = JSON.parse(localStorage.getItem('albion-prices') || '{}');
@@ -193,66 +186,6 @@ const Prices = {
 
     if (typeof Profit !== 'undefined') Profit.calculateAll();
     this.setStatus('Actualizado', false);
-    this._setModalButtonLoading(false);
-  },
-
-  // ============ POLLING ============
-  _startPolling() {
-    this._stopPolling();
-    this._pollInterval = setInterval(async () => {
-      const cat = Items.cat?.value;
-      const itemName = Items.item?.value;
-      if (!cat || !itemName) return;
-
-      const itemData = Items.data[cat]?.find(i => i.nombre === itemName);
-      if (!itemData?.id) return;
-
-      const recipe = this.recipes[itemData.id.replace('T8_', '')];
-      if (!recipe) return;
-
-      const ids = this._getIdsForItem(itemData, recipe, cat);
-      const allIds = [...ids.final, ...ids.resources, ...ids.artifacts, ...ids.journals];
-
-      try {
-        const r = await fetch(`/api/cached-prices?ids=${allIds.join(',')}`);
-        const { data } = await r.json();
-
-        if (data) {
-          const manuals = JSON.parse(localStorage.getItem('albion-prices') || '{}');
-          const merged = {};
-
-          Object.entries(data).forEach(([id, prices]) => {
-            const priceList = prices.prices || prices;
-            if (priceList && priceList.length > 0) {
-              merged[id] = { prices: priceList };
-              if (manuals[id]?.manual) merged[id].manual = manuals[id].manual;
-            }
-          });
-
-          if (Object.keys(merged).length > 0) {
-            merged._timestamp = Date.now();
-            this._cache[itemData.id] = merged;
-
-            const toSave = {};
-            Object.entries(merged).forEach(([id, d]) => {
-              if (id === '_timestamp') return;
-              toSave[id] = { prices: d.prices || [], updatedAt: Date.now() };
-              if (d.manual) toSave[id].manual = d.manual;
-            });
-            localStorage.setItem('albion-prices', JSON.stringify(toSave));
-
-            this._updateInputs(merged);
-          }
-        }
-      } catch (e) { }
-    }, 3000);
-  },
-
-  _stopPolling() {
-    if (this._pollInterval) {
-      clearInterval(this._pollInterval);
-      this._pollInterval = null;
-    }
   },
 
   // ============ HELPERS ============
@@ -408,20 +341,6 @@ const Prices = {
     this.list.innerHTML = html;
   },
 
-  _updateInputs(data) {
-    if (!this.modal?.classList.contains('active')) return;
-    this.list.querySelectorAll('.price-input-manual').forEach(input => {
-      if (input.dataset.touched === 'true') return;
-      const { id, type, city } = input.dataset;
-      const best = Format.getBestPrice(id, city, data);
-      const val = type === 'sell' ? best.sell : best.buy;
-      const newValue = val ? val.toLocaleString() : '';
-      // NUNCA borrar un valor existente
-      if (newValue === '' && input.value !== '') return;
-      if (input.value !== newValue) input.value = newValue;
-    });
-  },
-
   resSection(title, rid, saved) {
     const city = this.REFINE[rid];
     const cc = (city || '').toLowerCase().replace(/\s/g, '');
@@ -461,24 +380,6 @@ const Prices = {
     } else {
       btn.classList.remove('loading');
       btn.innerHTML = btn.dataset.originalText || '🔄 Actualizar Precios';
-      btn.style.opacity = '1';
-      btn.style.pointerEvents = 'auto';
-    }
-  },
-
-  _setModalButtonLoading(loading) {
-    const btn = document.getElementById('btn-refresh-prices');
-    if (!btn) return;
-
-    if (loading) {
-      btn.classList.add('loading');
-      btn.dataset.originalText = btn.innerHTML;
-      btn.innerHTML = '⏳ Actualizando...';
-      btn.style.opacity = '0.7';
-      btn.style.pointerEvents = 'none';
-    } else {
-      btn.classList.remove('loading');
-      btn.innerHTML = btn.dataset.originalText || '🔄 Actualizar';
       btn.style.opacity = '1';
       btn.style.pointerEvents = 'auto';
     }
