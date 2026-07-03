@@ -29,11 +29,11 @@ const Prices = {
 
     fetch('data/recipes.json').then(r => r.json()).then(d => { this.recipes = d; }).catch(console.error);
 
-    // Abrir modal (NO carga precios, ya están cargados)
+    // Abrir modal
     document.getElementById('btn-specs').addEventListener('click', () => {
       this.modal.classList.add('active');
       this._renderModalFromCache();
-      this._startPolling(); // Polling para broker local
+      this._startPolling();
     });
 
     // Cerrar modal
@@ -51,7 +51,7 @@ const Prices = {
       }
     });
 
-    // Botón actualizar dentro del modal (fuerza API)
+    // Botón actualizar
     document.getElementById('btn-refresh-prices').addEventListener('click', () => {
       this._forceRefreshFromModal();
     });
@@ -70,7 +70,7 @@ const Prices = {
     });
   },
 
-  // ============ FLUJO PRINCIPAL: Carga al seleccionar item ============
+  // ============ FLUJO PRINCIPAL ============
   async loadPricesOnSelect() {
     const cat = Items.cat?.value;
     const itemName = Items.item?.value;
@@ -86,13 +86,9 @@ const Prices = {
     const ids = this._getIdsForItem(itemData, recipe, cat);
     const allIds = [...ids.final, ...ids.resources, ...ids.artifacts, ...ids.journals];
 
-    // Activar indicador de carga
     this._setButtonLoading(true);
 
-    // 1. Cargar del backend (MongoDB)
     let data = await this._fetchFromBackend(allIds);
-
-    // 2. Mezclar con manuales y mostrar lo que haya AHORA
     const manuals = JSON.parse(localStorage.getItem('albion-prices') || '{}');
     let merged = {};
 
@@ -109,15 +105,11 @@ const Prices = {
       }
     });
 
-    // Guardar y mostrar lo que tenemos ahora
     this._saveToCacheAndStorage(itemData.id, merged, manuals);
     if (typeof Profit !== 'undefined') Profit.calculateAll();
 
-    // 3. SIEMPRE consultar API en segundo plano para actualizar
     try {
       await this._fetchAodpAndSave(ids, recipe);
-
-      // Recargar del backend con datos frescos
       const freshData = await this._fetchFromBackend(allIds);
 
       if (freshData) {
@@ -142,11 +134,10 @@ const Prices = {
       console.error('Error actualizando desde API:', e);
     }
 
-    // Desactivar indicador de carga
     this._setButtonLoading(false);
   },
 
-  // ============ MODAL: Renderizar desde caché ============
+  // ============ MODAL ============
   _renderModalFromCache() {
     const cat = Items.cat?.value;
     const itemName = Items.item?.value;
@@ -168,7 +159,6 @@ const Prices = {
     this.renderPrices(cached, itemData, recipe, ids.recursos);
   },
 
-  // ============ MODAL: Forzar actualización ============
   async _forceRefreshFromModal() {
     const cat = Items.cat?.value;
     const itemName = Items.item?.value;
@@ -184,14 +174,10 @@ const Prices = {
     this.setStatus('Actualizando...', true);
 
     const ids = this._getIdsForItem(itemData, recipe, cat);
-
-    // Consultar API AODP
     await this._fetchAodpAndSave(ids, recipe);
 
-    // Recargar del backend
     const allIds = [...ids.final, ...ids.resources, ...ids.artifacts, ...ids.journals];
     const data = await this._fetchFromBackend(allIds);
-
     const manuals = JSON.parse(localStorage.getItem('albion-prices') || '{}');
     const merged = {};
 
@@ -206,12 +192,11 @@ const Prices = {
     this.renderPrices(merged, itemData, recipe, ids.recursos);
 
     if (typeof Profit !== 'undefined') Profit.calculateAll();
-
     this.setStatus('Actualizado', false);
     this._setModalButtonLoading(false);
   },
 
-  // ============ POLLING (solo cuando modal está abierto) ============
+  // ============ POLLING ============
   _startPolling() {
     this._stopPolling();
     this._pollInterval = setInterval(async () => {
@@ -238,14 +223,12 @@ const Prices = {
 
           Object.entries(data).forEach(([id, prices]) => {
             const priceList = prices.prices || prices;
-            // Solo guardar si hay datos reales (no vacíos)
             if (priceList && priceList.length > 0) {
               merged[id] = { prices: priceList };
               if (manuals[id]?.manual) merged[id].manual = manuals[id].manual;
             }
           });
 
-          // Solo actualizar si hay algo nuevo
           if (Object.keys(merged).length > 0) {
             merged._timestamp = Date.now();
             this._cache[itemData.id] = merged;
@@ -259,7 +242,6 @@ const Prices = {
             localStorage.setItem('albion-prices', JSON.stringify(toSave));
 
             this._updateInputs(merged);
-            if (typeof Profit !== 'undefined') Profit.calculateAll();
           }
         }
       } catch (e) { }
@@ -362,7 +344,6 @@ const Prices = {
       toSave[id] = { prices: data.prices || [], updatedAt: Date.now() };
       if (data.manual) toSave[id].manual = data.manual;
     });
-    // Preservar manuales existentes
     Object.entries(manuals).forEach(([id, data]) => {
       if (!toSave[id] && data?.manual) {
         toSave[id] = { prices: [], manual: data.manual };
@@ -435,6 +416,8 @@ const Prices = {
       const best = Format.getBestPrice(id, city, data);
       const val = type === 'sell' ? best.sell : best.buy;
       const newValue = val ? val.toLocaleString() : '';
+      // NUNCA borrar un valor existente
+      if (newValue === '' && input.value !== '') return;
       if (input.value !== newValue) input.value = newValue;
     });
   },
