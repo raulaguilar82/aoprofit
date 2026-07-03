@@ -292,6 +292,7 @@ const Prices = {
     const s = JSON.parse(localStorage.getItem('albion-prices') || '{}');
     inputs.forEach(input => {
       const { id, type, city } = input.dataset;
+      if (!id || !type) return;
       const v = parseInt(input.value.replace(/\./g, '')) || 0;
       if (!s[id]) s[id] = { manual: {} };
       if (!s[id].manual[type]) s[id].manual[type] = {};
