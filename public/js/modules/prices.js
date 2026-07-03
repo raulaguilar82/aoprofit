@@ -2,9 +2,10 @@
 const Prices = {
   TIERS: [4, 5, 6, 7, 8], ENCHANTS: ['', '@1', '@2', '@3', '@4'],
   REFINE: { METALBAR: 'Thetford', PLANKS: 'Fort Sterling', CLOTH: 'Lymhurst', LEATHER: 'Martlock' },
-  RECURSO: { METALBAR: '🔩 Lingotes', PLANKS: '🪵 Tablas', CLOTH: '🧵 Tela', LEATHER: '🦎 Cuero' },
+  RECURSO: { METALBAR: 'Lingotes', PLANKS: 'Tablas', CLOTH: 'Tela', LEATHER: 'Cuero' },
   recipes: {},
   _cache: {},
+  _pollInterval: null,
 
   JOURNAL_TYPE: {
     'Espadas': 'WARRIOR', 'Hachas': 'WARRIOR', 'Mazas': 'WARRIOR', 'Martillos': 'WARRIOR',
@@ -32,37 +33,36 @@ const Prices = {
     document.getElementById('btn-specs').addEventListener('click', () => {
       this.modal.classList.add('active');
       this._renderModalFromCache();
+      this._startPolling();
     });
 
     // Cerrar modal
     document.getElementById('modal-close').addEventListener('click', () => {
       this._saveManualPrices();
       this.modal.classList.remove('active');
+      this._stopPolling();
     });
 
     this.modal.addEventListener('click', e => {
       if (e.target === this.modal) {
         this._saveManualPrices();
         this.modal.classList.remove('active');
+        this._stopPolling();
       }
-    });
-
-    // Botón actualizar (rápido, solo backend)
-    document.getElementById('btn-refresh-prices').addEventListener('click', () => {
-      this._quickRefresh();
     });
 
     // Guardar precios manuales al editar
     this.list.addEventListener('input', e => {
       if (!e.target.matches('.price-input-manual')) return;
       e.target.dataset.touched = 'true';
-      const { id, type, city } = e.target.dataset;
-      const v = parseInt(e.target.value.replace(/\./g, '')) || 0;
-      const s = JSON.parse(localStorage.getItem('albion-prices') || '{}');
-      if (!s[id]) s[id] = { manual: {} };
-      if (!s[id].manual[type]) s[id].manual[type] = {};
-      s[id].manual[type][city || 'default'] = v;
-      localStorage.setItem('albion-prices', JSON.stringify(s));
+      this._saveManualPrices();
+    });
+
+    // Guardar precios manuales al perder foco (más preciso)
+    this.list.addEventListener('change', e => {
+      if (!e.target.matches('.price-input-manual')) return;
+      this._saveManualPrices();
+      if (typeof Profit !== 'undefined') Profit.calculateAll();
     });
   },
 
@@ -70,7 +70,6 @@ const Prices = {
   async loadPricesOnSelect() {
     const cat = Items.cat?.value;
     const itemName = Items.item?.value;
-
     if (!cat || !itemName) return;
 
     const itemData = Items.data[cat]?.find(i => i.nombre === itemName);
@@ -84,45 +83,21 @@ const Prices = {
 
     this._setButtonLoading(true);
 
+    // Cargar del backend
     let data = await this._fetchFromBackend(allIds);
     const manuals = JSON.parse(localStorage.getItem('albion-prices') || '{}');
-    let merged = {};
-
-    if (data) {
-      Object.entries(data).forEach(([id, prices]) => {
-        merged[id] = { prices: prices.prices || prices };
-        if (manuals[id]?.manual) merged[id].manual = manuals[id].manual;
-      });
-    }
-
-    Object.entries(manuals).forEach(([id, manualData]) => {
-      if (!merged[id] && manualData?.manual) {
-        merged[id] = { prices: [], manual: manualData.manual };
-      }
-    });
+    let merged = this._mergeData(data, manuals);
 
     this._saveToCacheAndStorage(itemData.id, merged, manuals);
     if (typeof Profit !== 'undefined') Profit.calculateAll();
 
+    // Consultar API en segundo plano
     try {
       await this._fetchAodpAndSave(ids, recipe);
       const freshData = await this._fetchFromBackend(allIds);
-
       if (freshData) {
         const freshManuals = JSON.parse(localStorage.getItem('albion-prices') || '{}');
-        const freshMerged = {};
-
-        Object.entries(freshData).forEach(([id, prices]) => {
-          freshMerged[id] = { prices: prices.prices || prices };
-          if (freshManuals[id]?.manual) freshMerged[id].manual = freshManuals[id].manual;
-        });
-
-        Object.entries(freshManuals).forEach(([id, manualData]) => {
-          if (!freshMerged[id] && manualData?.manual) {
-            freshMerged[id] = { prices: [], manual: manualData.manual };
-          }
-        });
-
+        const freshMerged = this._mergeData(freshData, freshManuals);
         this._saveToCacheAndStorage(itemData.id, freshMerged, freshManuals);
         if (typeof Profit !== 'undefined') Profit.calculateAll();
       }
@@ -131,6 +106,25 @@ const Prices = {
     }
 
     this._setButtonLoading(false);
+  },
+
+  _mergeData(data, manuals) {
+    const merged = {};
+    if (data) {
+      Object.entries(data).forEach(([id, prices]) => {
+        merged[id] = { prices: prices.prices || prices };
+        if (manuals[id]?.manual) merged[id].manual = manuals[id].manual;
+      });
+    }
+    Object.entries(manuals).forEach(([id, manualData]) => {
+      if (!merged[id] && manualData?.manual) {
+        merged[id] = { prices: [], manual: manualData.manual };
+      }
+      if (merged[id] && manualData?.manual) {
+        merged[id].manual = manualData.manual;
+      }
+    });
+    return merged;
   },
 
   // ============ MODAL ============
@@ -147,7 +141,7 @@ const Prices = {
 
     const cached = this._cache[itemData.id];
     if (!cached) {
-      this.list.innerHTML = '<p style="color:#888;text-align:center;padding:40px;">No hay datos. Usa el botón Actualizar.</p>';
+      this.list.innerHTML = '<p style="color:#888;text-align:center;padding:40px;">Cargando precios...</p>';
       return;
     }
 
@@ -155,37 +149,54 @@ const Prices = {
     this.renderPrices(cached, itemData, recipe, ids.recursos);
   },
 
-  async _quickRefresh() {
-    const cat = Items.cat?.value;
-    const itemName = Items.item?.value;
-    if (!cat || !itemName) return;
+  // ============ POLLING ============
+  _startPolling() {
+    this._stopPolling();
+    this._pollInterval = setInterval(async () => {
+      const cat = Items.cat?.value;
+      const itemName = Items.item?.value;
+      if (!cat || !itemName) return;
 
-    const itemData = Items.data[cat]?.find(i => i.nombre === itemName);
-    if (!itemData?.id) return;
+      const itemData = Items.data[cat]?.find(i => i.nombre === itemName);
+      if (!itemData?.id) return;
 
-    const recipe = this.recipes[itemData.id.replace('T8_', '')];
-    if (!recipe) return;
+      const recipe = this.recipes[itemData.id.replace('T8_', '')];
+      if (!recipe) return;
 
-    this.setStatus('Actualizando...', true);
+      const ids = this._getIdsForItem(itemData, recipe, cat);
+      const allIds = [...ids.final, ...ids.resources, ...ids.artifacts, ...ids.journals];
 
-    const ids = this._getIdsForItem(itemData, recipe, cat);
-    const allIds = [...ids.final, ...ids.resources, ...ids.artifacts, ...ids.journals];
-    const data = await this._fetchFromBackend(allIds);
-    const manuals = JSON.parse(localStorage.getItem('albion-prices') || '{}');
-    const merged = {};
+      try {
+        const r = await fetch(`/api/cached-prices?ids=${allIds.join(',')}`);
+        const { data } = await r.json();
 
-    if (data) {
-      Object.entries(data).forEach(([id, prices]) => {
-        merged[id] = { prices: prices.prices || prices };
-        if (manuals[id]?.manual) merged[id].manual = manuals[id].manual;
-      });
+        if (data && Object.keys(data).length > 0) {
+          const manuals = JSON.parse(localStorage.getItem('albion-prices') || '{}');
+          const merged = this._mergeData(data, manuals);
+          
+          merged._timestamp = Date.now();
+          this._cache[itemData.id] = merged;
+
+          const toSave = {};
+          Object.entries(merged).forEach(([id, d]) => {
+            if (id === '_timestamp') return;
+            toSave[id] = { prices: d.prices || [], updatedAt: Date.now() };
+            if (d.manual) toSave[id].manual = d.manual;
+          });
+          localStorage.setItem('albion-prices', JSON.stringify(toSave));
+
+          this._updateInputs(merged);
+          if (typeof Profit !== 'undefined') Profit.calculateAll();
+        }
+      } catch (e) {}
+    }, 5000);
+  },
+
+  _stopPolling() {
+    if (this._pollInterval) {
+      clearInterval(this._pollInterval);
+      this._pollInterval = null;
     }
-
-    this._saveToCacheAndStorage(itemData.id, merged, manuals);
-    this.renderPrices(merged, itemData, recipe, ids.recursos);
-
-    if (typeof Profit !== 'undefined') Profit.calculateAll();
-    this.setStatus('Actualizado', false);
   },
 
   // ============ HELPERS ============
@@ -220,7 +231,6 @@ const Prices = {
       const { data } = await r.json();
       return data;
     } catch (e) {
-      console.error('Error backend:', e);
       return null;
     }
   },
@@ -234,7 +244,6 @@ const Prices = {
         const data = await API.optimized(ids.final.slice(i, i + CHUNK));
         Object.assign(newData, data);
       }
-
       for (const r of ids.recursos) {
         const rIds = this.TIERS.flatMap(t =>
           this.ENCHANTS.map(e => `T${t}_${r.id}${e ? `_LEVEL${e.replace('@', '')}${e}` : ''}`)
@@ -244,12 +253,10 @@ const Prices = {
           Object.assign(newData, data);
         }
       }
-
       for (let i = 0; i < ids.artifacts.length; i += CHUNK) {
         const data = await API.optimized(ids.artifacts.slice(i, i + CHUNK), '1');
         Object.assign(newData, data);
       }
-
       for (let i = 0; i < ids.journals.length; i += CHUNK) {
         const data = await API.optimized(ids.journals.slice(i, i + CHUNK), '1');
         Object.assign(newData, data);
@@ -340,6 +347,19 @@ const Prices = {
     })));
 
     this.list.innerHTML = html;
+  },
+
+  _updateInputs(data) {
+    if (!this.modal?.classList.contains('active')) return;
+    this.list.querySelectorAll('.price-input-manual').forEach(input => {
+      if (input.dataset.touched === 'true') return;
+      const { id, type, city } = input.dataset;
+      const best = Format.getBestPrice(id, city, data);
+      const val = type === 'sell' ? best.sell : best.buy;
+      const newValue = val ? val.toLocaleString() : '';
+      if (newValue === '' && input.value !== '') return;
+      if (input.value !== newValue) input.value = newValue;
+    });
   },
 
   resSection(title, rid, saved) {
