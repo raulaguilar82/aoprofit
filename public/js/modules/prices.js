@@ -2,7 +2,7 @@
 const Prices = {
   TIERS: [4, 5, 6, 7, 8], ENCHANTS: ['', '@1', '@2', '@3', '@4'],
   REFINE: { METALBAR: 'Thetford', PLANKS: 'Fort Sterling', CLOTH: 'Lymhurst', LEATHER: 'Martlock' },
-  RECURSO: { METALBAR: 'Lingotes', PLANKS: 'Tablas', CLOTH: 'Tela', LEATHER: 'Cuero' },
+  RECURSO: { METALBAR: '🔩 Lingotes', PLANKS: '🪵 Tablas', CLOTH: '🧵 Tela', LEATHER: '🦎 Cuero' },
   recipes: {},
   _cache: {},
   _pollInterval: null,
@@ -51,18 +51,10 @@ const Prices = {
       }
     });
 
-    // Guardar precios manuales al editar
+    // Marcar inputs manuales como tocados
     this.list.addEventListener('input', e => {
       if (!e.target.matches('.price-input-manual')) return;
       e.target.dataset.touched = 'true';
-      this._saveManualPrices();
-    });
-
-    // Guardar precios manuales al perder foco (más preciso)
-    this.list.addEventListener('change', e => {
-      if (!e.target.matches('.price-input-manual')) return;
-      this._saveManualPrices();
-      if (typeof Profit !== 'undefined') Profit.calculateAll();
     });
   },
 
@@ -83,7 +75,6 @@ const Prices = {
 
     this._setButtonLoading(true);
 
-    // Cargar del backend
     let data = await this._fetchFromBackend(allIds);
     const manuals = JSON.parse(localStorage.getItem('albion-prices') || '{}');
     let merged = this._mergeData(data, manuals);
@@ -91,7 +82,6 @@ const Prices = {
     this._saveToCacheAndStorage(itemData.id, merged, manuals);
     if (typeof Profit !== 'undefined') Profit.calculateAll();
 
-    // Consultar API en segundo plano
     try {
       await this._fetchAodpAndSave(ids, recipe);
       const freshData = await this._fetchFromBackend(allIds);
@@ -173,7 +163,7 @@ const Prices = {
         if (data && Object.keys(data).length > 0) {
           const manuals = JSON.parse(localStorage.getItem('albion-prices') || '{}');
           const merged = this._mergeData(data, manuals);
-          
+
           merged._timestamp = Date.now();
           this._cache[itemData.id] = merged;
 
@@ -186,7 +176,6 @@ const Prices = {
           localStorage.setItem('albion-prices', JSON.stringify(toSave));
 
           this._updateInputs(merged);
-          if (typeof Profit !== 'undefined') Profit.calculateAll();
         }
       } catch (e) {}
     }, 5000);
@@ -293,14 +282,20 @@ const Prices = {
   },
 
   _saveManualPrices() {
-    const inputs = this.list.querySelectorAll('.price-input-manual[data-touched="true"]');
-    if (inputs.length === 0) return;
+    const inputs = this.list?.querySelectorAll('.price-input-manual[data-touched="true"]');
+    if (!inputs || inputs.length === 0) return;
 
     const s = JSON.parse(localStorage.getItem('albion-prices') || '{}');
     inputs.forEach(input => {
-      const { id, type, city } = input.dataset;
+      const id = input.dataset.id;
+      const type = input.dataset.type;
+      const city = input.dataset.city;
+
       if (!id || !type) return;
-      const v = parseInt(input.value.replace(/\./g, '')) || 0;
+
+      const raw = input.value.replace(/\./g, '').replace(/,/g, '');
+      const v = parseInt(raw) || 0;
+
       if (!s[id]) s[id] = { manual: {} };
       if (!s[id].manual[type]) s[id].manual[type] = {};
       s[id].manual[type][city || 'default'] = v;
