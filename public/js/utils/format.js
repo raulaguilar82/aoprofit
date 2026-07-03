@@ -3,7 +3,7 @@ const Format = {
   date(s) {
     if (!s) return 'Sin datos';
     const d = Math.floor((Date.now() - new Date(s)) / 1000);
-    return d < 60 ? 'Ahora' : d < 3600 ? `Hace ${Math.floor(d/60)}min` : d < 86400 ? `Hace ${Math.floor(d/3600)}h` : `Hace ${Math.floor(d/86400)}d`;
+    return d < 60 ? 'Ahora' : d < 3600 ? `Hace ${Math.floor(d / 60)}min` : d < 86400 ? `Hace ${Math.floor(d / 3600)}h` : `Hace ${Math.floor(d / 86400)}d`;
   },
 
   getPrices(data) {
@@ -15,60 +15,40 @@ const Format = {
   },
 
   getBestPrice(id, city, saved) {
-    // 1. Prioridad: Precio manual (localStorage)
+    // 1. Prioridad: Precio manual
     const manualData = saved[id]?.manual;
     if (manualData?.sell?.[city] || manualData?.buy?.[city]) {
-      return { 
-        sell: manualData.sell?.[city] || 0, 
-        buy: manualData.buy?.[city] || 0, 
-        source: 'Manual' 
+      return {
+        sell: manualData.sell?.[city] || 0,
+        buy: manualData.buy?.[city] || 0,
+        source: 'Manual'
       };
     }
-    
+
     const data = saved[id];
     const prices = this.getPrices(data);
-    
-    // 2. Prioridad: Precio local de la ciudad exacta (data broker)
-    const localExact = prices.find(p => p.city === city && p.source === 'local');
-    if (localExact && (localExact.sell_price_min > 0 || localExact.buy_price_max > 0)) {
-      return { 
-        sell: localExact.sell_price_min, 
-        buy: localExact.buy_price_max, 
-        source: 'Local' 
+
+    // 2. Buscar por ciudad exacta (sin importar source)
+    const exact = prices.find(p => p.city === city);
+    if (exact && (exact.sell_price_min > 0 || exact.buy_price_max > 0)) {
+      return {
+        sell: exact.sell_price_min,
+        buy: exact.buy_price_max,
+        source: exact.source || 'DB'
       };
     }
-    
-    // 3. Prioridad: Cualquier precio local
-    const localAny = prices.find(p => p.source === 'local');
-    if (localAny && (localAny.sell_price_min > 0 || localAny.buy_price_max > 0)) {
-      return { 
-        sell: localAny.sell_price_min, 
-        buy: localAny.buy_price_max, 
-        source: 'Local' 
+
+    // 3. Cualquier precio disponible
+    const any = prices.find(p => p.sell_price_min > 0 || p.buy_price_max > 0);
+    if (any) {
+      return {
+        sell: any.sell_price_min,
+        buy: any.buy_price_max,
+        source: any.source || 'DB'
       };
     }
-    
-    // 4. Prioridad: Precio API de la ciudad exacta
-    const apiExact = prices.find(p => p.city === city && p.source === 'api');
-    if (apiExact && (apiExact.sell_price_min > 0 || apiExact.buy_price_max > 0)) {
-      return { 
-        sell: apiExact.sell_price_min, 
-        buy: apiExact.buy_price_max, 
-        source: 'API' 
-      };
-    }
-    
-    // 5. Prioridad: Cualquier precio API
-    const apiAny = prices.find(p => p.source === 'api' && (p.sell_price_min > 0 || p.buy_price_max > 0));
-    if (apiAny) {
-      return { 
-        sell: apiAny.sell_price_min, 
-        buy: apiAny.buy_price_max, 
-        source: 'API' 
-      };
-    }
-    
-    // 6. Sin precio
+
+    // 4. Sin precio
     return { sell: 0, buy: 0, source: 'Manual' };
   },
 
