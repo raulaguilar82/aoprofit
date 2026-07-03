@@ -31,7 +31,7 @@ function handleIngest(req, res) {
   });
 }
 
-router.post('/ingest', handleIngest);
-router.post('/ingest/marketorders.ingest', handleIngest);
+router.post('/', handleIngest);
+router.post('/marketorders.ingest', handleIngest);
 
 module.exports = router;

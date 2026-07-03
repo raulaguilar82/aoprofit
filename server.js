@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json({ limit: '50mb' }));
 
 // API routes
-app.use('/api', require('./server/routes/ingest'));
+app.use('/api/ingest', require('./server/routes/ingest'));
 app.use('/api/cached-prices', require('./server/routes/prices'));
 
 // Static files
