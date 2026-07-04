@@ -49,10 +49,10 @@
   box-shadow: 0 0 12px rgba(255,255,255,0.06);
 }
 
-.variant-tier-T4 { color: #8FD8FF; }
-.variant-tier-T5 { color: #FF6B6B; }
-.variant-tier-T6 { color: #FF9F1C; }
-.variant-tier-T7 { color: #F9E547; }
+.variant-tier-T4 { color: #4a65ad; }
+.variant-tier-T5 { color: #bd2e2e; }
+.variant-tier-T6 { color: #ff951c; }
+.variant-tier-T7 { color: #ebd849; }
 .variant-tier-T8 { color: #FFFFFF; }
 
 .variant-enchant-0 {
@@ -62,10 +62,10 @@
   border-color: #4ade80;
 }
 .variant-enchant-2 {
-  border-color: #7dd3fc;
+  border-color: #7dd4fc;
 }
 .variant-enchant-3 {
-  border-color: #c084fc;
+  border-color: #ac6bee;
 }
 .variant-enchant-4 {
   border-color: #facc15;
@@ -96,14 +96,14 @@
   font-weight: bold;
 }
 
-.city-badge.caerleon { background: #1a1a2e; color: #e94560; }
+.city-badge.caerleon { background: #1a1a2e; color: #d32f4b; }
 .city-badge.bridgewatch { background: #1a1a2e; color: #e9b445; }
-.city-badge.lymhurst { background: #1a1a2e; color: #4ade80; }
-.city-badge.martlock { background: #1a1a2e; color: #6b8cce; }
-.city-badge.fortsterling { background: #1a1a2e; color: #a0a0a0; }
-.city-badge.thetford { background: #1a1a2e; color: #c084fc; }
+.city-badge.lymhurst { background: #1a1a2e; color: #3ab840; }
+.city-badge.martlock { background: #1a1a2e; color: #5174b9; }
+.city-badge.fortsterling { background: #1a1a2e; color: #acacac; }
+.city-badge.thetford { background: #1a1a2e; color: #9a57dd; }
 .city-badge.brecilien { background: #1a1a2e; color: #22d3ee; }
-.city-badge.blackmarket { background: #1a1a2e; color: #ff4444; }
+.city-badge.blackmarket { background: #1a1a2e; color: #882020; }
 
 /* Filtros */
 .filter-group {

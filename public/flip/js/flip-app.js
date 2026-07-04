@@ -1,5 +1,7 @@
 const FlipApp = {
   selectedItemId: null,
+  lastFlips: [],
+  lastFilters: null,
 
   async init() {
     console.log('✅ Market Flip inicializado');
@@ -10,6 +12,8 @@ const FlipApp = {
 
   _setupFilters() {
     document.getElementById('btn-search')?.addEventListener('click', () => this.search());
+    document.getElementById('flip-premium')?.addEventListener('change', () => this.refreshCurrentResults());
+
     const category = document.getElementById('flip-category');
     const type = document.getElementById('flip-type');
 
@@ -140,7 +144,23 @@ const FlipApp = {
     const prices = await FlipPrices.fetchPrices(allVariants, true);
     const flips = FlipPrices.findBestFlips(prices, filters);
 
+    this.lastFlips = flips;
+    this.lastFilters = filters;
+    this.lastPrices = prices;
     FlipTable.render(flips, FlipSearch.items);
+  },
+
+  refreshCurrentResults() {
+    if (!this.lastFlips.length || !this.lastFilters) return;
+
+    const premium = document.getElementById('flip-premium')?.checked || false;
+    const filters = { ...this.lastFilters, premium };
+    const updatedFlips = FlipPrices.findBestFlips(this.lastPrices || {}, filters);
+
+    if (updatedFlips.length !== this.lastFlips.length || updatedFlips.some((flip, index) => flip.profit !== this.lastFlips[index]?.profit || flip.profitPct !== this.lastFlips[index]?.profitPct)) {
+      this.lastFlips = updatedFlips;
+      FlipTable.render(updatedFlips, FlipSearch.items);
+    }
   },
 
   _fillTypeOptions(categoryValue, typeSelect) {
