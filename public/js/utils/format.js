@@ -46,14 +46,11 @@ const Format = {
     }
 
     // 1. Prioridad: Precio manual
-    const manualData = saved?.[id]?.manual;
-    const manualSell = manualData?.sell;
-    const manualBuy = manualData?.buy;
-
-    if (manualSell && manualSell[city] !== undefined || manualBuy && manualBuy[city] !== undefined) {
+    const manualData = saved[id]?.manual;
+    if (manualData && ((manualData.sell && manualData.sell[city] !== undefined) || (manualData.buy && manualData.buy[city] !== undefined))) {
       return {
-        sell: manualSell?.[city] ?? 0,
-        buy: manualBuy?.[city] ?? 0,
+        sell: manualData.sell?.[city] ?? 0,
+        buy: manualData.buy?.[city] ?? 0,
         source: 'Manual'
       };
     }
@@ -72,8 +69,8 @@ const Format = {
     }
 
     // 3. Fallback a precio manual global si no hay ciudad específica
-    const fallbackSell = manualSell?.default;
-    const fallbackBuy = manualBuy?.default;
+    const fallbackSell = manualData.sell?.default;
+    const fallbackBuy = manualData.buy?.default;
     if (fallbackSell !== undefined || fallbackBuy !== undefined) {
       return {
         sell: fallbackSell ?? 0,
