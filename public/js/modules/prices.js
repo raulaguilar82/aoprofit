@@ -5,7 +5,6 @@ const Prices = {
   RECURSO: { METALBAR: '🔩 Lingotes', PLANKS: '🪵 Tablas', CLOTH: '🧵 Tela', LEATHER: '🦎 Cuero' },
   recipes: {},
   _cache: {},
-  _pollInterval: null,
 
   JOURNAL_TYPE: {
     'Espadas': 'WARRIOR', 'Hachas': 'WARRIOR', 'Mazas': 'WARRIOR', 'Martillos': 'WARRIOR',
@@ -33,21 +32,18 @@ const Prices = {
     document.getElementById('btn-specs').addEventListener('click', () => {
       this.modal.classList.add('active');
       this._renderModalFromCache();
-      this._startPolling();
     });
 
     // Cerrar modal
     document.getElementById('modal-close').addEventListener('click', () => {
       this._saveManualPrices();
       this.modal.classList.remove('active');
-      this._stopPolling();
     });
 
     this.modal.addEventListener('click', e => {
       if (e.target === this.modal) {
         this._saveManualPrices();
         this.modal.classList.remove('active');
-        this._stopPolling();
       }
     });
 
@@ -76,7 +72,7 @@ const Prices = {
     this._setButtonLoading(true);
 
     let data = await this._fetchFromBackend(allIds);
-    const manuals = JSON.parse(localStorage.getItem('albion-prices') || '{}');
+    const manuals = this._readManualPrices();
     let merged = this._mergeData(data, manuals);
 
     this._saveToCacheAndStorage(itemData.id, merged, manuals);
@@ -86,7 +82,7 @@ const Prices = {
       await this._fetchAodpAndSave(ids, recipe);
       const freshData = await this._fetchFromBackend(allIds);
       if (freshData) {
-        const freshManuals = JSON.parse(localStorage.getItem('albion-prices') || '{}');
+        const freshManuals = Format.Storage.getManualPrices();
         const freshMerged = this._mergeData(freshData, freshManuals);
         this._saveToCacheAndStorage(itemData.id, freshMerged, freshManuals);
         if (typeof Profit !== 'undefined') Profit.calculateAll();
@@ -100,13 +96,13 @@ const Prices = {
 
   _mergeData(data, manuals) {
     const merged = {};
-    if (data) {
+    if (data && typeof data === 'object') {
       Object.entries(data).forEach(([id, prices]) => {
-        merged[id] = { prices: prices.prices || prices };
-        if (manuals[id]?.manual) merged[id].manual = manuals[id].manual;
+        merged[id] = { prices: prices?.prices || prices || [] };
+        if (manuals?.[id]?.manual) merged[id].manual = manuals[id].manual;
       });
     }
-    Object.entries(manuals).forEach(([id, manualData]) => {
+    Object.entries(manuals || {}).forEach(([id, manualData]) => {
       if (!merged[id] && manualData?.manual) {
         merged[id] = { prices: [], manual: manualData.manual };
       }
@@ -135,57 +131,16 @@ const Prices = {
       return;
     }
 
+    const manuals = this._readManualPrices();
+    const cachedWithManuals = JSON.parse(JSON.stringify(cached));
+    Object.entries(manuals).forEach(([id, data]) => {
+      if (cachedWithManuals[id]) {
+        cachedWithManuals[id].manual = data.manual;
+      }
+    });
+
     const ids = this._getIdsForItem(itemData, recipe, cat);
-    this.renderPrices(cached, itemData, recipe, ids.recursos);
-  },
-
-  // ============ POLLING ============
-  _startPolling() {
-    this._stopPolling();
-    this._pollInterval = setInterval(async () => {
-      const cat = Items.cat?.value;
-      const itemName = Items.item?.value;
-      if (!cat || !itemName) return;
-
-      const itemData = Items.data[cat]?.find(i => i.nombre === itemName);
-      if (!itemData?.id) return;
-
-      const recipe = this.recipes[itemData.id.replace('T8_', '')];
-      if (!recipe) return;
-
-      const ids = this._getIdsForItem(itemData, recipe, cat);
-      const allIds = [...ids.final, ...ids.resources, ...ids.artifacts, ...ids.journals];
-
-      try {
-        const r = await fetch(`/api/cached-prices?ids=${allIds.join(',')}`);
-        const { data } = await r.json();
-
-        if (data && Object.keys(data).length > 0) {
-          const manuals = JSON.parse(localStorage.getItem('albion-prices') || '{}');
-          const merged = this._mergeData(data, manuals);
-
-          merged._timestamp = Date.now();
-          this._cache[itemData.id] = merged;
-
-          const toSave = {};
-          Object.entries(merged).forEach(([id, d]) => {
-            if (id === '_timestamp') return;
-            toSave[id] = { prices: d.prices || [], updatedAt: Date.now() };
-            if (d.manual) toSave[id].manual = d.manual;
-          });
-          localStorage.setItem('albion-prices', JSON.stringify(toSave));
-
-          this._updateInputs(merged);
-        }
-      } catch (e) {}
-    }, 5000);
-  },
-
-  _stopPolling() {
-    if (this._pollInterval) {
-      clearInterval(this._pollInterval);
-      this._pollInterval = null;
-    }
+    this.renderPrices(cachedWithManuals, itemData, recipe, ids.recursos);
   },
 
   // ============ HELPERS ============
@@ -217,10 +172,11 @@ const Prices = {
   async _fetchFromBackend(allIds) {
     try {
       const r = await fetch(`/api/cached-prices?ids=${allIds.join(',')}`);
-      const { data } = await r.json();
-      return data;
+      if (!r.ok) return {};
+      const payload = await r.json();
+      return payload?.data && typeof payload.data === 'object' ? payload.data : {};
     } catch (e) {
-      return null;
+      return {};
     }
   },
 
@@ -264,43 +220,82 @@ const Prices = {
   },
 
   _saveToCacheAndStorage(itemId, merged, manuals) {
+    if (!merged || typeof merged !== 'object') merged = {};
     merged._timestamp = Date.now();
     this._cache[itemId] = merged;
 
     const toSave = {};
-    Object.entries(merged).forEach(([id, data]) => {
+    Object.entries(merged || {}).forEach(([id, data]) => {
       if (id === '_timestamp') return;
-      toSave[id] = { prices: data.prices || [], updatedAt: Date.now() };
-      if (data.manual) toSave[id].manual = data.manual;
+      toSave[id] = { prices: Array.isArray(data?.prices) ? data.prices : [], updatedAt: Date.now() };
+      if (data?.manual) toSave[id].manual = data.manual;
     });
-    Object.entries(manuals).forEach(([id, data]) => {
+    Object.entries(manuals || {}).forEach(([id, data]) => {
       if (!toSave[id] && data?.manual) {
         toSave[id] = { prices: [], manual: data.manual };
       }
     });
-    localStorage.setItem('albion-prices', JSON.stringify(toSave));
+    Format.Storage.saveManualPrices(toSave);
   },
 
   _saveManualPrices() {
     const inputs = this.list?.querySelectorAll('.price-input-manual[data-touched="true"]');
     if (!inputs || inputs.length === 0) return;
 
-    const s = JSON.parse(localStorage.getItem('albion-prices') || '{}');
+    const s = this._readManualPrices();
     inputs.forEach(input => {
-      const id = input.dataset.id;
-      const type = input.dataset.type;
-      const city = input.dataset.city;
+      try {
+        const id = input?.dataset?.id;
+        const type = input?.dataset?.type;
+        const city = input?.dataset?.city;
+        if (!id || !type) return;
 
-      if (!id || !type) return;
+        const raw = (input?.value || '').toString().replace(/\./g, '').replace(/,/g, '').trim();
+        if (raw === '') {
+          if (s[id]?.manual?.[type]) {
+            delete s[id].manual[type][city || 'default'];
+            if (Object.keys(s[id].manual[type]).length === 0) {
+              delete s[id].manual[type];
+            }
+          }
+          if (s[id]?.manual && Object.keys(s[id].manual).length === 0) {
+            delete s[id].manual;
+          }
+          if (s[id] && !s[id].manual && !Array.isArray(s[id].prices)) {
+            delete s[id];
+          }
+          return;
+        }
 
-      const raw = input.value.replace(/\./g, '').replace(/,/g, '');
-      const v = parseInt(raw) || 0;
+        const v = Number.parseInt(raw, 10);
+        const value = Number.isFinite(v) ? v : 0;
 
-      if (!s[id]) s[id] = { manual: {} };
-      if (!s[id].manual[type]) s[id].manual[type] = {};
-      s[id].manual[type][city || 'default'] = v;
+        if (!s[id]) s[id] = { manual: {} };
+        if (!s[id].manual) s[id].manual = {};
+        if (!s[id].manual[type]) s[id].manual[type] = {};
+        s[id].manual[type][city || 'default'] = value;
+      } catch (err) {
+        console.warn('No se pudo guardar un precio manual:', err);
+      }
     });
-    localStorage.setItem('albion-prices', JSON.stringify(s));
+
+    Object.entries(s).forEach(([id, entry]) => {
+      if (entry?.manual && Object.keys(entry.manual).length === 0) {
+        delete entry.manual;
+      }
+      if (entry && !entry.manual && !Array.isArray(entry.prices)) {
+        delete s[id];
+      }
+    });
+
+    Format.Storage.saveManualPrices(s);
+    if (typeof Profit !== 'undefined' && Profit.calculateAll) {
+      Profit.calculateAll();
+    }
+  },
+
+  _readManualPrices() {
+    return Format.Storage.getManualPrices();
   },
 
   setStatus(text, loading = false) {
@@ -344,19 +339,6 @@ const Prices = {
     this.list.innerHTML = html;
   },
 
-  _updateInputs(data) {
-    if (!this.modal?.classList.contains('active')) return;
-    this.list.querySelectorAll('.price-input-manual').forEach(input => {
-      if (input.dataset.touched === 'true') return;
-      const { id, type, city } = input.dataset;
-      const best = Format.getBestPrice(id, city, data);
-      const val = type === 'sell' ? best.sell : best.buy;
-      const newValue = val ? val.toLocaleString() : '';
-      if (newValue === '' && input.value !== '') return;
-      if (input.value !== newValue) input.value = newValue;
-    });
-  },
-
   resSection(title, rid, saved) {
     const city = this.REFINE[rid];
     const cc = (city || '').toLowerCase().replace(/\s/g, '');
@@ -366,14 +348,16 @@ const Prices = {
       h += `<tr><td><span class="tier-badge t${t}-badge">T${t}</span></td><td colspan="2"><div class="city-cards">`;
       this.ENCHANTS.forEach(e => {
         const id = `T${t}_${rid}${e ? `_LEVEL${e.replace('@', '')}${e}` : ''}`;
-        const best = Format.getBestPrice(id, city, saved);
+        const best = Format.getBestPrice(id, city, saved) || { sell: 0, buy: 0, source: 'Manual' };
+        const sellValue = best?.sell != null ? best.sell.toLocaleString() : '';
+        const buyValue = best?.buy != null ? best.buy.toLocaleString() : '';
         h += `<div class="city-card ${cc} ench-${e ? e.slice(1) : '0'}">
           <span class="city-name ench-${e ? e.slice(1) : '0'}">${city} ${e ? '.' + e.slice(1) : '.0'}</span>
           <div class="separator-small"></div>
           <span class="sell-buy-order">Venta:</span>
-          <input type="text" inputmode="numeric" class="price-input-manual" value="${best.sell ? best.sell.toLocaleString() : ''}" data-id="${id}" data-type="sell" data-city="${city}">
+          <input type="text" inputmode="numeric" class="price-input-manual" value="${sellValue}" data-id="${id}" data-type="sell" data-city="${city}">
           <span class="sell-buy-order">Compra:</span>
-          <input type="text" inputmode="numeric" class="price-input-manual" value="${best.buy ? best.buy.toLocaleString() : ''}" data-id="${id}" data-type="buy" data-city="${city}">
+          <input type="text" inputmode="numeric" class="price-input-manual" value="${buyValue}" data-id="${id}" data-type="buy" data-city="${city}">
         </div>`;
       });
       h += `</div></td></tr>`;
@@ -410,15 +394,17 @@ const Prices = {
 
     let cards = '<div class="city-cards">';
     visible.forEach(c => {
-      const best = Format.getBestPrice(id, c, saved);
+      const best = Format.getBestPrice(id, c, saved) || { sell: 0, buy: 0, source: 'Manual' };
+      const sellValue = best?.sell != null ? best.sell.toLocaleString() : '';
+      const buyValue = best?.buy != null ? best.buy.toLocaleString() : '';
       const cls = c.toLowerCase().replace(/\s/g, '');
       cards += `<div class="city-card ${cls}">
         <span class="city-name">${c}</span>
         <div class="separator-small"></div>
         <span class="sell-buy-order">Venta:</span>
-        <input type="text" inputmode="numeric" class="price-input-manual" value="${best.sell ? best.sell.toLocaleString() : ''}" data-id="${id}" data-type="sell" data-city="${c}">
+        <input type="text" inputmode="numeric" class="price-input-manual" value="${sellValue}" data-id="${id}" data-type="sell" data-city="${c}">
         <span class="sell-buy-order">Compra:</span>
-        <input type="text" inputmode="numeric" class="price-input-manual" value="${best.buy ? best.buy.toLocaleString() : ''}" data-id="${id}" data-type="buy" data-city="${c}">
+        <input type="text" inputmode="numeric" class="price-input-manual" value="${buyValue}" data-id="${id}" data-type="buy" data-city="${c}">
       </div>`;
     });
 

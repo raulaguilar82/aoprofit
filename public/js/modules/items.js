@@ -67,7 +67,7 @@ const Items = {
       e.target.value = value;
 
       const { cat, item, mastery } = e.target.dataset;
-      const s = JSON.parse(localStorage.getItem('albion-specs') || '{}');
+      const s = Format.Storage.getSpecs();
 
       if (mastery === 'true') {
         if (!s[cat]) s[cat] = { mastery: 0, items: {} };
@@ -77,7 +77,7 @@ const Items = {
         s[cat].items[item] = value;
       }
 
-      localStorage.setItem('albion-specs', JSON.stringify(s));
+      Format.Storage.saveSpecs(s);
       this._updateBonus(cat);
 
       if (typeof Profit !== 'undefined' && Profit.calculateAll) {
@@ -148,7 +148,7 @@ const Items = {
       return;
     }
 
-    const s = JSON.parse(localStorage.getItem('albion-specs') || '{}');
+    const s = Format.Storage.getSpecs();
     const items = s[cat]?.items || {};
     const mastery = s[cat]?.mastery || 0;
 
@@ -192,7 +192,7 @@ const Items = {
       return;
     }
 
-    const s = JSON.parse(localStorage.getItem('albion-specs') || '{}');
+    const s = Format.Storage.getSpecs();
     const sItems = s[cat]?.items || {};
     const mastery = s[cat]?.mastery || 0;
     const sel = this.item.value;

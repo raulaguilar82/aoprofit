@@ -180,7 +180,7 @@ const Profit = {
   },
 
   getFocusSpecialization(itemIndex, cat) {
-    const s = JSON.parse(localStorage.getItem('albion-specs') || '{}');
+    const s = Format.Storage.getSpecs();
     const catData = s[cat] || { mastery: 0, items: {} };
     let totalSpec = 0;
 
@@ -235,7 +235,7 @@ const Profit = {
     const recipe = Prices.recipes[itemData.id.replace('T8_', '')];
     if (!recipe) return;
 
-    const saved = JSON.parse(localStorage.getItem('albion-prices') || '{}');
+    const saved = Format.Storage.getManualPrices();
     const premium = this.premiumCheck?.checked || false;
     const usarFoco = this.focoCheck?.checked || false;
     const llenarDiarios = this.diariosCheck?.checked || false;

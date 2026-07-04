@@ -6,6 +6,32 @@ const Format = {
     return d < 60 ? 'Ahora' : d < 3600 ? `Hace ${Math.floor(d / 60)}min` : d < 86400 ? `Hace ${Math.floor(d / 3600)}h` : `Hace ${Math.floor(d / 86400)}d`;
   },
 
+  parseJSON(raw, fallback = {}) {
+    try {
+      const parsed = raw ? JSON.parse(raw) : fallback;
+      return parsed && typeof parsed === 'object' ? parsed : fallback;
+    } catch (e) {
+      return fallback;
+    }
+  },
+
+  Storage: {
+    getManualPrices() {
+      return Format.parseJSON(localStorage.getItem('albion-prices'), {});
+    },
+    saveManualPrices(data) {
+      if (!data || typeof data !== 'object') data = {};
+      localStorage.setItem('albion-prices', JSON.stringify(data));
+    },
+    getSpecs() {
+      return Format.parseJSON(localStorage.getItem('albion-specs'), {});
+    },
+    saveSpecs(data) {
+      if (!data || typeof data !== 'object') data = {};
+      localStorage.setItem('albion-specs', JSON.stringify(data));
+    }
+  },
+
   getPrices(data) {
     if (!data) return [];
     if (Array.isArray(data)) return data;
@@ -15,12 +41,16 @@ const Format = {
   },
 
   getBestPrice(id, city, saved) {
+    if (!id || !saved || typeof saved !== 'object') {
+      return { sell: 0, buy: 0, source: 'Manual' };
+    }
+
     // 1. Prioridad: Precio manual
     const manualData = saved[id]?.manual;
-    if (manualData?.sell?.[city] || manualData?.buy?.[city]) {
+    if (manualData && ((manualData.sell && manualData.sell[city] !== undefined) || (manualData.buy && manualData.buy[city] !== undefined))) {
       return {
-        sell: manualData.sell?.[city] || 0,
-        buy: manualData.buy?.[city] || 0,
+        sell: manualData.sell?.[city] ?? 0,
+        buy: manualData.buy?.[city] ?? 0,
         source: 'Manual'
       };
     }
@@ -35,6 +65,17 @@ const Format = {
         sell: exact.sell_price_min,
         buy: exact.buy_price_max,
         source: exact.source || 'DB'
+      };
+    }
+
+    // 3. Fallback a precio manual global si no hay ciudad específica
+    const fallbackSell = manualData.sell?.default;
+    const fallbackBuy = manualData.buy?.default;
+    if (fallbackSell !== undefined || fallbackBuy !== undefined) {
+      return {
+        sell: fallbackSell ?? 0,
+        buy: fallbackBuy ?? 0,
+        source: 'Manual'
       };
     }
 
@@ -53,7 +94,7 @@ const Format = {
   },
 
   preserveManuals(saved) {
-    const old = JSON.parse(localStorage.getItem('albion-prices') || '{}');
+    const old = Format.Storage.getManualPrices();
     Object.entries(old).forEach(([id, data]) => {
       if (data?.manual && Object.keys(data.manual).length > 0) {
         if (!saved[id]) saved[id] = { prices: [], updatedAt: 0 };
