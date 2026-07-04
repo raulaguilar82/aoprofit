@@ -10,6 +10,83 @@
   color: var(--red-stale);
 }
 
+.flip-item-cell {
+  white-space: nowrap;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  padding: 8px 10px;
+}
+
+.flip-item-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  object-fit: cover;
+  border: 1px solid rgba(255,255,255,0.08);
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.flip-item-name {
+  display: inline-block;
+  vertical-align: middle;
+  width: 220px;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.flip-variant-label {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 0 12px rgba(255,255,255,0.06);
+}
+
+.variant-tier-T4 { color: #8FD8FF; }
+.variant-tier-T5 { color: #FF6B6B; }
+.variant-tier-T6 { color: #FF9F1C; }
+.variant-tier-T7 { color: #F9E547; }
+.variant-tier-T8 { color: #FFFFFF; }
+
+.variant-enchant-0 {
+  border-color: rgba(255,255,255,0.12);
+}
+.variant-enchant-1 {
+  border-color: #4ade80;
+}
+.variant-enchant-2 {
+  border-color: #7dd3fc;
+}
+.variant-enchant-3 {
+  border-color: #c084fc;
+}
+.variant-enchant-4 {
+  border-color: #facc15;
+}
+
+.flip-profit-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.flip-profit-value {
+  font-weight: 700;
+}
+
+.flip-profit-percent {
+  font-size: 0.75rem;
+  color: #999;
+}
+
 /* Badge de ciudad en tabla */
 .city-badge {
   display: inline-block;

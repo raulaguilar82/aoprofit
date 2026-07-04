@@ -29,6 +29,54 @@ const FlipSearch = {
         return this.TYPE_MAP[category] || [];
     },
 
+    getNameById(id, lang = 'es') {
+        const item = this.items.find(i => i.id === id || i.id.replace(/@\d+$/, '') === id.replace(/@\d+$/, ''));
+        return this.getName(item || { id }, lang);
+    },
+
+    getBaseId(id) {
+        return String(id || '').replace(/^T\d+_/, '').replace(/@\d+$/, '');
+    },
+
+    getBaseName(item, lang = 'es') {
+        const name = this.getName(item, lang);
+        return this._stripTierName(name);
+    },
+
+    getSuggestions(filters = {}) {
+        const items = this.filter(filters);
+        const grouped = {};
+
+        items.forEach(item => {
+            const baseId = this.getBaseId(item.id);
+            if (!grouped[baseId]) {
+                grouped[baseId] = item;
+                return;
+            }
+
+            const existing = grouped[baseId];
+            if (this._variantScore(item) < this._variantScore(existing)) {
+                grouped[baseId] = item;
+            }
+        });
+
+        return Object.values(grouped);
+    },
+
+    _variantScore(item) {
+        const tier = parseInt(item.id.match(/T(\d+)/)?.[1]) || 0;
+        const enchant = parseInt(item.id.match(/@(\d+)$/)?.[1]) || 0;
+        return tier * 10 + enchant;
+    },
+
+    _stripTierName(name) {
+        if (!name) return '';
+        return String(name)
+            .replace(/^(Adept's|Expert's|Master's|Grandmaster's|Elder's|Journeyman's|Novice's|Apprentice's)\s+/i, '')
+            .replace(/\s+(del|de)\s+(iniciado|experto|maestro|gran maestro|anciano|aprendiz|novato)/i, '')
+            .trim();
+    },
+
     _normalize(text) {
         return text
             .normalize('NFD')
@@ -60,6 +108,12 @@ const FlipSearch = {
                 if (ench === 0) return !i.id.includes('@');
                 return i.id.includes(`@${ench}`);
             });
+        }
+
+        // Por tipo específico
+        if (filters.type && filters.type.trim()) {
+            const typeValue = filters.type.trim();
+            results = results.filter(i => i.id.includes(typeValue));
         }
 
         // Por nombre

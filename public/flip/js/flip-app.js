@@ -1,4 +1,6 @@
 const FlipApp = {
+  selectedItemId: null,
+
   async init() {
     console.log('✅ Market Flip inicializado');
     await FlipSearch.init();
@@ -8,6 +10,16 @@ const FlipApp = {
 
   _setupFilters() {
     document.getElementById('btn-search')?.addEventListener('click', () => this.search());
+    const category = document.getElementById('flip-category');
+    const type = document.getElementById('flip-type');
+
+    if (category && type) {
+      category.addEventListener('change', () => {
+        this.selectedItemId = null;
+        this._fillTypeOptions(category.value, type);
+      });
+      this._fillTypeOptions(category.value, type);
+    }
   },
 
   _setupSearch() {
@@ -17,6 +29,7 @@ const FlipApp = {
     if (!input || !dropdown) return;
 
     input.addEventListener('input', () => {
+      this.selectedItemId = null;
       const query = input.value.trim();
 
       if (query.length < 2) {
@@ -24,7 +37,16 @@ const FlipApp = {
         return;
       }
 
-      const results = FlipSearch.filter({ query }).slice(0, 10);
+      const filters = {
+        query,
+        category: document.getElementById('flip-category')?.value,
+        type: document.getElementById('flip-type')?.value,
+        tierMin: parseInt(document.getElementById('flip-tier-min')?.value) || 4,
+        tierMax: parseInt(document.getElementById('flip-tier-max')?.value) || 8,
+        enchant: document.getElementById('flip-enchant')?.value
+      };
+
+      const results = FlipSearch.getSuggestions(filters).slice(0, 10);
 
       if (results.length === 0) {
         dropdown.classList.remove('active');
@@ -37,7 +59,7 @@ const FlipApp = {
                onerror="this.style.display='none'"
                style="width:24px;height:24px;border-radius:3px;" />
           <div>
-            <div>${FlipSearch.getName(item)}</div>
+            <div>${FlipSearch.getBaseName(item)}</div>
           </div>
         </div>
       `).join('');
@@ -53,6 +75,7 @@ const FlipApp = {
       const fullItem = FlipSearch.items.find(i => i.id === itemId);
 
       if (fullItem) {
+        this.selectedItemId = itemId;
         input.value = FlipSearch.getName(fullItem);
         dropdown.classList.remove('active');
         this.search();
@@ -81,6 +104,7 @@ const FlipApp = {
     const filters = {
       query: document.getElementById('flip-search')?.value || '',
       category: document.getElementById('flip-category')?.value,
+      type: document.getElementById('flip-type')?.value,
       tierMin: parseInt(document.getElementById('flip-tier-min')?.value) || 4,
       tierMax: parseInt(document.getElementById('flip-tier-max')?.value) || 8,
       enchant: document.getElementById('flip-enchant')?.value,
@@ -90,7 +114,18 @@ const FlipApp = {
       premium: document.getElementById('flip-premium')?.checked || false
     };
 
-    const filteredItems = FlipSearch.filter(filters);
+    let filteredItems = [];
+    if (this.selectedItemId) {
+      const selected = FlipSearch.items.find(i => i.id === this.selectedItemId);
+      if (selected) {
+        filteredItems = [selected];
+      }
+    }
+
+    if (!filteredItems.length) {
+      filteredItems = FlipSearch.filter(filters);
+    }
+
     console.log(`🔍 ${filteredItems.length} items encontrados`);
 
     if (filteredItems.length === 0) {
@@ -106,6 +141,20 @@ const FlipApp = {
     const flips = FlipPrices.findBestFlips(prices, filters);
 
     FlipTable.render(flips, FlipSearch.items);
+  },
+
+  _fillTypeOptions(categoryValue, typeSelect) {
+    if (!typeSelect) return;
+    typeSelect.innerHTML = '<option value="">Todos</option>';
+    if (!categoryValue) return;
+
+    const prefixes = FlipSearch.getTypesForCategory(categoryValue);
+    prefixes.forEach(prefix => {
+      const option = document.createElement('option');
+      option.value = prefix;
+      option.textContent = prefix.replace(/_$/, '');
+      typeSelect.appendChild(option);
+    });
   }
 };
 

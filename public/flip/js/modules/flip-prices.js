@@ -6,13 +6,8 @@ const FlipPrices = {
     _cache: {},
 
     async fetchPrices(items, forceApi = false) {
-        const ids = [];
-
-        // Generar todos los IDs para cada item
-        items.forEach(item => {
-            const baseId = item.id.replace(/T\d+/, 'T$&'); // Mantener el tier original
-            ids.push(baseId);
-        });
+        const ids = [...new Set((items || []).map(item => item.id).filter(Boolean))];
+        if (ids.length === 0) return {};
 
         // 1. Buscar en MongoDB
         let data = await this._fetchFromBackend(ids);
@@ -29,10 +24,11 @@ const FlipPrices = {
     async _fetchFromBackend(ids) {
         try {
             const r = await fetch(`/api/cached-prices?ids=${ids.join(',')}`);
-            const { data } = await r.json();
-            return data;
+            if (!r.ok) return {};
+            const json = await r.json();
+            return json?.data && typeof json.data === 'object' ? json.data : {};
         } catch (e) {
-            return null;
+            return {};
         }
     },
 
@@ -40,8 +36,9 @@ const FlipPrices = {
         const CHUNK = 10;
         const newData = {};
 
-        for (let i = 0; i < ids.length; i += CHUNK) {
-            const data = await API.optimized(ids.slice(i, i + CHUNK));
+        const uniqueIds = [...new Set(ids.filter(Boolean))];
+        for (let i = 0; i < uniqueIds.length; i += CHUNK) {
+            const data = await API.optimized(uniqueIds.slice(i, i + CHUNK));
             Object.assign(newData, data);
         }
 
@@ -58,11 +55,16 @@ const FlipPrices = {
         const expanded = [];
 
         items.forEach(item => {
-            const baseId = item.id.replace(/T\d+/, 'T$&');
+            const normalizedId = (item.id || '').replace(/@\d+$/, '');
+            if (!/^T\d+_/.test(normalizedId)) {
+                expanded.push({ ...item, id: normalizedId, searchId: item.id });
+                return;
+            }
 
+            const rootId = normalizedId.replace(/^T\d+_/, '');
             this.TIERS.forEach(tier => {
                 this.ENCHANTS.forEach(enchant => {
-                    const newId = baseId.replace(/T\d+/, `T${tier}`) + enchant;
+                    const newId = `T${tier}_${rootId}${enchant ? `@${enchant.replace('@', '')}` : ''}`;
                     expanded.push({
                         ...item,
                         id: newId,
@@ -118,7 +120,8 @@ const FlipPrices = {
                             sellPrice,
                             tax,
                             profit,
-                            profitPct
+                            profitPct,
+                            itemName: typeof FlipSearch !== 'undefined' ? FlipSearch.getNameById(itemId, 'es') : itemId
                         });
                     }
                 });
