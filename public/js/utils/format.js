@@ -46,7 +46,7 @@ const Format = {
     }
 
     // 1. Prioridad: Precio manual
-    const manualData = saved[id]?.manual;
+    const manualData = saved[id]?.manual || {};
     if (manualData && ((manualData.sell && manualData.sell[city] !== undefined) || (manualData.buy && manualData.buy[city] !== undefined))) {
       return {
         sell: manualData.sell?.[city] ?? 0,
